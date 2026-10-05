@@ -22,12 +22,15 @@ html.export .slide{transform:none!important}
 
 /* shared pieces */
 .logo{display:flex;align-items:center;gap:14px;font-weight:700;font-size:30px;letter-spacing:.02em}
+.logo img{height:92px;width:auto;display:block}
 .logo b{display:inline-grid;place-items:center;width:58px;height:58px;border-radius:50%;background:var(--green);color:#fff;font-size:22px;font-weight:800;letter-spacing:0}
 .logo span small{display:block;font-size:16px;font-weight:500;letter-spacing:.18em;opacity:.85}
 .eyebrow{font-size:22px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--green)}
 .foot{position:absolute;left:96px;right:96px;bottom:44px;display:flex;justify-content:space-between;font-size:18px;font-weight:500;color:var(--mute);letter-spacing:.04em}
 .foot .pg{font-variant-numeric:tabular-nums}
 h1,h2,h3{margin:0;text-wrap:balance}
+.foot .credit{font-size:14px;letter-spacing:0;opacity:.8}
+.s-act .foot{left:632px}
 .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 18px;border-radius:999px;font-size:18px;font-weight:600;white-space:nowrap}
 .pill.g{background:var(--green);color:#fff}
 .pill.t{background:var(--mint);color:var(--teal-d)}
@@ -170,7 +173,7 @@ h1,h2,h3{margin:0;text-wrap:balance}
   </svg>
   <img class="coverphoto" data-src="annecy" alt="">
   <div class="top">
-    <div class="logo"><b>KLF</b><span>KLF Annecy<small>ESCUELA DE FRANCÉS</small></span></div>
+    <div class="logo"><img data-src="logo-klf-annecy" alt=""></div>
     <span class="pill o">Programa para PrepaTec</span>
   </div>
   <div class="txt">
@@ -188,7 +191,7 @@ h1,h2,h3{margin:0;text-wrap:balance}
 <!-- 2 · ESCUELA -->
 <div class="frame"><section class="slide s-school" aria-label="La escuela">
   <div class="l">
-    <div class="logo"><b>KLF</b><span>KLF Annecy<small>ESCUELA DE FRANCÉS</small></span></div>
+    <div class="logo"><img data-src="logo-klf-annecy" alt=""></div>
     <h2>Una escuela de francés en el corazón de Annecy</h2>
     <p>KLF Annecy recibe a estudiantes de todo el mundo durante todo el año. Clases, alojamiento y actividades: todo está organizado por un solo equipo, en el lugar.</p>
     <div class="big">FR</div>
@@ -252,7 +255,7 @@ h1,h2,h3{margin:0;text-wrap:balance}
   </div>
   <figure class="inset"><img data-src="desayuno" alt=""><figcaption>Desayuno incluido</figcaption></figure>
   <div class="stamp"><div><strong>100 %</strong>habitación<br>individual</div></div>
-  <div class="foot"><span></span><span class="pg">03</span></div>
+  <div class="foot"><span class="credit">Foto desayuno: Wikimedia Commons, CC BY-SA 2.0</span><span class="pg">03</span></div>
 </section></div>
 
 <!-- 4 · LAGO -->
@@ -271,7 +274,7 @@ h1,h2,h3{margin:0;text-wrap:balance}
     <div class="act"><div class="media"><img data-src="wampark" alt=""><div class="ic"><svg viewBox="0 0 48 48"><circle cx="30" cy="10" r="4"/><path d="M28 16l-8 10 8 4-4 8"/><path d="M8 34l32-6"/><path d="M40 28l4-10"/><path d="M4 42c4 0 4-2 8-2s4 2 8 2 4-2 8-2 4 2 8 2 4-2 8-2"/></svg></div></div>
       <div><h3>Wam Park</h3><p>Un parque acuático de wakeboard y esquí náutico: deslizarse sobre el agua, en grupo y con monitores.</p><div class="tags"><span class="pill g"><svg><use href="#i-bus"/></svg>Transporte incluido</span></div></div></div>
   </div>
-  <div class="foot"><span></span><span class="pg">04</span></div>
+  <div class="foot"><span class="credit">Foto Wam Park (ilustrativa): Wikimedia Commons, CC BY-SA 4.0</span><span class="pg">04</span></div>
 </section></div>
 
 <!-- 5 · MONTAÑA -->
@@ -290,7 +293,7 @@ h1,h2,h3{margin:0;text-wrap:balance}
     <div class="act"><div class="media"><img data-src="lorette" alt=""><div class="ic"><svg viewBox="0 0 48 48"><path d="M6 34l8-16h20l8 16z"/><path d="M6 34h36v4H6z"/><circle cx="18" cy="26" r="2"/><circle cx="28" cy="29" r="1.6"/><circle cx="31" cy="23" r="1.4"/><path d="M14 18c2-6 18-6 20 0"/></svg></div></div>
       <div><h3>Granja de alpage de Lorette</h3><p>Una productora les enseña a hacer queso de cabra, paso a paso, en su granja de montaña.</p><div class="tags"><span class="pill g"><svg><use href="#i-bus"/></svg>Transporte incluido</span><span class="pill t">Taller práctico</span></div></div></div>
   </div>
-  <div class="foot"><span></span><span class="pg">05</span></div>
+  <div class="foot"><span class="credit">Foto alpage (ilustrativa): Wikimedia Commons, CC BY-SA 4.0</span><span class="pg">05</span></div>
 </section></div>
 
 <!-- 6 · CASTILLOS -->
@@ -324,14 +327,14 @@ h1,h2,h3{margin:0;text-wrap:balance}
     <div class="act"><div class="media"><img data-src="lyon" alt=""><div class="ic"><svg viewBox="0 0 48 48"><path d="M6 42h36"/><path d="M10 42V22h10v20M28 42V14h10v28"/><path d="M20 30h8"/><path d="M33 14V6"/><path d="M12 26h6M12 32h6M30 18h6M30 24h6M30 30h6"/></svg></div></div>
       <div><h3>Lyon · día completo</h3><p>La tercera ciudad de Francia: barrio renacentista, la basílica de Fourvière y la capital de la gastronomía francesa.</p><div class="tags"><span class="pill g"><svg><use href="#i-bus"/></svg>Transporte incluido</span><span class="pill g"><svg><use href="#i-guide"/></svg>Con acompañante</span></div></div></div>
   </div>
-  <div class="foot"><span></span><span class="pg">07</span></div>
+  <div class="foot"><span class="credit">Fotos Yvoire y Lyon: Wikimedia Commons, CC BY-SA</span><span class="pg">07</span></div>
 </section></div>
 
 <!-- 8 · RESUMEN -->
 <div class="frame"><section class="slide s-recap" aria-label="Resumen">
   <div class="wrap">
     <div class="l">
-      <div class="logo"><b>KLF</b><span>KLF Annecy<small>ESCUELA DE FRANCÉS</small></span></div>
+      <div class="logo"><img data-src="logo-klf-annecy" alt=""></div>
       <h2>Francés, Alpes y <span>10 experiencias</span></h2>
       <p>Un programa completo para PrepaTec: clases de francés, residencia estudiantil en habitación individual con desayuno, y actividades organizadas por KLF Annecy.</p>
     </div>
