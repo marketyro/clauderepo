@@ -37,6 +37,10 @@ h1,h2,h3{margin:0;text-wrap:balance}
 /* ---------- 1 cover ---------- */
 .s-cover{background:var(--teal)}
 .s-cover .scene{position:absolute;inset:0}
+.s-cover .coverphoto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.s-cover:has(.coverphoto) .scene{display:none}
+.s-cover:has(.coverphoto):before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(31,107,94,.96) 0%,rgba(46,147,130,.85) 42%,rgba(46,147,130,.1) 72%),linear-gradient(0deg,rgba(22,77,68,.7),rgba(22,77,68,0) 35%)}
+.s-cover .top,.s-cover .txt,.s-cover .facts{z-index:2}
 .s-cover .top{position:absolute;top:64px;left:96px;right:96px;display:flex;justify-content:space-between;align-items:center;color:#fff}
 .s-cover .top .pill{font-size:20px}
 .s-cover .txt{position:absolute;left:96px;top:250px;color:#fff;max-width:900px}
@@ -54,6 +58,7 @@ h1,h2,h3{margin:0;text-wrap:balance}
 .s-school .l h2{font-size:76px;font-weight:800;line-height:1.02;margin-top:28px}
 .s-school .l p{font-size:27px;line-height:1.55;font-weight:300;margin-top:30px;max-width:620px}
 .s-school .l .big{position:absolute;right:-60px;bottom:-130px;font-size:420px;font-weight:800;color:rgba(255,255,255,.08);line-height:1;letter-spacing:-.04em}
+.s-school .l .schoolphoto{position:absolute;left:96px;right:80px;bottom:80px;height:250px;width:calc(100% - 176px);object-fit:cover;border-radius:22px;border:5px solid rgba(255,255,255,.9)}
 .s-school .r{padding:120px 96px 0 90px;display:flex;flex-direction:column;gap:40px}
 .s-school .r h3{font-size:44px;font-weight:700;color:var(--teal-d)}
 .feat{display:grid;grid-template-columns:96px 1fr;gap:28px;align-items:start}
@@ -75,10 +80,17 @@ h1,h2,h3{margin:0;text-wrap:balance}
 .s-house .card p{margin:0;font-size:20px;line-height:1.45;color:var(--mute)}
 .s-house .room{position:absolute;right:96px;top:80px;width:720px;height:880px;border-radius:32px;background:var(--teal);overflow:hidden}
 .s-house .room>svg{position:absolute;inset:0;width:100%;height:100%}
-.s-house .stamp{position:absolute;right:690px;top:110px;width:250px;height:250px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;text-align:center;transform:rotate(-10deg);box-shadow:0 14px 30px rgba(30,70,20,.25)}
+.s-house .stamp{position:absolute;right:690px;top:110px;width:250px;height:250px;border-radius:50%;background:var(--green);color:#fff;display:grid;place-items:center;text-align:center;transform:rotate(-10deg);z-index:4;box-shadow:0 14px 30px rgba(30,70,20,.25)}
 .s-house .stamp div{font-size:24px;font-weight:600;line-height:1.15}
 .s-house .stamp strong{display:block;font-size:46px;font-weight:800;line-height:1}
-.s-house .roomlabels{position:absolute;left:52px;bottom:48px;right:52px;display:flex;flex-wrap:wrap;gap:12px}
+.s-house .room .roomphoto{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:1}
+.s-house .room:has(.roomphoto)>svg{display:none}
+.s-house .room:has(.roomphoto):after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(22,77,68,0) 60%,rgba(22,77,68,.75))}
+.s-house .inset{display:none}
+.s-house .inset:has(img){display:block;position:absolute;right:136px;bottom:260px;width:330px;height:250px;margin:0;border-radius:20px;overflow:hidden;border:6px solid #fff;box-shadow:0 16px 34px rgba(10,40,35,.25);z-index:3;transform:rotate(-3deg)}
+.s-house .inset img{width:100%;height:100%;object-fit:cover;display:block}
+.s-house .inset figcaption{position:absolute;left:0;right:0;bottom:0;padding:10px 16px;background:var(--green);color:#fff;font-size:19px;font-weight:600}
+.s-house .roomlabels{z-index:2;position:absolute;left:52px;bottom:48px;right:52px;display:flex;flex-wrap:wrap;gap:12px}
 
 /* ---------- activities ---------- */
 .s-act{display:grid;grid-template-columns:560px 1fr}
@@ -88,7 +100,15 @@ h1,h2,h3{margin:0;text-wrap:balance}
 .s-act .band p{font-size:25px;line-height:1.5;font-weight:300;margin-top:30px;max-width:400px}
 .s-act .band svg.deco{position:absolute;left:0;bottom:0;width:100%;height:auto}
 .s-act .list{padding:80px 96px 120px 72px;display:flex;flex-direction:column;gap:28px;justify-content:center}
-.act{display:grid;grid-template-columns:130px 1fr;gap:36px;align-items:center;padding:30px 36px;border-radius:26px;background:var(--mint)}
+.act{display:grid;grid-template-columns:130px 1fr;gap:36px;align-items:center;padding:30px 36px;border-radius:26px;background:var(--mint);overflow:hidden}
+.act .media{position:relative}
+.act:has(img){grid-template-columns:340px 1fr;padding:0 40px 0 0;align-items:stretch}
+.act:has(img)>div:last-child{padding-block:28px;align-self:center}
+.act .media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.act:has(img) .ic{position:absolute;left:18px;bottom:18px;width:64px;height:64px;border:3px solid #fff}
+.act:has(img) .ic svg{width:34px;height:34px}
+.s-act.two .act:has(img){grid-template-columns:560px 1fr;padding:0 44px 0 0;min-height:340px}
+.act.feature:has(img){border-width:4px}
 .act.feature{background:#fff;border:3px solid var(--green)}
 .act .pill.t{background:#fff}
 .act.feature .pill.t{background:var(--mint)}
@@ -97,7 +117,7 @@ h1,h2,h3{margin:0;text-wrap:balance}
 .act h3{font-size:38px;font-weight:700;color:var(--teal-dd);line-height:1.1}
 .act p{margin:10px 0 16px;font-size:23px;line-height:1.48;color:var(--ink)}
 .act .tags{display:flex;gap:10px;flex-wrap:wrap}
-.s-act.two .act{padding:44px 44px}
+.s-act.two .act:not(:has(img)){padding:44px 44px}
 .s-act.two .act p{font-size:25px}
 
 /* ---------- 8 recap ---------- */
@@ -148,6 +168,7 @@ h1,h2,h3{margin:0;text-wrap:balance}
     <g transform="translate(1290 760)"><path d="M0 70 L80 70 L68 88 L12 88Z" fill="#fff"/><path d="M40 0 L40 66 L80 66Z" fill="#fff"/><path d="M36 14 L36 66 L6 66Z" fill="#d9f2b0"/></g>
     <rect x="0" y="0" width="1040" height="1080" fill="#2e9382" opacity=".55"/>
   </svg>
+  <img class="coverphoto" data-src="annecy" alt="">
   <div class="top">
     <div class="logo"><b>KLF</b><span>KLF Annecy<small>ESCUELA DE FRANCÉS</small></span></div>
     <span class="pill o">Programa para PrepaTec</span>
@@ -171,6 +192,7 @@ h1,h2,h3{margin:0;text-wrap:balance}
     <h2>Una escuela de francés en el corazón de Annecy</h2>
     <p>KLF Annecy recibe a estudiantes de todo el mundo durante todo el año. Clases, alojamiento y actividades: todo está organizado por un solo equipo, en el lugar.</p>
     <div class="big">FR</div>
+    <img class="schoolphoto" data-src="escuela" alt="">
   </div>
   <div class="r">
     <div class="eyebrow">La escuela</div>
@@ -198,6 +220,7 @@ h1,h2,h3{margin:0;text-wrap:balance}
     <div class="card"><svg viewBox="0 0 48 48"><path d="M8 42V18l16-10 16 10v24z"/><path d="M19 42V30h10v12"/><path d="M16 22h4M28 22h4"/></svg><h4>Residencia para estudiantes</h4><p>Un ambiente joven, seguro y supervisado.</p></div>
   </div>
   <div class="room">
+    <img class="roomphoto" data-src="habitacion" alt="">
     <svg viewBox="0 0 720 880" aria-hidden="true">
       <rect width="720" height="880" fill="#2e9382"/>
       <rect y="600" width="720" height="280" fill="#27806f"/>
@@ -227,6 +250,7 @@ h1,h2,h3{margin:0;text-wrap:balance}
       <span class="pill g" style="background:#fff;color:var(--teal-d)"><svg><use href="#i-check"/></svg>Desayuno diario</span>
     </div>
   </div>
+  <figure class="inset"><img data-src="desayuno" alt=""><figcaption>Desayuno incluido</figcaption></figure>
   <div class="stamp"><div><strong>100 %</strong>habitación<br>individual</div></div>
   <div class="foot"><span></span><span class="pg">03</span></div>
 </section></div>
@@ -240,11 +264,11 @@ h1,h2,h3{margin:0;text-wrap:balance}
     <svg class="deco" viewBox="0 0 560 300" aria-hidden="true"><path d="M0 120 L120 40 L200 100 L300 20 L420 110 L560 60 L560 300 L0 300Z" fill="#27806f"/><rect y="180" width="560" height="120" fill="#1f6b5e"/><path d="M40 220h90M200 240h120M380 215h110M100 270h140M350 275h100" stroke="#fff" stroke-width="5" stroke-linecap="round" opacity=".35"/></svg>
   </div>
   <div class="list">
-    <div class="act"><div class="ic"><svg viewBox="0 0 48 48"><path d="M6 30h36l-5 8H11z"/><path d="M14 30v-8h18l4 8"/><path d="M20 22v-6h8"/><path d="M4 43c4 0 4-2 8-2s4 2 8 2 4-2 8-2 4 2 8 2 4-2 8-2"/></svg></div>
+    <div class="act"><div class="media"><img data-src="crucero" alt=""><div class="ic"><svg viewBox="0 0 48 48"><path d="M6 30h36l-5 8H11z"/><path d="M14 30v-8h18l4 8"/><path d="M20 22v-6h8"/><path d="M4 43c4 0 4-2 8-2s4 2 8 2 4-2 8-2 4 2 8 2 4-2 8-2"/></svg></div></div>
       <div><h3>Crucero por el lago</h3><p>Un paseo en barco para descubrir el lago, sus pueblos y sus castillos desde el agua.</p><div class="tags"><span class="pill t"><svg><use href="#i-sun"/></svg>Vista panorámica</span></div></div></div>
-    <div class="act"><div class="ic"><svg viewBox="0 0 48 48"><path d="M6 30c10 4 26 4 36 0"/><path d="M14 8l20 30"/><path d="M11 5l6 4-2 2zM33 37l4 6-3 1z"/><circle cx="24" cy="16" r="3"/><path d="M4 42c4 0 4-2 8-2s4 2 8 2 4-2 8-2 4 2 8 2 4-2 8-2"/></svg></div>
+    <div class="act"><div class="media"><img data-src="kayak" alt=""><div class="ic"><svg viewBox="0 0 48 48"><path d="M6 30c10 4 26 4 36 0"/><path d="M14 8l20 30"/><path d="M11 5l6 4-2 2zM33 37l4 6-3 1z"/><circle cx="24" cy="16" r="3"/><path d="M4 42c4 0 4-2 8-2s4 2 8 2 4-2 8-2 4 2 8 2 4-2 8-2"/></svg></div></div>
       <div><h3>Kayak o paddle</h3><p>Remar en uno de los lagos más limpios de Europa, con el grupo y a su propio ritmo.</p><div class="tags"><span class="pill t"><svg><use href="#i-sun"/></svg>Actividad deportiva</span></div></div></div>
-    <div class="act"><div class="ic"><svg viewBox="0 0 48 48"><circle cx="30" cy="10" r="4"/><path d="M28 16l-8 10 8 4-4 8"/><path d="M8 34l32-6"/><path d="M40 28l4-10"/><path d="M4 42c4 0 4-2 8-2s4 2 8 2 4-2 8-2 4 2 8 2 4-2 8-2"/></svg></div>
+    <div class="act"><div class="media"><img data-src="wampark" alt=""><div class="ic"><svg viewBox="0 0 48 48"><circle cx="30" cy="10" r="4"/><path d="M28 16l-8 10 8 4-4 8"/><path d="M8 34l32-6"/><path d="M40 28l4-10"/><path d="M4 42c4 0 4-2 8-2s4 2 8 2 4-2 8-2 4 2 8 2 4-2 8-2"/></svg></div></div>
       <div><h3>Wam Park</h3><p>Un parque acuático de wakeboard y esquí náutico: deslizarse sobre el agua, en grupo y con monitores.</p><div class="tags"><span class="pill g"><svg><use href="#i-bus"/></svg>Transporte incluido</span></div></div></div>
   </div>
   <div class="foot"><span></span><span class="pg">04</span></div>
@@ -259,11 +283,11 @@ h1,h2,h3{margin:0;text-wrap:balance}
     <svg class="deco" viewBox="0 0 560 300" aria-hidden="true"><path d="M0 230 L150 60 L210 120 L300 10 L420 150 L560 70 L560 300 L0 300Z" fill="#27806f"/><path d="M300 10 L335 55 L310 50 L295 66 L275 46Z" fill="#fff"/><path d="M150 60 L175 90 L155 88 L140 100 L128 85Z" fill="#fff"/><path d="M0 270 L180 190 L320 250 L560 180 L560 300 L0 300Z" fill="#8cc233"/></svg>
   </div>
   <div class="list">
-    <div class="act feature"><div class="ic"><svg viewBox="0 0 48 48"><path d="M4 40L18 16l6 8 8-14 12 30z"/><path d="M28 17l4-7 4 7-4 2z"/></svg></div>
+    <div class="act feature"><div class="media"><img data-src="chamonix" alt=""><div class="ic"><svg viewBox="0 0 48 48"><path d="M4 40L18 16l6 8 8-14 12 30z"/><path d="M28 17l4-7 4 7-4 2z"/></svg></div></div>
       <div><h3>Chamonix-Mont-Blanc · día completo</h3><p>Al pie del Mont Blanc, a más de 4 800 m: el pueblo de montaña más famoso de los Alpes, sus glaciares y su ambiente.</p><div class="tags"><span class="pill g"><svg><use href="#i-sun"/></svg>Día completo</span><span class="pill t">Remontes mecánicos no incluidos</span></div></div></div>
-    <div class="act"><div class="ic"><svg viewBox="0 0 48 48"><circle cx="26" cy="8" r="4"/><path d="M24 14l-6 12 8 4v12"/><path d="M18 26l-4 16"/><path d="M28 18l6 6"/><path d="M36 14v30"/></svg></div>
+    <div class="act"><div class="media"><img data-src="semnoz" alt=""><div class="ic"><svg viewBox="0 0 48 48"><circle cx="26" cy="8" r="4"/><path d="M24 14l-6 12 8 4v12"/><path d="M18 26l-4 16"/><path d="M28 18l6 6"/><path d="M36 14v30"/></svg></div></div>
       <div><h3>Senderismo guiado en el Semnoz</h3><p>Una caminata con guía por la montaña de Annecy, con vista sobre el lago y, en días claros, el Mont Blanc.</p><div class="tags"><span class="pill g"><svg><use href="#i-guide"/></svg>Con guía</span></div></div></div>
-    <div class="act"><div class="ic"><svg viewBox="0 0 48 48"><path d="M6 34l8-16h20l8 16z"/><path d="M6 34h36v4H6z"/><circle cx="18" cy="26" r="2"/><circle cx="28" cy="29" r="1.6"/><circle cx="31" cy="23" r="1.4"/><path d="M14 18c2-6 18-6 20 0"/></svg></div>
+    <div class="act"><div class="media"><img data-src="lorette" alt=""><div class="ic"><svg viewBox="0 0 48 48"><path d="M6 34l8-16h20l8 16z"/><path d="M6 34h36v4H6z"/><circle cx="18" cy="26" r="2"/><circle cx="28" cy="29" r="1.6"/><circle cx="31" cy="23" r="1.4"/><path d="M14 18c2-6 18-6 20 0"/></svg></div></div>
       <div><h3>Granja de alpage de Lorette</h3><p>Una productora les enseña a hacer queso de cabra, paso a paso, en su granja de montaña.</p><div class="tags"><span class="pill g"><svg><use href="#i-bus"/></svg>Transporte incluido</span><span class="pill t">Taller práctico</span></div></div></div>
   </div>
   <div class="foot"><span></span><span class="pg">05</span></div>
@@ -278,9 +302,9 @@ h1,h2,h3{margin:0;text-wrap:balance}
     <svg class="deco" viewBox="0 0 560 300" aria-hidden="true"><path d="M0 300V200h560v100z" fill="#27806f"/><path d="M240 200V110h20V90h20v20h20V90h20v20h20v90z" fill="#1f6b5e"/><path d="M300 200v-40a20 20 0 0 1 40 0v40" fill="#27806f"/><path d="M200 120l20-30 20 30zM380 110l20-30 20 30z" fill="#8cc233"/><path d="M200 120h40v80h-40zM380 110h40v90h-40z" fill="#1f6b5e"/></svg>
   </div>
   <div class="list">
-    <div class="act"><div class="ic"><svg viewBox="0 0 48 48"><path d="M8 42V20l4-6 4 6v22M32 42V20l4-6 4 6v22"/><path d="M16 42V24h16v18"/><path d="M16 24v-4h4v2h4v-2h4v2h4"/><path d="M21 42v-7a3 3 0 016 0v7"/></svg></div>
+    <div class="act"><div class="media"><img data-src="menthon" alt=""><div class="ic"><svg viewBox="0 0 48 48"><path d="M8 42V20l4-6 4 6v22M32 42V20l4-6 4 6v22"/><path d="M16 42V24h16v18"/><path d="M16 24v-4h4v2h4v-2h4v2h4"/><path d="M21 42v-7a3 3 0 016 0v7"/></svg></div></div>
       <div><h3>Castillo de Menthon-Saint-Bernard</h3><p>Un castillo de cuento con vista al lago de Annecy, habitado por la misma familia desde hace casi mil años.</p><div class="tags"><span class="pill g"><svg><use href="#i-bus"/></svg>Transporte incluido</span><span class="pill t">Visita del castillo</span></div></div></div>
-    <div class="act"><div class="ic"><svg viewBox="0 0 48 48"><path d="M6 42V6M42 42V6"/><path d="M6 16c8 2 10 8 14 14s6 12 8 12"/><path d="M42 12c-6 4-6 10-10 16s-2 10-4 14"/><path d="M10 24h28" stroke-dasharray="3 4"/></svg></div>
+    <div class="act"><div class="media"><img data-src="fier" alt=""><div class="ic"><svg viewBox="0 0 48 48"><path d="M6 42V6M42 42V6"/><path d="M6 16c8 2 10 8 14 14s6 12 8 12"/><path d="M42 12c-6 4-6 10-10 16s-2 10-4 14"/><path d="M10 24h28" stroke-dasharray="3 4"/></svg></div></div>
       <div><h3>Gargantas del Fier y castillo de Montrottier</h3><p>Pasarelas suspendidas sobre un cañón tallado por el río y, muy cerca, un castillo medieval del siglo XIII.</p><div class="tags"><span class="pill g"><svg><use href="#i-bus"/></svg>Transporte incluido</span><span class="pill t">Naturaleza + historia</span></div></div></div>
   </div>
   <div class="foot"><span></span><span class="pg">06</span></div>
@@ -295,9 +319,9 @@ h1,h2,h3{margin:0;text-wrap:balance}
     <svg class="deco" viewBox="0 0 560 300" aria-hidden="true"><path d="M0 300V190h60v-40h40v60h50v-90l30-30 30 30v90h40v-50h50v70h60v-120h20v-30h20v30h20v120h50v-40h70v130z" fill="#27806f"/><rect y="250" width="560" height="50" fill="#1f6b5e"/></svg>
   </div>
   <div class="list">
-    <div class="act"><div class="ic"><svg viewBox="0 0 48 48"><path d="M10 42V18l6-8 6 8v24"/><path d="M22 42V26h18v16"/><path d="M26 26l5-6 5 6"/><path d="M14 24h4M14 32h4"/><path d="M4 42h40"/></svg></div>
+    <div class="act"><div class="media"><img data-src="yvoire" alt=""><div class="ic"><svg viewBox="0 0 48 48"><path d="M10 42V18l6-8 6 8v24"/><path d="M22 42V26h18v16"/><path d="M26 26l5-6 5 6"/><path d="M14 24h4M14 32h4"/><path d="M4 42h40"/></svg></div></div>
       <div><h3>Yvoire y el lago Lemán · día completo</h3><p>Un pueblo medieval florido a orillas del lago Lemán, catalogado entre los más bonitos de Francia, frente a la costa suiza.</p><div class="tags"><span class="pill g"><svg><use href="#i-bus"/></svg>Transporte incluido</span><span class="pill g"><svg><use href="#i-guide"/></svg>Con acompañante</span></div></div></div>
-    <div class="act"><div class="ic"><svg viewBox="0 0 48 48"><path d="M6 42h36"/><path d="M10 42V22h10v20M28 42V14h10v28"/><path d="M20 30h8"/><path d="M33 14V6"/><path d="M12 26h6M12 32h6M30 18h6M30 24h6M30 30h6"/></svg></div>
+    <div class="act"><div class="media"><img data-src="lyon" alt=""><div class="ic"><svg viewBox="0 0 48 48"><path d="M6 42h36"/><path d="M10 42V22h10v20M28 42V14h10v28"/><path d="M20 30h8"/><path d="M33 14V6"/><path d="M12 26h6M12 32h6M30 18h6M30 24h6M30 30h6"/></svg></div></div>
       <div><h3>Lyon · día completo</h3><p>La tercera ciudad de Francia: barrio renacentista, la basílica de Fourvière y la capital de la gastronomía francesa.</p><div class="tags"><span class="pill g"><svg><use href="#i-bus"/></svg>Transporte incluido</span><span class="pill g"><svg><use href="#i-guide"/></svg>Con acompañante</span></div></div></div>
   </div>
   <div class="foot"><span></span><span class="pg">07</span></div>
