@@ -1,0 +1,1310 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8">
+<title>KLF Annecy x PrepaTec</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>:root{
+  --navy:#1c2b3a; --navy-2:#24364a; --ink:#1c2b3a;
+  --green:#8cc233; --teal:#2e9382; --white:#ffffff;
+  --bg:#f7f8f3; --line:#e5e8df; --muted:#5d6a64; --muted-dark:#a9b4bf;
+  --tile:#eef5e1; --teal-tile:#e2f1ee;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:#d9dcd5}
+body{font-family:Poppins,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+.slide{width:1920px;height:1080px;position:relative;overflow:hidden;padding:140px 120px 100px;display:flex;flex-direction:column}
+.slide.centered{justify-content:center;padding-top:120px}
+.slide.light{background:var(--bg)}
+.slide.dark{background:var(--navy);color:#fff}
+
+/* brand bar + footer */
+.brand{position:absolute;top:56px;left:120px;display:flex;align-items:center;gap:14px;z-index:5}
+.logo{font-weight:800;font-size:30px;letter-spacing:-.02em;color:#fff;background:var(--teal);
+  padding:4px 14px;border-radius:10px;line-height:1.3}
+.brand-txt{font-weight:700;font-size:28px;color:var(--ink);letter-spacing:-.01em}
+.brand .sep{width:1px;height:28px;background:var(--line);margin:0 6px}
+.brand-sub{font-weight:600;font-size:18px;letter-spacing:.16em;text-transform:uppercase;color:var(--green)}
+.brand.on-dark .brand-txt{color:#fff}
+.brand.on-dark .sep{background:rgba(255,255,255,.25)}
+.foot{position:absolute;left:120px;right:120px;bottom:44px;display:flex;justify-content:space-between;
+  font-size:18px;font-weight:500;color:var(--muted);letter-spacing:.04em;z-index:5}
+.foot.on-dark{color:var(--muted-dark)}
+
+/* typography */
+.eyebrow{font-weight:700;font-size:20px;letter-spacing:.2em;color:var(--green);margin-bottom:18px}
+h1,h2{font-weight:800;letter-spacing:-.035em;line-height:1.02;color:var(--ink)}
+h1 em,h2 em{font-style:normal;color:var(--green)}
+h2{font-size:84px}
+.nw{white-space:nowrap}
+h2.on-dark{color:#fff}
+.lead{font-size:26px;line-height:1.6;color:var(--muted);max-width:640px}
+.dark .lead{color:var(--muted-dark)}
+.lead.c{margin:22px auto 0;text-align:center;max-width:none}
+.head{display:flex;justify-content:space-between;align-items:flex-end;gap:80px;margin-bottom:44px;flex:none}
+.head>div{flex:none}
+.head .lead{flex:0 1 620px}
+.head .lead{padding-bottom:8px}
+.center-head{text-align:center;margin-bottom:60px}
+
+/* photo placeholders */
+.photo{position:absolute;inset:0;background:
+  linear-gradient(135deg,rgba(46,147,130,.55),rgba(28,43,58,.9)),
+  repeating-linear-gradient(45deg,rgba(255,255,255,.05) 0 14px,transparent 14px 28px),#2b4152;
+  display:flex;align-items:center;justify-content:center}
+.ph-tag{display:flex;align-items:center;gap:12px;padding:12px 22px;border:2px dashed rgba(255,255,255,.45);
+  border-radius:999px;color:rgba(255,255,255,.85);font-size:18px;font-weight:600;letter-spacing:.06em;
+  margin-top:-90px}
+.ph-ic{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2}
+.photo.full .ph-tag{position:absolute;top:56px;right:120px;margin:0}
+.photo.wphoto .ph-tag{margin-top:0}
+.ocard.small .ph-tag{margin-top:0;font-size:15px}
+
+/* pills, chips */
+.pill{display:inline-flex;align-items:center;gap:9px;font-weight:700;font-size:19px;line-height:1;
+  padding:11px 20px;border-radius:999px;color:var(--navy);background:var(--green)}
+.pill.teal{background:var(--teal);color:#fff}
+.pill-ic{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:2.2}
+.chips{display:flex;flex-wrap:wrap;gap:14px}
+.chip{display:inline-flex;align-items:center;gap:12px;font-size:22px;font-weight:500;padding:14px 24px;
+  border-radius:999px;background:#fff;border:1px solid var(--line);color:var(--ink)}
+.chip-ic{width:24px;height:24px;stroke:var(--green);fill:none;stroke-width:2}
+.chips.glass .chip{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.28);color:#fff;
+  backdrop-filter:blur(8px)}
+
+/* 1 hero */
+.hero{padding:0}
+.hero-shade{position:absolute;inset:0;background:
+  linear-gradient(90deg,rgba(28,43,58,.92) 0%,rgba(28,43,58,.7) 45%,rgba(28,43,58,.1) 80%),
+  linear-gradient(0deg,rgba(28,43,58,.6),transparent 40%)}
+.hero-body{position:absolute;left:120px;right:120px;bottom:120px;z-index:4}
+.hero h1{font-size:124px;color:#fff}
+.hero-lead{font-size:28px;line-height:1.6;color:rgba(255,255,255,.82);max-width:860px;margin:34px 0 44px}
+
+/* 2 tiles */
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:1fr;gap:24px;flex:1;min-height:0}
+.tile{background:#fff;border:1px solid var(--line);border-radius:26px;padding:36px 38px;display:grid;grid-template-columns:68px 1fr;column-gap:26px;align-content:center}
+.tile>div:not(.tile-ic){min-width:0}
+.tile-ic{width:68px;height:68px;border-radius:16px;background:var(--tile);display:flex;align-items:center;
+  justify-content:center;grid-row:span 2}
+.tile-ic svg{width:34px;height:34px;stroke:var(--green);fill:none;stroke-width:2}
+.tile:nth-child(even) .tile-ic{background:var(--teal-tile)}
+.tile:nth-child(even) .tile-ic svg{stroke:var(--teal)}
+.tile h3{font-size:29px;font-weight:700;letter-spacing:-.01em;margin-bottom:8px;align-self:end}
+.tile p{font-size:21px;line-height:1.55;color:var(--muted)}
+
+/* overlay cards */
+.ocard{position:relative;border-radius:28px;overflow:hidden;color:#fff;isolation:isolate}
+.ocard .shade{position:absolute;inset:0;background:linear-gradient(0deg,rgba(20,32,44,.94) 0%,rgba(20,32,44,.55) 42%,rgba(20,32,44,0) 70%)}
+.ocard-top{position:absolute;top:30px;left:32px;z-index:2}
+.ocard-body{position:absolute;left:36px;right:36px;bottom:34px;z-index:2}
+.ocard h3{font-size:38px;font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:14px}
+.ocard p{font-size:22px;line-height:1.55;color:rgba(255,255,255,.8);margin-bottom:22px}
+.logi{display:inline-flex;align-items:center;gap:10px;font-size:19px;font-weight:600;color:var(--green)}
+.logi-ic{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2.2;padding:3px;
+  border-radius:50%;border:1.5px solid rgba(140,194,51,.6)}
+.row3{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;flex:1;min-height:0}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:34px;flex:1;min-height:0}
+.row2 .ocard h3{font-size:48px}
+
+/* 3 stay */
+.stay{display:grid;grid-template-columns:1fr 780px;gap:44px;flex:1;min-height:0}
+.stay-media{position:relative}
+.stay-media .big{position:absolute;inset:0 130px 0 0}
+.stay-media .small{position:absolute;right:0;top:60px;width:300px;height:220px;border:8px solid var(--navy);border-radius:32px}
+.stay-media .big .ocard-body{right:40px}
+.feats{display:flex;flex-direction:column;gap:16px;justify-content:space-between}
+.feat{display:grid;grid-template-columns:76px 1fr 44px;gap:26px;align-items:center;background:var(--navy-2);
+  border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:22px 30px}
+.feat-ic{width:76px;height:76px;border-radius:18px;background:rgba(46,147,130,.22);display:flex;align-items:center;justify-content:center}
+.feat-ic svg{width:38px;height:38px;stroke:#5fc4b2;fill:none;stroke-width:2}
+.feat h3{font-size:32px;font-weight:700;letter-spacing:-.01em;margin-bottom:6px}
+.feat p{font-size:20px;line-height:1.5;color:var(--muted-dark)}
+.feat-check{width:44px;height:44px;border-radius:50%;background:var(--green);display:flex;align-items:center;justify-content:center}
+.feat-check svg{width:24px;height:24px;stroke:var(--navy);fill:none;stroke-width:3}
+.incl{display:flex;align-items:center;gap:14px;justify-content:center;border-radius:999px;padding:18px;
+  background:var(--green);color:var(--navy);font-weight:700;font-size:23px}
+.incl-ic{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:2.2}
+
+/* 4 themes */
+.themes{display:grid;grid-template-columns:repeat(4,1fr);gap:26px;min-height:400px}
+.theme{background:#fff;border:1px solid var(--line);border-radius:26px;padding:34px 34px 38px;border-top:8px solid var(--teal)}
+.theme.green{border-top-color:var(--green)}
+.theme-h{display:flex;align-items:center;gap:16px;margin-bottom:26px;min-height:76px}
+.theme-ic{flex:none;width:60px;height:60px;border-radius:16px;background:var(--teal-tile);display:flex;align-items:center;justify-content:center}
+.theme-ic svg{width:30px;height:30px;stroke:var(--teal);fill:none;stroke-width:2}
+.theme.green .theme-ic{background:var(--tile)}
+.theme.green .theme-ic svg{stroke:var(--green)}
+.theme h3{font-size:27px;font-weight:700;line-height:1.2;letter-spacing:-.01em;flex:1}
+.count{flex:none;font-weight:800;font-size:20px;color:var(--muted);background:var(--bg);border-radius:999px;padding:4px 14px}
+.theme ul{list-style:none;display:flex;flex-direction:column;gap:14px}
+.theme li{display:flex;gap:12px;align-items:flex-start;font-size:22px;line-height:1.4;font-weight:500}
+.li-ic{flex:none;width:24px;height:24px;margin-top:3px;stroke:var(--teal);fill:none;stroke-width:2.6}
+.theme.green .li-ic{stroke:var(--green)}
+
+/* 7 white cards */
+.wcard{display:grid;grid-template-rows:1fr auto;background:#fff;border:1px solid var(--line);border-radius:28px;overflow:hidden}
+.wcard .photo{position:relative;inset:auto}
+.wbody{display:grid;grid-template-columns:100px 1fr;gap:10px;padding:30px 40px 32px 34px}
+.wnum{font-weight:800;font-size:70px;letter-spacing:-.04em;line-height:1;color:var(--teal)}
+.wcard:nth-child(2) .wnum{color:var(--green)}
+.wcard h3{font-size:34px;font-weight:700;letter-spacing:-.02em;line-height:1.15;margin-bottom:12px}
+.wcard p{font-size:21px;line-height:1.55;color:var(--muted);margin-bottom:20px}
+
+.stay-media .big .ph-tag{transform:translateX(-95px)}
+</style></head>
+<body>
+<section data-document-role="page" data-label="Destino" class="slide hero">
+  <div class="photo full"><div class="ph-tag"><svg class="ph-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z" />
+  <circle cx="12" cy="13" r="3" />
+</svg><span>FOTO · Vista del lago y del casco antiguo de Annecy</span></div></div>
+  <div class="hero-shade"></div>
+  <div class="brand on-dark"><span class="logo">KLF</span><span class="brand-txt">Annecy</span><span class="sep"></span><span class="brand-sub">Programa PrepaTec</span></div>
+  <div class="hero-body">
+    <p class="eyebrow">TU DESTINO</p>
+    <h1>Annecy,<br><em>la Venecia de los Alpes.</em></h1>
+    <p class="hero-lead">Una ciudad medieval de canales y casas de colores, a orillas de uno de los lagos más puros de Europa y rodeada de montañas.</p>
+    <div class="chips glass">
+      <span class="chip"><svg class="chip-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M10 18v-7" />
+  <path d="M11.119 2.205a2 2 0 0 1 1.762 0l7.84 3.846A.5.5 0 0 1 20.5 7h-17a.5.5 0 0 1-.22-.949z" />
+  <path d="M14 18v-7" />
+  <path d="M18 18v-7" />
+  <path d="M3 22h18" />
+  <path d="M6 18v-7" />
+</svg>Casco antiguo medieval</span>
+      <span class="chip"><svg class="chip-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M2 12q2.5 2 5 0t5 0 5 0 5 0" />
+  <path d="M2 19q2.5 2 5 0t5 0 5 0 5 0" />
+  <path d="M2 5q2.5 2 5 0t5 0 5 0 5 0" />
+</svg>Lago de aguas cristalinas</span>
+      <span class="chip"><svg class="chip-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z" />
+  <path d="m9 12 2 2 4-4" />
+</svg>Ciudad segura y estudiantil</span>
+      <span class="chip"><svg class="chip-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+  <circle cx="12" cy="10" r="3" />
+</svg>A 1 h del aeropuerto de Ginebra</span>
+    </div>
+  </div>
+  <div class="foot on-dark"><span>klf.fr/annecy</span><span>01 / 08</span></div>
+</section>
+<section data-document-role="page" data-label="Escuela" class="slide light">
+  <div class="brand "><span class="logo">KLF</span><span class="brand-txt">Annecy</span><span class="sep"></span><span class="brand-sub">Programa PrepaTec</span></div>
+  <div class="head"><div><p class="eyebrow">POR QUÉ KLF ANNECY</p><h2 class="">Más que una escuela.<br><em>Una experiencia.</em></h2></div><p class="lead">Desde hace más de 39 años, KLF Annecy recibe a estudiantes de todo el mundo. Aprender francés va más allá de la gramática: es cultura, convivencia y confianza.</p></div>
+  <div class="tiles"><div class="tile"><div class="tile-ic"><svg class="ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" />
+  <path d="M22 10v6" />
+  <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" />
+</svg></div><h3>Profesores nativos</h3><p>Docentes franceses titulados, con formación pedagógica y años de experiencia en inmersión.</p></div><div class="tile"><div class="tile-ic"><svg class="ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+  <path d="M16 3.128a4 4 0 0 1 0 7.744" />
+  <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
+  <circle cx="9" cy="7" r="4" />
+</svg></div><h3>Grupos reducidos</h3><p>Máximo 12 alumnos por clase para una atención personalizada y un progreso más rápido.</p></div><div class="tile"><div class="tile-ic"><svg class="ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m8 3 4 8 5-5 5 15H2L8 3z" />
+  <path d="M4.14 15.08c2.62-1.57 5.24-1.43 7.86.42 2.74 1.94 5.49 2 8.23.19" />
+</svg></div><h3>Entorno alpino</h3><p>El lago de Annecy y los Alpes se convierten en un aula al aire libre.</p></div><div class="tile"><div class="tile-ic"><svg class="ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m15.477 12.89 1.515 8.526a.5.5 0 0 1-.81.47l-3.58-2.687a1 1 0 0 0-1.197 0l-3.586 2.686a.5.5 0 0 1-.81-.469l1.514-8.526" />
+  <circle cx="12" cy="8" r="6" />
+</svg></div><h3>Preparación DELF/DALF</h3><p>Certificaciones oficiales de francés reconocidas en todo el mundo.</p></div><div class="tile"><div class="tile-ic"><svg class="ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0" />
+  <circle cx="12" cy="10" r="3" />
+</svg></div><h3>Ubicación ideal</h3><p>A pocos minutos a pie del lago, de la estación y del casco antiguo.</p></div><div class="tile"><div class="tile-ic"><svg class="ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <circle cx="12" cy="12" r="10" />
+  <path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+  <path d="M2 12h20" />
+</svg></div><h3>Inmersión cultural total</h3><p>Excursiones, talleres y actividades para hablar francés desde el primer día.</p></div></div>
+  <div class="foot "><span>klf.fr/annecy</span><span>02 / 08</span></div>
+</section>
+<section data-document-role="page" data-label="Alojamiento" class="slide dark">
+  <div class="brand on-dark"><span class="logo">KLF</span><span class="brand-txt">Annecy</span><span class="sep"></span><span class="brand-sub">Programa PrepaTec</span></div>
+  <div class="head"><div><p class="eyebrow">TU ALOJAMIENTO</p><h2 class="on-dark">Residencia estudiantil,<br><em>como en casa.</em></h2></div></div>
+  <div class="stay">
+    <div class="stay-media">
+      <article class="ocard big">
+        <div class="photo "><div class="ph-tag"><svg class="ph-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z" />
+  <circle cx="12" cy="13" r="3" />
+</svg><span>FOTO · Habitación individual de la residencia</span></div></div>
+        <div class="shade"></div>
+        <div class="ocard-top"><span class="pill green"><svg class="pill-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
+  <path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+</svg>Alojamiento</span></div>
+        <div class="ocard-body"><h3>Tu hogar en Annecy</h3>
+          <p>Todo pensado para que los alumnos de PrepaTec vivan su estancia con total tranquilidad.</p></div>
+      </article>
+      <article class="ocard small">
+        <div class="photo "><div class="ph-tag"><svg class="ph-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z" />
+  <circle cx="12" cy="13" r="3" />
+</svg><span>FOTO · Desayuno</span></div></div>
+        <div class="shade"></div>
+        <div class="ocard-top"><span class="pill teal"><svg class="pill-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M10 2v2" />
+  <path d="M14 2v2" />
+  <path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1" />
+  <path d="M6 2v2" />
+</svg>Incluido</span></div>
+      </article>
+    </div>
+    <div class="feats"><div class="feat"><div class="feat-ic"><svg class="ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M3 20v-8a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8" />
+  <path d="M5 10V6a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v4" />
+  <path d="M3 18h18" />
+</svg></div><div><h3>Habitación individual</h3><p>Cada estudiante tiene su propia habitación: privacidad, descanso y espacio para estudiar.</p></div><div class="feat-check"><svg class="ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M20 6 9 17l-5-5" />
+</svg></div></div><div class="feat"><div class="feat-ic"><svg class="ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M10 2v2" />
+  <path d="M14 2v2" />
+  <path d="M16 8a1 1 0 0 1 1 1v8a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V9a1 1 0 0 1 1-1h14a4 4 0 1 1 0 8h-1" />
+  <path d="M6 2v2" />
+</svg></div><div><h3>Desayuno incluido</h3><p>Todos los días, para empezar la jornada con energía antes de clase.</p></div><div class="feat-check"><svg class="ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M20 6 9 17l-5-5" />
+</svg></div></div><div class="feat"><div class="feat-ic"><svg class="ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8" />
+  <path d="M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+</svg></div><div><h3>Residencia estudiantil</h3><p>Un entorno moderno y seguro, con espacios comunes para convivir con el grupo.</p></div><div class="feat-check"><svg class="ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M20 6 9 17l-5-5" />
+</svg></div></div>
+      <div class="incl"><svg class="incl-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z" />
+  <path d="M20 2v4" />
+  <path d="M22 4h-4" />
+  <circle cx="4" cy="20" r="2" />
+</svg><span>Incluido en el programa PrepaTec</span></div>
+    </div>
+  </div>
+  <div class="foot on-dark"><span>klf.fr/annecy</span><span>03 / 08</span></div>
+</section>
+<section data-document-role="page" data-label="Actividades" class="slide light centered">
+  <div class="brand "><span class="logo">KLF</span><span class="brand-txt">Annecy</span><span class="sep"></span><span class="brand-sub">Programa PrepaTec</span></div>
+  <div class="center-head">
+    <p class="eyebrow">MÁS ALLÁ DEL AULA</p>
+    <h2>Descubre la cultura francesa<br><em>y vive los Alpes.</em></h2>
+    <p class="lead c">10 actividades organizadas por KLF Annecy para el grupo PrepaTec, agrupadas en 4 temáticas.</p>
+  </div>
+  <div class="themes"><div class="theme teal"><div class="theme-h"><div class="theme-ic"><svg class="ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M2 12q2.5 2 5 0t5 0 5 0 5 0" />
+  <path d="M2 19q2.5 2 5 0t5 0 5 0 5 0" />
+  <path d="M2 5q2.5 2 5 0t5 0 5 0 5 0" />
+</svg></div><h3>El lago</h3><span class="count">3</span></div><ul><li><svg class="li-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M20 6 9 17l-5-5" />
+</svg><span>Crucero por el lago</span></li><li><svg class="li-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M20 6 9 17l-5-5" />
+</svg><span>Kayak o paddle</span></li><li><svg class="li-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M20 6 9 17l-5-5" />
+</svg><span>Wam Park</span></li></ul></div><div class="theme green"><div class="theme-h"><div class="theme-ic"><svg class="ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m8 3 4 8 5-5 5 15H2L8 3z" />
+</svg></div><h3>Montaña y naturaleza</h3><span class="count">3</span></div><ul><li><svg class="li-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M20 6 9 17l-5-5" />
+</svg><span>Chamonix-Mont-Blanc</span></li><li><svg class="li-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M20 6 9 17l-5-5" />
+</svg><span>Senderismo en el Semnoz</span></li><li><svg class="li-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M20 6 9 17l-5-5" />
+</svg><span>Gargantas del Fier y Montrottier</span></li></ul></div><div class="theme teal"><div class="theme-h"><div class="theme-ic"><svg class="ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M10 5V3" />
+  <path d="M14 5V3" />
+  <path d="M15 21v-3a3 3 0 0 0-6 0v3" />
+  <path d="M18 3v8" />
+  <path d="M18 5H6" />
+  <path d="M22 11H2" />
+  <path d="M22 9v10a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9" />
+  <path d="M6 3v8" />
+</svg></div><h3>Patrimonio y tradiciones</h3><span class="count">2</span></div><ul><li><svg class="li-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M20 6 9 17l-5-5" />
+</svg><span>Castillo de <span class="nw">Menthon-Saint-Bernard</span></span></li><li><svg class="li-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M20 6 9 17l-5-5" />
+</svg><span>Granja de alpage de Lorette</span></li></ul></div><div class="theme green"><div class="theme-h"><div class="theme-ic"><svg class="ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M8 6v6" />
+  <path d="M15 6v6" />
+  <path d="M2 12h19.6" />
+  <path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3" />
+  <circle cx="7" cy="18" r="2" />
+  <path d="M9 18h5" />
+  <circle cx="16" cy="18" r="2" />
+</svg></div><h3>Excursiones de un día</h3><span class="count">2</span></div><ul><li><svg class="li-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M20 6 9 17l-5-5" />
+</svg><span>Lyon</span></li><li><svg class="li-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M20 6 9 17l-5-5" />
+</svg><span>Yvoire y lago Lemán</span></li></ul></div></div>
+  <div class="foot "><span>klf.fr/annecy</span><span>04 / 08</span></div>
+</section>
+<section data-document-role="page" data-label="El lago" class="slide light">
+  <div class="brand "><span class="logo">KLF</span><span class="brand-txt">Annecy</span><span class="sep"></span><span class="brand-sub">Programa PrepaTec</span></div>
+  <div class="head"><div><p class="eyebrow">ACTIVIDADES · EL LAGO</p><h2 class="">Vive el lago<br><em>de Annecy.</em></h2></div><p class="lead">Agua turquesa, montañas alrededor y mucha diversión: el lago es el gran protagonista de la estancia.</p></div>
+  <div class="row3">
+    
+    <article class="ocard ">
+      <div class="photo "><div class="ph-tag"><svg class="ph-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z" />
+  <circle cx="12" cy="13" r="3" />
+</svg><span>FOTO · Barco de crucero en el lago</span></div></div>
+      <div class="shade"></div>
+      <div class="ocard-top"><span class="pill green"><svg class="pill-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M12 2v2" />
+  <path d="M12 9.189V13" />
+  <path d="M19 12V6a2 2 0 00-2-2H7a2 2 0 00-2 2v6" />
+  <path d="M19.38 19A11.6 11.6 0 0021 13l-8.188-3.639a2 2 0 00-1.624 0L3 13.001a11.6 11.6 0 002.81 7.76" />
+  <path d="M2 20c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1s1.2 1 2.5 1c2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
+</svg>El lago</span></div>
+      <div class="ocard-body">
+        <h3>Crucero por el lago</h3>
+        <p>Pueblos, castillos y montañas desde el agua: la mejor forma de descubrir el lago.</p>
+        <span class="logi"><svg class="logi-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M20 6 9 17l-5-5" />
+</svg>En el lago de Annecy</span>
+      </div>
+    </article>
+    
+    <article class="ocard ">
+      <div class="photo "><div class="ph-tag"><svg class="ph-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z" />
+  <circle cx="12" cy="13" r="3" />
+</svg><span>FOTO · Alumnos en kayak o paddle</span></div></div>
+      <div class="shade"></div>
+      <div class="ocard-top"><span class="pill green"><svg class="pill-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M10 2v15" />
+  <path d="M7 22a4 4 0 0 1-4-4 1 1 0 0 1 1-1h16a1 1 0 0 1 1 1 4 4 0 0 1-4 4z" />
+  <path d="M9.159 2.46a1 1 0 0 1 1.521-.193l9.977 8.98A1 1 0 0 1 20 13H4a1 1 0 0 1-.824-1.567z" />
+</svg>El lago</span></div>
+      <div class="ocard-body">
+        <h3>Kayak o paddle</h3>
+        <p>Una sesión en aguas cristalinas, en equipo y accesible a todos los niveles.</p>
+        <span class="logi"><svg class="logi-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M20 6 9 17l-5-5" />
+</svg>Para todos los niveles</span>
+      </div>
+    </article>
+    
+    <article class="ocard ">
+      <div class="photo "><div class="ph-tag"><svg class="ph-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z" />
+  <circle cx="12" cy="13" r="3" />
+</svg><span>FOTO · Wam Park, wakeboard e inflables</span></div></div>
+      <div class="shade"></div>
+      <div class="ocard-top"><span class="pill green"><svg class="pill-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M2 12q2.5 2 5 0t5 0 5 0 5 0" />
+  <path d="M2 19q2.5 2 5 0t5 0 5 0 5 0" />
+  <path d="M2 5q2.5 2 5 0t5 0 5 0 5 0" />
+</svg>El lago</span></div>
+      <div class="ocard-body">
+        <h3>Wam Park</h3>
+        <p>Parque acuático de wakeboard y juegos inflables: una tarde de pura adrenalina.</p>
+        <span class="logi"><svg class="logi-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M8 6v6" />
+  <path d="M15 6v6" />
+  <path d="M2 12h19.6" />
+  <path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3" />
+  <circle cx="7" cy="18" r="2" />
+  <path d="M9 18h5" />
+  <circle cx="16" cy="18" r="2" />
+</svg>Transporte incluido</span>
+      </div>
+    </article>
+  </div>
+  <div class="foot "><span>klf.fr/annecy</span><span>05 / 08</span></div>
+</section>
+<section data-document-role="page" data-label="Montaña y naturaleza" class="slide dark">
+  <div class="brand on-dark"><span class="logo">KLF</span><span class="brand-txt">Annecy</span><span class="sep"></span><span class="brand-sub">Programa PrepaTec</span></div>
+  <div class="head"><div><p class="eyebrow">ACTIVIDADES · MONTAÑA Y NATURALEZA</p><h2 class="on-dark">Aire puro,<br><em>cumbres y cañones.</em></h2></div><p class="lead">De los glaciares del Mont-Blanc a los cañones esculpidos por el agua.</p></div>
+  <div class="row3">
+    
+    <article class="ocard ">
+      <div class="photo "><div class="ph-tag"><svg class="ph-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z" />
+  <circle cx="12" cy="13" r="3" />
+</svg><span>FOTO · Chamonix y el Mont-Blanc</span></div></div>
+      <div class="shade"></div>
+      <div class="ocard-top"><span class="pill green"><svg class="pill-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m8 3 4 8 5-5 5 15H2L8 3z" />
+  <path d="M4.14 15.08c2.62-1.57 5.24-1.43 7.86.42 2.74 1.94 5.49 2 8.23.19" />
+</svg>Montaña</span></div>
+      <div class="ocard-body">
+        <h3>Chamonix-Mont-Blanc</h3>
+        <p>Jornada completa al pie de la cumbre más alta de Europa occidental. Remontes mecánicos no incluidos.</p>
+        <span class="logi"><svg class="logi-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M20 6 9 17l-5-5" />
+</svg>Jornada completa</span>
+      </div>
+    </article>
+    
+    <article class="ocard ">
+      <div class="photo "><div class="ph-tag"><svg class="ph-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z" />
+  <circle cx="12" cy="13" r="3" />
+</svg><span>FOTO · Senderismo en el Semnoz</span></div></div>
+      <div class="shade"></div>
+      <div class="ocard-top"><span class="pill green"><svg class="pill-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M4 16v-2.38C4 11.5 2.97 10.5 3 8c.03-2.72 1.49-6 4.5-6C9.37 2 10 3.8 10 5.5c0 3.11-2 5.66-2 8.68V16a2 2 0 1 1-4 0Z" />
+  <path d="M20 20v-2.38c0-2.12 1.03-3.12 1-5.62-.03-2.72-1.49-6-4.5-6C14.63 6 14 7.8 14 9.5c0 3.11 2 5.66 2 8.68V20a2 2 0 1 0 4 0Z" />
+  <path d="M16 17h4" />
+  <path d="M4 13h4" />
+</svg>Naturaleza</span></div>
+      <div class="ocard-body">
+        <h3>Senderismo guiado en el Semnoz</h3>
+        <p>Una ruta con guía y vistas panorámicas sobre el lago y los Alpes.</p>
+        <span class="logi"><svg class="logi-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M20 6 9 17l-5-5" />
+</svg>Con guía</span>
+      </div>
+    </article>
+    
+    <article class="ocard ">
+      <div class="photo "><div class="ph-tag"><svg class="ph-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z" />
+  <circle cx="12" cy="13" r="3" />
+</svg><span>FOTO · Pasarelas de las Gargantas del Fier</span></div></div>
+      <div class="shade"></div>
+      <div class="ocard-top"><span class="pill green"><svg class="pill-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="m17 14 3 3.3a1 1 0 0 1-.7 1.7H4.7a1 1 0 0 1-.7-1.7L7 14h-.3a1 1 0 0 1-.7-1.7L9 9h-.2A1 1 0 0 1 8 7.3L12 3l4 4.3a1 1 0 0 1-.8 1.7H15l3 3.3a1 1 0 0 1-.7 1.7H17Z" />
+  <path d="M12 22v-3" />
+</svg>Naturaleza</span></div>
+      <div class="ocard-body">
+        <h3>Gargantas del Fier y castillo de Montrottier</h3>
+        <p>Pasarelas sobre un cañón espectacular y visita de un castillo medieval.</p>
+        <span class="logi"><svg class="logi-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M8 6v6" />
+  <path d="M15 6v6" />
+  <path d="M2 12h19.6" />
+  <path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3" />
+  <circle cx="7" cy="18" r="2" />
+  <path d="M9 18h5" />
+  <circle cx="16" cy="18" r="2" />
+</svg>Transporte incluido</span>
+      </div>
+    </article>
+  </div>
+  <div class="foot on-dark"><span>klf.fr/annecy</span><span>06 / 08</span></div>
+</section>
+<section data-document-role="page" data-label="Patrimonio y tradiciones" class="slide light">
+  <div class="brand "><span class="logo">KLF</span><span class="brand-txt">Annecy</span><span class="sep"></span><span class="brand-sub">Programa PrepaTec</span></div>
+  <div class="head"><div><p class="eyebrow">ACTIVIDADES · PATRIMONIO Y TRADICIONES</p><h2 class="">Historia, castillos<br><em>y tradición saboyana.</em></h2></div><p class="lead">Dos experiencias auténticas para conocer la región más allá de las postales.</p></div>
+  <div class="row2">
+    
+    <article class="wcard">
+      <div class="photo wphoto"><div class="ph-tag"><svg class="ph-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z" />
+  <circle cx="12" cy="13" r="3" />
+</svg><span>FOTO · Castillo de Menthon-Saint-Bernard</span></div></div>
+      <div class="wbody">
+        <div class="wnum">01</div>
+        <div>
+          <h3>Castillo de <span class="nw">Menthon-Saint-Bernard</span></h3>
+          <p>Un castillo de cuento que domina el lago, habitado por la misma familia desde hace más de mil años.</p>
+          <span class="pill teal"><svg class="pill-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M8 6v6" />
+  <path d="M15 6v6" />
+  <path d="M2 12h19.6" />
+  <path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3" />
+  <circle cx="7" cy="18" r="2" />
+  <path d="M9 18h5" />
+  <circle cx="16" cy="18" r="2" />
+</svg>Transporte incluido</span>
+        </div>
+      </div>
+    </article>
+    
+    <article class="wcard">
+      <div class="photo wphoto"><div class="ph-tag"><svg class="ph-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z" />
+  <circle cx="12" cy="13" r="3" />
+</svg><span>FOTO · Taller de queso en la granja de Lorette</span></div></div>
+      <div class="wbody">
+        <div class="wnum">02</div>
+        <div>
+          <h3>Granja de alpage de Lorette</h3>
+          <p>Una productora local enseña a los alumnos a elaborar su propio queso de cabra, de la leche al molde.</p>
+          <span class="pill teal"><svg class="pill-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M8 6v6" />
+  <path d="M15 6v6" />
+  <path d="M2 12h19.6" />
+  <path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3" />
+  <circle cx="7" cy="18" r="2" />
+  <path d="M9 18h5" />
+  <circle cx="16" cy="18" r="2" />
+</svg>Transporte incluido</span>
+        </div>
+      </div>
+    </article>
+  </div>
+  <div class="foot "><span>klf.fr/annecy</span><span>07 / 08</span></div>
+</section>
+<section data-document-role="page" data-label="Excursiones" class="slide dark">
+  <div class="brand on-dark"><span class="logo">KLF</span><span class="brand-txt">Annecy</span><span class="sep"></span><span class="brand-sub">Programa PrepaTec</span></div>
+  <div class="head"><div><p class="eyebrow">ACTIVIDADES · EXCURSIONES DE UN DÍA</p><h2 class="on-dark">Más allá<br><em>de Annecy.</em></h2></div><p class="lead">Dos jornadas completas, con transporte y acompañante de KLF Annecy.</p></div>
+  <div class="row2">
+    
+    <article class="ocard tall">
+      <div class="photo "><div class="ph-tag"><svg class="ph-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z" />
+  <circle cx="12" cy="13" r="3" />
+</svg><span>FOTO · Vieux Lyon y Fourvière</span></div></div>
+      <div class="shade"></div>
+      <div class="ocard-top"><span class="pill green"><svg class="pill-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M8 2v3" />
+  <path d="M16 2v3" />
+  <rect x="3" y="3" rx="2" />
+  <path d="M3 9h18" />
+  <path d="M8 13h.01" />
+  <path d="M12 13h.01" />
+  <path d="M16 13h.01" />
+  <path d="M8 17h.01" />
+  <path d="M12 17h.01" />
+  <path d="M16 17h.01" />
+</svg>Jornada completa</span></div>
+      <div class="ocard-body">
+        <h3>Lyon</h3>
+        <p>Capital gastronómica de Francia y Patrimonio Mundial de la UNESCO: Vieux Lyon, traboules y Fourvière.</p>
+        <span class="logi"><svg class="logi-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M8 6v6" />
+  <path d="M15 6v6" />
+  <path d="M2 12h19.6" />
+  <path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3" />
+  <circle cx="7" cy="18" r="2" />
+  <path d="M9 18h5" />
+  <circle cx="16" cy="18" r="2" />
+</svg>Transporte y acompañante incluidos</span>
+      </div>
+    </article>
+    
+    <article class="ocard tall">
+      <div class="photo "><div class="ph-tag"><svg class="ph-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M13.997 4a2 2 0 0 1 1.76 1.05l.486.9A2 2 0 0 0 18.003 7H20a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h1.997a2 2 0 0 0 1.759-1.048l.489-.904A2 2 0 0 1 10.004 4z" />
+  <circle cx="12" cy="13" r="3" />
+</svg><span>FOTO · Yvoire, pueblo medieval florido</span></div></div>
+      <div class="shade"></div>
+      <div class="ocard-top"><span class="pill green"><svg class="pill-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M8 2v3" />
+  <path d="M16 2v3" />
+  <rect x="3" y="3" rx="2" />
+  <path d="M3 9h18" />
+  <path d="M8 13h.01" />
+  <path d="M12 13h.01" />
+  <path d="M16 13h.01" />
+  <path d="M8 17h.01" />
+  <path d="M12 17h.01" />
+  <path d="M16 17h.01" />
+</svg>Jornada completa</span></div>
+      <div class="ocard-body">
+        <h3>Yvoire y lago Lemán</h3>
+        <p>Un pueblo medieval florido a orillas del lago Lemán, entre Francia y Suiza.</p>
+        <span class="logi"><svg class="logi-ic"
+ 
+  xmlns="http://www.w3.org/2000/svg"
+ 
+ 
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M8 6v6" />
+  <path d="M15 6v6" />
+  <path d="M2 12h19.6" />
+  <path d="M18 18h3s.5-1.7.8-2.8c.1-.4.2-.8.2-1.2 0-.4-.1-.8-.2-1.2l-1.4-5C20.1 6.8 19.1 6 18 6H4a2 2 0 0 0-2 2v10h3" />
+  <circle cx="7" cy="18" r="2" />
+  <path d="M9 18h5" />
+  <circle cx="16" cy="18" r="2" />
+</svg>Transporte y acompañante incluidos</span>
+      </div>
+    </article>
+  </div>
+  <div class="foot on-dark"><span>klf.fr/annecy</span><span>08 / 08</span></div>
+</section></body></html>
