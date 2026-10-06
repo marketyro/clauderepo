@@ -5,44 +5,41 @@
 :root{--green:#8DC26F;--blue:#5FAEC4;--orange:#EB6A0A;--yellow:#FDBF31;--cream:#FFF9F2;--navy:#14213D}
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:1800px;height:90px;overflow:hidden;background:var(--cream)}
-#root{position:relative;width:1800px;height:90px;overflow:hidden}
-#brand{position:absolute;left:0;top:0;width:370px;height:90px;background:var(--cream);z-index:20;
-  clip-path:polygon(0 0,100% 0,calc(100% - 34px) 100%,0 100%);display:flex;align-items:center;gap:8px;padding-left:22px}
-#brand .tree{height:84px}
-#brand .word{height:50px}
-#stage{position:absolute;left:300px;top:0;width:1500px;height:90px;overflow:hidden}
-.scene{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:24px;padding-left:70px}
+#root{position:relative;width:1800px;height:90px;overflow:hidden;background:var(--cream)}
+#logo{position:absolute;top:3px;height:84px;display:flex;align-items:center;gap:8px;z-index:30;transform-origin:center}
+#logo .tree{height:84px}
+#logo .word{height:50px}
+#stage{position:absolute;inset:0;z-index:10}
+.scene{position:absolute;top:0;bottom:0;left:340px;right:0;display:flex;align-items:center;justify-content:center;gap:24px;padding-left:40px}
 .t{display:inline-block;white-space:nowrap;will-change:transform}
 .h{font-family:F;font-weight:700;font-size:50px;color:#fff;line-height:1}
 .pill{font-family:F;font-weight:700;font-size:48px;line-height:1;padding:8px 24px 10px;border-radius:18px;color:#fff}
 .btn{font-family:F;font-weight:700;font-size:40px;line-height:1;padding:12px 30px 14px;border-radius:40px;background:var(--yellow);color:var(--orange);box-shadow:0 4px 0 rgba(0,0,0,.12)}
-/* défilement des villes */
+/* villes : cadre de largeur fixe (= ville la plus longue), nom centré */
 #cities{position:relative;height:66px;overflow:hidden;background:var(--blue);border-radius:18px}
-#cities span{position:absolute;left:0;top:0;height:66px;line-height:62px;padding:0 24px;font-family:F;font-weight:700;font-size:44px;color:#fff;white-space:nowrap}
-#ball{position:absolute;top:13px;width:64px;height:64px;z-index:15;left:-200px}
+#cities span{position:absolute;left:0;right:0;top:0;height:66px;line-height:62px;text-align:center;font-family:F;font-weight:700;font-size:48px;color:#fff;white-space:nowrap}
+#end{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:26px;z-index:5}
+#end .h{color:var(--navy)}
+#ball{position:absolute;top:13px;width:64px;height:64px;z-index:20;left:-200px}
 </style></head>
 <body><div id="root">
+  <!-- écran de fin (sous le stage, révélé quand le stage s'efface) -->
+  <div id="end">
+    <span id="logoSlot"></span>
+    <span class="t h" data-d=".1" style="font-size:50px;margin-left:14px">partenaire du</span>
+    <span class="t pill" data-d=".3" data-pulse="1" style="background:var(--orange);font-size:52px">MHSC</span>
+    <span class="t h" data-d=".6" style="font-size:34px;color:#4E8C34;margin-left:24px">crechebabyeveil.fr</span>
+  </div>
   <div id="stage">
     <!-- S1 : crèches + villes -->
-    <div class="scene" data-s="0" style="background:var(--green);justify-content:flex-start;padding-left:90px">
-      <span class="t h" data-d="0" style="font-size:46px">Crèches durables à Montpellier et</span>
-      <span class="t" data-d=".25" id="cities"></span>
+    <div class="scene" style="background:var(--green)">
+      <span class="t h" data-d="0">Crèches durables à</span>
+      <span class="t" data-d=".2" id="cities"></span>
     </div>
     <!-- S2 : places -->
-    <div class="scene" data-s="11" style="background:var(--blue)">
+    <div class="scene" style="background:var(--blue)">
       <span class="t h" data-d="0">Des places en crèche sont disponibles</span>
       <span class="t btn" data-d=".3" data-pulse="1">Pré-inscrivez-vous ›</span>
-    </div>
-    <!-- S3 : employeurs -->
-    <div class="scene" data-s="17" style="background:var(--orange)">
-      <span class="t h" data-d="0" style="font-size:46px">Employeurs : fidélisez vos talents</span>
-      <span class="t pill" data-d=".3" style="background:var(--green);font-size:44px">grâce à nos crèches durables</span>
-    </div>
-    <!-- S4 : fin partenaire -->
-    <div class="scene" data-s="23" style="background:var(--navy);gap:22px">
-      <span class="t h" data-d="0" style="font-size:52px">Baby Éveil, partenaire du</span>
-      <span class="t pill" data-d=".35" data-pulse="1" style="background:var(--orange);font-size:52px">MHSC</span>
-      <span class="t h" data-d=".7" style="font-size:34px;color:var(--yellow);margin-left:28px">crechebabyeveil.fr</span>
     </div>
   </div>
   <svg id="ball" viewBox="-50 -50 100 100">
@@ -63,56 +60,90 @@ html,body{width:1800px;height:90px;overflow:hidden;background:var(--cream)}
       </g>
     </g>
   </svg>
-  <div id="brand"><img class="tree" src="tree.png"><img class="word" src="word.png"></div>
+  <div id="tag" class="h" style="position:absolute;top:24px;color:var(--navy);font-size:42px;white-space:nowrap;z-index:30">1<sup style="font-size:24px">er</sup> réseau de crèches durables du Languedoc</div>
+  <div id="logo"><img class="tree" src="tree.png"><img class="word" src="word.png"></div>
 </div>
 <script>
-const STAGE_X=300, STAGE_W=1500, WIPE=0.7;
-const CITIES=['Lattes','Jacou','Castelnau-le-Lez','Juvignac','Grabels','Saint-Gély-du-Fesc','Saint-Clément-de-Rivière','Saint-Brès','Lauret'];
-const C_START=0.9, C_STEP=1.1, C_ANIM=0.4;
+// ---- Timeline (secondes) ----
+const T={open:2.6, openDur:0.8, s1:2.6, citiesStart:3.8, step:1.05, s2:14.4, wipe:0.7, close:20.6, closeDur:0.8, endIn:21.3};
+const CITIES=['Montpellier','Lattes','Jacou','Castelnau-le-Lez','Juvignac','Grabels','Saint-Gély-du-Fesc','Saint-Clément-de-Rivière','Saint-Brès','Lauret'];
+const C_ANIM=0.4, SLANT_TOP=370, SLANT_BOT=336, W=1800, SIDE_X=22;
+
 const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const lerp=(a,b,p)=>a+(b-a)*p;
 const easeIO=x=>x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;
 const easeBack=x=>{const c1=1.6,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)};
-const box=document.getElementById('cities');
+
+const $=s=>document.querySelector(s);
+const logo=$('#logo'), stage=$('#stage'), ball=$('#ball'), ballg=$('#ballg'), box=$('#cities');
 const spans=CITIES.map(c=>{const s=document.createElement('span');s.textContent=c;box.appendChild(s);return s});
-let widths=null;
-const scenes=[...document.querySelectorAll('.scene')].map(el=>({el,s:+el.dataset.s,items:[...el.querySelectorAll('.t')]}));
-const ball=document.getElementById('ball'), ballg=document.getElementById('ballg');
-function cityState(t){
-  // index courant + progression de la transition vers le suivant
-  const x=(t-C_START)/C_STEP; const i=Math.floor(x);
-  if(i<0) return {i:0,p:0};
-  if(i>=CITIES.length-1) return {i:CITIES.length-1,p:0};
-  const p=easeIO(clamp(((x-i)*C_STEP-(C_STEP-C_ANIM))/C_ANIM));
-  return {i,p};
+const [sc1,sc2]=[...document.querySelectorAll('.scene')];
+const groups=[
+  {items:[...sc1.querySelectorAll('.t')], base:T.s1+0.5},
+  {items:[...sc2.querySelectorAll('.t')], base:T.s2+T.wipe*0.7},
+  {items:[...document.querySelectorAll('#end .t')], base:T.endIn},
+];
+let L=null;
+function layout(){
+  // cadre des villes = largeur du nom le plus long
+  const probe=document.createElement('span'); probe.style.cssText='position:absolute;visibility:hidden;font:700 48px F;white-space:nowrap';
+  document.body.appendChild(probe);
+  const maxW=Math.max(...CITIES.map(c=>{probe.textContent=c;return probe.getBoundingClientRect().width}));
+  probe.remove();
+  box.style.width=(maxW+56)+'px';
+  const lw=logo.getBoundingClientRect().width;
+  $('#logoSlot').style.cssText=`display:inline-block;width:${lw}px;height:1px`;
+  const tg=$('#tag'), tw=tg.getBoundingClientRect().width, cx=(W-(lw+36+tw))/2;
+  tg.style.left=(cx+lw+36)+'px';
+  L={lw, centerX:cx, endX:$('#logoSlot').getBoundingClientRect().left};
+}
+function animItems(g,t){
+  g.items.forEach(it=>{
+    const lt=t-g.base-(+it.dataset.d);
+    const e=easeBack(clamp(lt/0.55));
+    let z=1; if(it.dataset.pulse && lt>0.8) z=1+0.04*Math.sin((lt-0.8)*Math.PI*2/1.2);
+    it.style.opacity=clamp(lt/0.2);
+    it.style.transform=`translateY(${(1-e)*70}px) scale(${z})`;
+  });
+}
+function setBall(x){
+  if(x===null||x<SLANT_TOP){ball.style.left='-200px';return}
+  ball.style.left=(x-32)+'px'; ballg.setAttribute('transform',`rotate(${(x/32)*57.3})`);
 }
 window.setTime=function(t){
-  if(!widths) widths=spans.map(s=>s.getBoundingClientRect().width);
-  const {i,p}=cityState(t);
-  box.style.width=(widths[i]+(widths[Math.min(i+1,CITIES.length-1)]-widths[i])*p)+'px';
-  spans.forEach((s,k)=>{
-    let y=100; if(k===i) y=-p*66; else if(k===i+1) y=(1-p)*66;
-    s.style.transform=`translateY(${y}px)`;
-  });
+  if(!L) layout();
   let ballX=null;
-  scenes.forEach((sc,n)=>{
-    const pw = n===0 ? 1 : easeIO(clamp((t-sc.s)/WIPE));
-    sc.el.style.zIndex=n+1;
-    sc.el.style.visibility = t>=sc.s || n===0 ? 'visible':'hidden';
-    sc.el.style.clipPath=`inset(0 ${(1-pw)*100}% 0 0)`;
-    if(n>0 && pw>0 && pw<1) ballX=STAGE_X+pw*STAGE_W;
-    const base = n===0 ? 0.15 : sc.s+WIPE*0.7;
-    sc.items.forEach(it=>{
-      const lt=t-base-(+it.dataset.d);
-      const e=easeBack(clamp(lt/0.55));
-      let z=1;
-      if(it.dataset.pulse && lt>0.8) z=1+0.04*Math.sin((lt-0.8)*Math.PI*2/1.2);
-      it.style.opacity=clamp(lt/0.2);
-      it.style.transform=`translateY(${(1-e)*70}px) scale(${z})`;
-    });
-  });
-  if(ballX!==null){
-    ball.style.left=(ballX-32)+'px';
-    ballg.setAttribute('transform',`rotate(${(ballX/32)*57.3})`);
-  } else ball.style.left='-200px';
+  // bord gauche visible du stage : B (wipe) ou la diagonale du bloc logo
+  let B;
+  if(t<T.open) B=W;
+  else if(t<T.close){ const p=easeIO(clamp((t-T.open)/T.openDur)); B=lerp(W,0,p); if(p<1) ballX=B; }
+  else { const p=easeIO(clamp((t-T.close)/T.closeDur)); B=lerp(0,W,p); if(p>0&&p<1) ballX=B; }
+  const top=Math.max(SLANT_TOP,B), bot=Math.max(SLANT_BOT,B);
+  stage.style.clipPath=`polygon(${top}px 0,${W}px 0,${W}px 90px,${bot}px 90px)`;
+  stage.style.visibility = B>=W ? 'hidden':'visible';
+
+  // logo : pop au centre -> glisse à gauche -> revient pour l'écran de fin
+  let lx, sc=1, op=1;
+  if(t<T.open){ const e=easeBack(clamp(t/0.6)); lx=L.centerX; sc=lerp(0.7,1,e); op=clamp(t/0.3); }
+  else if(t<T.close){ lx=lerp(L.centerX,SIDE_X,easeIO(clamp((t-T.open)/T.openDur))); }
+  else { lx=lerp(SIDE_X,L.endX,easeIO(clamp((t-T.close-0.3)/T.closeDur))); }
+  const tg=$('#tag'); const ti=easeBack(clamp((t-0.35)/0.5)); const to=clamp((T.open-t)/0.3);
+  tg.style.opacity=Math.min(clamp((t-0.35)/0.2),to); tg.style.transform=`translateY(${(1-ti)*60}px)`;
+  logo.style.left=lx+'px'; logo.style.opacity=op; logo.style.transform=`scale(${sc})`;
+
+  // scène 2 recouvre la scène 1 avec le ballon
+  const p2=easeIO(clamp((t-T.s2)/T.wipe));
+  sc2.style.clipPath=`inset(0 ${(1-p2)*100}% 0 0)`;
+  sc2.style.visibility = t>=T.s2 ? 'visible':'hidden';
+  if(p2>0&&p2<1) ballX=340+p2*(W-340);
+
+  // villes
+  const x=(t-T.citiesStart)/T.step; let i=Math.floor(x), p=0;
+  if(i<0) i=0; else if(i>=CITIES.length-1) i=CITIES.length-1;
+  else p=easeIO(clamp(((x-i)*T.step-(T.step-C_ANIM))/C_ANIM));
+  spans.forEach((s,k)=>{ let y=100; if(k===i) y=-p*66; else if(k===i+1) y=(1-p)*66; s.style.transform=`translateY(${y}px)`; });
+
+  groups.forEach(g=>animItems(g,t));
+  setBall(ballX);
 };
 </script></body></html>
