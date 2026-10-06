@@ -1,0 +1,110 @@
+<!doctype html>
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:F;src:url(fredoka.ttf);font-weight:700}
+@font-face{font-family:P;src:url(poppins.ttf);font-weight:800}
+:root{--green:#8DC26F;--blue:#5FAEC4;--orange:#EB6A0A;--yellow:#FDBF31;--cream:#FFF9F2;--navy:#14213D;--violet:#A86CC1}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1800px;height:90px;overflow:hidden;background:var(--cream)}
+#root{position:relative;width:1800px;height:90px;overflow:hidden}
+#brand{position:absolute;left:0;top:0;width:370px;height:90px;background:var(--cream);z-index:20;
+  clip-path:polygon(0 0,100% 0,calc(100% - 34px) 100%,0 100%);display:flex;align-items:center;gap:8px;padding-left:22px}
+#brand .tree{height:84px}
+#brand .word{height:50px}
+#stage{position:absolute;left:300px;top:0;width:1500px;height:90px;overflow:hidden}
+.scene{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:26px;padding-left:70px}
+.t{zoom:var(--z,1);display:inline-block;white-space:nowrap;will-change:transform}
+.h{font-family:P;font-weight:800;font-size:50px;color:#fff;letter-spacing:-.5px;line-height:1}
+.pill{font-family:F;font-weight:700;font-size:48px;line-height:1;padding:8px 24px 10px;border-radius:18px;color:#fff}
+.btn{font-family:F;font-weight:700;font-size:40px;line-height:1;padding:12px 30px 14px;border-radius:40px;background:var(--yellow);color:#fff;box-shadow:0 4px 0 rgba(0,0,0,.12)}
+.ico{font-family:F;font-weight:700;font-size:44px;color:var(--navy);display:flex;align-items:center;gap:12px}
+.ico i{font-style:normal;width:56px;height:56px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:32px}
+.dot{width:12px;height:12px;border-radius:50%;background:var(--navy);opacity:.35}
+#ball{position:absolute;top:13px;width:64px;height:64px;z-index:15;left:-200px}
+.spark{position:absolute;font-size:30px;color:#fff;font-family:P}
+</style></head>
+<body><div id="root">
+  <div id="stage">
+    <!-- S1 : identité -->
+    <div class="scene" data-s="0" style="background:var(--green)">
+      <span class="t h" data-d="0">Micro-crèches durables</span>
+      <span class="t pill" data-d=".25" style="background:var(--blue)">autour de Montpellier</span>
+    </div>
+    <!-- S2 : places -->
+    <div class="scene" data-s="6" style="--z:.85;background:var(--blue)">
+      <span class="t h" data-d="0">✦ Places disponibles dès maintenant !</span>
+      <span class="t btn" data-d=".3" data-pulse="1" style="color:var(--orange)">Pré-inscrivez-vous ›</span>
+    </div>
+    <!-- S3 : employeurs -->
+    <div class="scene" data-s="12" style="--z:.82;background:var(--orange)">
+      <span class="t h" data-d="0">Employeurs : fidélisez vos talents</span>
+      <span class="t pill" data-d=".3" style="background:var(--green)">grâce à des crèches durables</span>
+    </div>
+    <!-- S4 : preuves -->
+    <div class="scene" data-s="18" style="background:var(--yellow);gap:30px">
+      <span class="t ico" data-d="0"><i>🌿</i>Repas bio &amp; local</span>
+      <span class="t dot" data-d=".2"></span>
+      <span class="t ico" data-d=".3"><i>🧸</i>Méthode Pikler</span>
+      <span class="t dot" data-d=".5"></span>
+      <span class="t ico" data-d=".6"><i>💛</i>12 enfants max.</span>
+    </div>
+    <!-- S5 : site -->
+    <div class="scene" data-s="24" style="background:var(--green)">
+      <span class="t pill" data-d="0" style="background:var(--orange);font-size:40px">Pré-inscription en ligne</span>
+      <span class="t h" data-d=".25" data-pulse="1" style="font-size:58px">crechebabyeveil.fr</span>
+    </div>
+  </div>
+  <svg id="ball" viewBox="-50 -50 100 100">
+    <g id="ballg">
+      <circle r="47" fill="#fff" stroke="#14213D" stroke-width="4"/>
+      <polygon id="pent" points="0,-16 15.2,-4.9 9.4,12.9 -9.4,12.9 -15.2,-4.9" fill="#14213D"/>
+      <g fill="#14213D">
+        <polygon points="0,-47 13,-40 9,-30 -9,-30 -13,-40" />
+        <polygon points="44.7,-14.5 42,0 32,2 27,-14 35,-25" />
+        <polygon points="27.6,38 15,44 8,36 18,24 30,26" />
+        <polygon points="-27.6,38 -15,44 -8,36 -18,24 -30,26" />
+        <polygon points="-44.7,-14.5 -42,0 -32,2 -27,-14 -35,-25" />
+      </g>
+      <g stroke="#14213D" stroke-width="3">
+        <line x1="0" y1="-16" x2="0" y2="-30"/><line x1="15.2" y1="-4.9" x2="27" y2="-10"/>
+        <line x1="9.4" y1="12.9" x2="17" y2="24"/><line x1="-9.4" y1="12.9" x2="-17" y2="24"/>
+        <line x1="-15.2" y1="-4.9" x2="-27" y2="-10"/>
+      </g>
+    </g>
+  </svg>
+  <div id="brand"><img class="tree" src="tree.png"><img class="word" src="word.png"></div>
+</div>
+<script>
+const STAGE_X=300, STAGE_W=1500, WIPE=0.7;
+const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
+const easeIO=x=>x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;
+const easeBack=x=>{const c1=1.6,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)};
+const scenes=[...document.querySelectorAll('.scene')].map(el=>({el,s:+el.dataset.s,items:[...el.querySelectorAll('.t')]}));
+const ball=document.getElementById('ball'), ballg=document.getElementById('ballg');
+window.setTime=function(t){
+  let ballX=null;
+  scenes.forEach((sc,i)=>{
+    // wipe in (scene 0 is already on screen at t=0)
+    const p = i===0 ? 1 : easeIO(clamp((t-sc.s)/WIPE));
+    sc.el.style.zIndex=i+1;
+    sc.el.style.visibility = t>=sc.s || i===0 ? 'visible':'hidden';
+    sc.el.style.clipPath=`inset(0 ${(1-p)*100}% 0 0)`;
+    if(i>0 && p>0 && p<1) ballX=STAGE_X+p*STAGE_W;
+    const base = i===0 ? 0.15 : sc.s+WIPE*0.7;
+    sc.items.forEach(it=>{
+      const lt=t-base-(+it.dataset.d);
+      const e=easeBack(clamp(lt/0.55));
+      let sc2=1;
+      if(it.dataset.pulse && lt>0.8){ sc2=1+0.04*Math.sin((lt-0.8)*Math.PI*2/1.2); }
+      it.style.opacity=clamp(lt/0.2);
+      it.style.transform=`translateY(${(1-e)*70}px) scale(${sc2})`;
+    });
+  });
+  if(ballX!==null){
+    ball.style.left=(ballX-32)+'px';
+    // rolling: rotation = distance / radius
+    ballg.setAttribute('transform',`rotate(${(ballX/32)*57.3})`);
+  } else ball.style.left='-200px';
+};
+setTime(0);
+</script></body></html>
