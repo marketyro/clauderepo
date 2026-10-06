@@ -16,8 +16,8 @@ html,body{width:1800px;height:90px;overflow:hidden;background:var(--cream)}
 .pill{font-family:F;font-weight:700;font-size:48px;line-height:1;padding:8px 24px 10px;border-radius:18px;color:#fff}
 .btn{font-family:F;font-weight:700;font-size:40px;line-height:1;padding:12px 30px 14px;border-radius:40px;background:var(--yellow);color:var(--orange);box-shadow:0 4px 0 rgba(0,0,0,.12)}
 /* villes : cadre de largeur fixe (= ville la plus longue), nom centré */
-#cities{position:relative;height:66px;overflow:hidden;background:var(--blue);border-radius:18px}
-#cities span{position:absolute;left:0;right:0;top:0;height:66px;line-height:62px;text-align:center;font-family:F;font-weight:700;font-size:44px;color:#fff;white-space:nowrap}
+#cities{position:relative;height:90px;overflow:hidden}
+#cities span{position:absolute;left:0;right:0;top:0;height:90px;line-height:90px;text-align:left;font-family:F;font-weight:700;font-size:44px;color:#fff;white-space:nowrap}
 #end{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:26px;z-index:5}
 #end .h{color:var(--navy)}
 #ball{position:absolute;top:13px;width:64px;height:64px;z-index:20;left:-200px}
@@ -92,7 +92,7 @@ function layout(){
   document.body.appendChild(probe);
   const maxW=Math.max(...CITIES.map(c=>{probe.textContent=c;return probe.getBoundingClientRect().width}));
   probe.remove();
-  box.style.width=(maxW+48)+'px';
+  box.style.width=(maxW+4)+'px';
   const lw=logo.getBoundingClientRect().width;
   $('#logoSlot').style.cssText=`display:inline-block;width:${lw}px;height:1px`;
   const tg=$('#tag'), tw=tg.getBoundingClientRect().width, cx=(W-(lw+36+tw))/2;
@@ -143,7 +143,7 @@ window.setTime=function(t){
   const x=(t-T.citiesStart)/T.step; let i=Math.floor(x), p=0;
   if(i<0) i=0; else if(i>=CITIES.length-1) i=CITIES.length-1;
   else p=easeIO(clamp(((x-i)*T.step-(T.step-C_ANIM))/C_ANIM));
-  spans.forEach((s,k)=>{ let y=100; if(k===i) y=-p*66; else if(k===i+1) y=(1-p)*66; s.style.transform=`translateY(${y}px)`; });
+  spans.forEach((s,k)=>{ let y=200; if(k===i) y=-p*90; else if(k===i+1) y=(1-p)*90; s.style.transform=`translateY(${y}px)`; });
 
   groups.forEach(g=>animItems(g,t));
   setBall(ballX);
