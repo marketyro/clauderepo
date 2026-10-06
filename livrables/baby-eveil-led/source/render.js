@@ -7,7 +7,7 @@ const path=require('path');
   await pg.goto('file://'+path.resolve(__dirname,process.env.PAGE||'led.html')); await pg.evaluate(()=>document.fonts.ready);
   await pg.waitForTimeout(300);
   if(mode==='stills'){
-    for(const t of [9.5]){ await pg.evaluate(t=>setTime(t),t); await pg.screenshot({path:`still_${t}.png`}); }
+    for(const t of [1.5,4.6,11.4,17,28]){ await pg.evaluate(t=>setTime(t),t); await pg.screenshot({path:`still_${t}.png`}); }
   } else {
     const FPS=25, N=30*FPS;
     const ff=spawn('ffmpeg',['-y','-f','image2pipe','-framerate',String(FPS),'-i','-','-vf','scale=1800:90:flags=lanczos','-c:v','libx264','-preset','slow','-crf','8','-profile:v','high','-tune','animation','-pix_fmt','yuv420p','-r',String(FPS),'-movflags','+faststart','BabyEveil_LED_1800x90_30s.mp4'],{stdio:['pipe','inherit','inherit']});
