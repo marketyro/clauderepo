@@ -48,7 +48,7 @@ const C = {
   ctaGeneral: "Informes e inscripciones con tu asesor",
   ctaBeca: "¡Postula con tu asesor!",
   brand: "KLF · Keep Learning French",
-  school: "Escuela LSF Montpellier",
+  school: "Escuela KLF Montpellier",
   table: [
     ["2 semanas", "1,530 €"],
     ["3 semanas", "2,165 €"],
@@ -72,8 +72,8 @@ const icon = (name) =>
 const PHOTOS = {
   general: [
     { key: "1-grupo-campus", file: "grupo-campus.jpg", pos: "68% 30%" },
-    { key: "2-selfie-campus", file: "campus-selfie.jpg", pos: { story: "50% 20%", default: "50% 18%" } },
-    { key: "3-atardecer", file: "atardecer.jpg", pos: { story: "50% 50%", default: "50% 38%" } },
+    { key: "2-terraza-campus", file: "campus-terraza.jpg", pos: { story: "60% 100%", post: "20% 100%", default: "55% 100%" }, size: { story: "auto 120%", post: "110% auto", default: "125% auto" } },
+    { key: "3-azotea-bar", file: "azotea-bar.jpg", pos: { story: "45% 50%", default: "50% 30%" } },
     { key: "4-azotea", file: "azotea.jpg", pos: { story: "45% 50%", default: "50% 40%" } },
   ],
   beca: [
@@ -93,8 +93,9 @@ const GALLERY = [
 ];
 const photoUrl = (file) => pathToFileURL(join(ROOT, "photos", file)).href;
 const bg = (ph, format) => {
-  const pos = typeof ph.pos === "string" ? ph.pos : ph.pos[format] ?? ph.pos.default;
-  return `background-image:url('${photoUrl(ph.file)}');background-position:${pos}`;
+  const pick = (v) => (v == null || typeof v === "string" ? v : v[format] ?? v.default);
+  const size = pick(ph.size); // zoom optionnel, ex. "150%"
+  return `background-image:url('${photoUrl(ph.file)}');background-position:${pick(ph.pos)}${size ? `;background-size:${size}` : ""}`;
 };
 
 const topline = `<div class="topline"></div>`;

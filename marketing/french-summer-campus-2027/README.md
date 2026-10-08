@@ -27,8 +27,8 @@ Flyers PDF A4 (2 pages, page 2 = galerie photos) : `output/…_general_A4.pdf`, 
 - Arrivées chaque lundi du 4 juillet au 14 août 2027 · 18–25 ans · niveaux A1–C1
 
 ## Photos (`photos/`)
-Sélection issue du Drive KLF, redimensionnée (max 1800 px). L'image « Gemini_Generated_Image »
-du Drive n'est **pas** utilisée (image générée par IA, à éviter dans une publicité présentant le campus).
+Sélection issue du Drive KLF, redimensionnée (max 1800 px).
+`campus-terraza.jpg` (foto-2 générale) est l'image « Gemini_Generated_Image » du Drive, utilisée à la demande de KLF.
 
 ## Modifier / régénérer
 Textes (dont le titre `titleA` / `titleB`) et choix des photos en haut de `render.mjs`, style dans `styles.css`.
