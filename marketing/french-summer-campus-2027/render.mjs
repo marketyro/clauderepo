@@ -1,4 +1,4 @@
-// Génère les visuels du Young Adult Campus 2027 (KLF Montpellier)
+// Génère les visuels du French Summer Campus 2027 (KLF Montpellier)
 // Formats : story 9:16, post 4:5, carré 1:1 (Instagram / Facebook / WhatsApp) + flyer PDF A4
 // Versions : "general" (tarif officiel) et "beca" (2 bourses)
 //
@@ -22,6 +22,9 @@ mkdirSync(BUILD, { recursive: true });
 // Contenu (espagnol — public mexicain)
 // ---------------------------------------------------------------------------
 const C = {
+  // Titre : modifiable (ex. "Campus de verano" / "en Francia")
+  titleA: "French Summer",
+  titleB: "Campus",
   season: "Verano 2027",
   place: "Montpellier · Francia",
   subtitle: "Aprende francés y vive un verano inolvidable en el sur de Francia.",
@@ -64,9 +67,21 @@ const icon = (name) =>
     .replace(/class="[^"]*"/, 'class="ico"');
 
 // Photos (dossier photos/, issues du Drive KLF). pos = cadrage CSS (background-position)
+// Plusieurs photos par version pour les réseaux sociaux (au choix) ; la 1re sert aussi au PDF.
+// pos : cadrage CSS (background-position), global ou par format.
 const PHOTOS = {
-  general: { file: "grupo-campus.jpg", pos: "68% 30%" },
-  beca: { file: "clase-sonrisa.jpg", pos: "66% 8%" },
+  general: [
+    { key: "1-grupo-campus", file: "grupo-campus.jpg", pos: "68% 30%" },
+    { key: "2-selfie-campus", file: "campus-selfie.jpg", pos: { story: "50% 20%", default: "50% 18%" } },
+    { key: "3-atardecer", file: "atardecer.jpg", pos: { story: "50% 50%", default: "50% 38%" } },
+    { key: "4-azotea", file: "azotea.jpg", pos: { story: "45% 50%", default: "50% 40%" } },
+  ],
+  beca: [
+    { key: "1-clase-sonrisa", file: "clase-sonrisa.jpg", pos: "66% 8%" },
+    { key: "2-clase", file: "clase-sonrisa-2.jpg", pos: { story: "70% 20%", default: "70% 22%" } },
+    { key: "3-clase", file: "clase.jpg", pos: { story: "55% 30%", default: "55% 22%" } },
+    { key: "4-grupo-campus", file: "grupo-campus.jpg", pos: "68% 30%" },
+  ],
 };
 const GALLERY = [
   { file: "clase.jpg", pos: "60% 35%", cap: "Clases en grupos reducidos" },
@@ -77,14 +92,17 @@ const GALLERY = [
   { file: "campus-jardin.jpg", pos: "50% 60%", cap: "Un campus moderno y verde" },
 ];
 const photoUrl = (file) => pathToFileURL(join(ROOT, "photos", file)).href;
-const bg = (ph) => `background-image:url('${photoUrl(ph.file)}');background-position:${ph.pos}`;
+const bg = (ph, format) => {
+  const pos = typeof ph.pos === "string" ? ph.pos : ph.pos[format] ?? ph.pos.default;
+  return `background-image:url('${photoUrl(ph.file)}');background-position:${pos}`;
+};
 
 const topline = `<div class="topline"></div>`;
 
 const title = () => `
 <h1 class="title">
-  <span class="t1">Young Adult</span>
-  <span class="t2">Campus</span>
+  <span class="t1">${C.titleA}</span>
+  <span class="t2">${C.titleB}</span>
   <span class="t3">2027</span>
 </h1>`;
 
@@ -98,8 +116,8 @@ const promoCard = () => `
 </div>`;
 
 // Grande photo avec titre en surimpression
-const photoHero = (beca, { script = true } = {}) => `
-<section class="ph" style="${bg(beca ? PHOTOS.beca : PHOTOS.general)}">
+const photoHero = (beca, ph, format, { script = true } = {}) => `
+<section class="ph" style="${bg(ph, format)}">
   <div class="ph-shade"></div>
   <div class="tags">
     ${beca ? `<span class="tag tag-red">2 becas</span>` : ""}
@@ -161,24 +179,24 @@ const topbar = () => `
 // Gabarits par format
 // ---------------------------------------------------------------------------
 const layouts = {
-  story: (beca) => `
-    ${photoHero(beca)}
+  story: (beca, ph) => `
+    ${photoHero(beca, ph, "story")}
     <section class="panel">
       ${chips()}
       ${beca ? becaBox() + `<p class="selection">${C.selection}</p>` : items(true) + priceGeneral() + `<p class="dates">${C.dates}</p>`}
       ${footer(beca)}
     </section>`,
 
-  post: (beca) => `
-    ${photoHero(beca)}
+  post: (beca, ph) => `
+    ${photoHero(beca, ph, "post")}
     <section class="panel">
       ${chips()}
       ${beca ? becaBox(true) + `<p class="selection">${C.selection}</p>` : items(true) + priceGeneral()}
       ${footer(beca)}
     </section>`,
 
-  square: (beca) => `
-    ${photoHero(beca, { script: false })}
+  square: (beca, ph) => `
+    ${photoHero(beca, ph, "square", { script: false })}
     <section class="panel">
       ${
         beca
@@ -188,8 +206,8 @@ const layouts = {
       ${footer(beca)}
     </section>`,
 
-  a4: (beca) => `
-    ${photoHero(beca)}
+  a4: (beca, ph) => `
+    ${photoHero(beca, ph, "a4")}
     <section class="panel">
       ${chips()}
       <h2 class="card-h">Todo incluido</h2>
@@ -211,7 +229,7 @@ const layouts = {
 const gallery = (beca) => `
     ${topline}${topbar()}
     <section class="gal-head">
-      <h2 class="gal-title">Así se vive el <em>Young Adult Campus</em></h2>
+      <h2 class="gal-title">Así se vive el <em>${C.titleA} ${C.titleB}</em></h2>
     </section>
     <section class="gal-grid">
       ${GALLERY.map((g) => `<figure style="${bg(g)}"><figcaption>${g.cap}</figcaption></figure>`).join("")}
@@ -231,13 +249,13 @@ const SIZES = {
 const css = readFileSync(join(ROOT, "styles.css"), "utf8");
 const fonts = readFileSync(join(ROOT, "fonts", "fonts.css"), "utf8");
 
-const page = (format, beca) => `<!doctype html>
+const page = (format, beca, ph) => `<!doctype html>
 <html lang="es"><head><meta charset="utf-8">
 <base href="${pathToFileURL(join(ROOT, "fonts")).href}/">
 <style>${fonts}</style><style>${css}</style>
 <style>html,body{width:${SIZES[format].w}px}.page{width:${SIZES[format].w}px;height:${SIZES[format].h}px;break-after:page}</style>
 </head><body>
-<main class="page ${format} ${beca ? "is-beca" : "is-general"}">${layouts[format](beca)}</main>
+<main class="page ${format} ${beca ? "is-beca" : "is-general"}">${layouts[format](beca, ph)}</main>
 ${format === "a4" ? `<main class="page a4 gallery ${beca ? "is-beca" : "is-general"}">${gallery(beca)}</main>` : ""}
 </body></html>`;
 
@@ -250,35 +268,36 @@ const versions = [
   ["beca", true],
 ];
 const names = { story: "story_1080x1920", post: "post-4x5_1080x1350", square: "carre-1x1_1080x1080" };
+const PREFIX = "KLF_French-Summer-Campus-2027";
 
 for (const [vName, beca] of versions) {
+  mkdirSync(join(OUT, vName), { recursive: true });
   for (const format of Object.keys(SIZES)) {
-    const html = page(format, beca);
-    const file = join(BUILD, `${format}-${vName}.html`);
-    writeFileSync(file, html);
-    const { w, h } = SIZES[format];
-    const p = await browser.newPage({ viewport: { width: w, height: h }, deviceScaleFactor: 1 });
-    await p.goto(pathToFileURL(file).href);
-    await p.evaluate(() => document.fonts.ready);
-    // Contrôle : aucun débordement du contenu
-    const overflow = await p.evaluate(() =>
-      Math.max(...[...document.querySelectorAll(".page")].map((m) => m.scrollHeight - m.clientHeight))
-    );
-    if (overflow > 0) console.warn(`⚠ ${format}-${vName} déborde de ${overflow}px`);
-    if (format === "a4") {
-      await p.pdf({
-        path: join(OUT, `KLF_Young-Adult-Campus-2027_${vName}_A4.pdf`),
-        width: "210mm",
-        height: "297mm",
-        printBackground: true,
-      });
-      const pages = await p.$$(".page");
-      for (const [i, el] of pages.entries()) await el.screenshot({ path: join(BUILD, `a4-${vName}-p${i + 1}.png`) });
-    } else {
-      await p.screenshot({ path: join(OUT, `KLF_Young-Adult-Campus-2027_${vName}_${names[format]}.png`) });
+    // PDF : photo principale uniquement ; réseaux sociaux : toutes les photos
+    const photos = format === "a4" ? [PHOTOS[vName][0]] : PHOTOS[vName];
+    for (const ph of photos) {
+      const html = page(format, beca, ph);
+      const file = join(BUILD, `${format}-${vName}-${ph.key}.html`);
+      writeFileSync(file, html);
+      const { w, h } = SIZES[format];
+      const p = await browser.newPage({ viewport: { width: w, height: h }, deviceScaleFactor: 1 });
+      await p.goto(pathToFileURL(file).href);
+      await p.evaluate(() => document.fonts.ready);
+      // Contrôle : aucun débordement du contenu
+      const overflow = await p.evaluate(() =>
+        Math.max(...[...document.querySelectorAll(".page")].map((m) => m.scrollHeight - m.clientHeight))
+      );
+      if (overflow > 0) console.warn(`⚠ ${format}-${vName}-${ph.key} déborde de ${overflow}px`);
+      if (format === "a4") {
+        await p.pdf({ path: join(OUT, `${PREFIX}_${vName}_A4.pdf`), width: "210mm", height: "297mm", printBackground: true });
+        const pages = await p.$$(".page");
+        for (const [i, el] of pages.entries()) await el.screenshot({ path: join(BUILD, `a4-${vName}-p${i + 1}.png`) });
+      } else {
+        await p.screenshot({ path: join(OUT, vName, `${PREFIX}_${vName}_${names[format]}_foto-${ph.key}.png`) });
+      }
+      await p.close();
+      console.log(`✓ ${format} ${vName} ${ph.key}`);
     }
-    await p.close();
-    console.log(`✓ ${format} ${vName}`);
   }
 }
 await browser.close();
