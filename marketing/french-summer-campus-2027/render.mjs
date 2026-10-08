@@ -72,9 +72,9 @@ const icon = (name) =>
 const PHOTOS = {
   general: [
     { key: "1-grupo-campus", file: "grupo-campus.jpg", pos: "68% 30%" },
-    { key: "2-terraza-campus", file: "campus-terraza.jpg", pos: { story: "60% 100%", post: "20% 100%", default: "55% 100%" }, size: { story: "auto 120%", post: "110% auto", default: "125% auto" } },
+    { key: "2-terraza-campus", file: "campus-terraza.jpg", pos: { story: "60% 100%", post: "20% 100%", square: "40% 62%", default: "55% 100%" }, size: { story: "auto 120%", post: "110% auto", square: "105% auto", default: "125% auto" } },
     { key: "3-azotea-bar", file: "azotea-bar.jpg", pos: { story: "45% 50%", default: "50% 30%" } },
-    { key: "4-azotea", file: "azotea.jpg", pos: { story: "45% 50%", default: "50% 40%" } },
+    { key: "4-acueducto", file: "acueducto.jpg", pos: { story: "50% 75%", default: "50% 55%" } },
   ],
   beca: [
     { key: "1-clase-sonrisa", file: "clase-sonrisa.jpg", pos: "66% 8%" },
@@ -199,11 +199,8 @@ const layouts = {
   square: (beca, ph) => `
     ${photoHero(beca, ph, "square", { script: false })}
     <section class="panel">
-      ${
-        beca
-          ? `<p class="incl">La beca cubre: ${C.becaCovers.join(" · ")}</p><p class="selection">${C.selection}</p>`
-          : `<p class="incl">Clases · Estudio privado · Excursiones · Transporte · Gimnasio</p>` + priceGeneral()
-      }
+      ${chips()}
+      ${beca ? becaBox() + `<p class="selection">${C.selection}</p>` : items(true) + priceGeneral() + `<p class="dates">${C.dates}</p>`}
       ${footer(beca)}
     </section>`,
 
