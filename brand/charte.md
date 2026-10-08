@@ -1,7 +1,9 @@
 # Chez Cellier — charte graphique réseaux sociaux
 
-Relevé effectué le 8 octobre 2026 sur la page d'accueil de https://www.chezcellier.fr (site Wix), complété par la
-banderole « Chez Cellier Banderole Vauvert V2 » et deux photos fournies par Chez Cellier.
+Relevé effectué le 8 octobre 2026 sur la page d'accueil de https://www.chezcellier.fr (site Wix).
+Les images et polices hébergées chez Wix (`static.wixstatic.com`, `static.parastorage.com`) n'étaient pas
+accessibles depuis l'environnement de travail. L'analyse repose donc sur le HTML et les styles intégrés
+à la page, plus une capture de la page d'accueil (`sources/reference/`).
 
 ## Identité
 
@@ -19,7 +21,7 @@ banderole « Chez Cellier Banderole Vauvert V2 » et deux photos fournies par Ch
 
 ## Couleurs (relevées dans le HTML/CSS)
 
-| Rôle | Hex | Usage |
+| Rôle | Hex | Usage sur le site |
 |---|---|---|
 | Noir profond | `#161616` | Fond du hero et de l'en-tête |
 | Anthracite | `#242323` | Sections sombres, texte courant sur fond clair |
@@ -27,8 +29,6 @@ banderole « Chez Cellier Banderole Vauvert V2 » et deux photos fournies par Ch
 | Or clair | `#D3B376` | Titre « Bienvenue », mots surlignés, gros titres en or |
 | Crème | `#FFF6EB` | Titre « Chez Cellier », fonds des sections claires |
 | Ivoire | `#FFFDFC` | Fond clair secondaire |
-| Or profond | `#9C7F48` | Pastilles de la banderole |
-| Beige | `#F3DFCC` | Bandeaux et bloc de contact de la banderole |
 
 Les fonds sont sombres (noir ou anthracite) ou crème. L'or sert uniquement d'accent : texte fin, filets
 d'environ 1 à 2 px, surlignage ponctuel.
@@ -37,7 +37,7 @@ d'environ 1 à 2 px, surlignage ponctuel.
 
 | Police | Rôle | Source |
 |---|---|---|
-| **Libre Caslon Text** (Regular, *Italic*, Bold) | Titres, nom de marque, citations | Google Fonts, licence OFL |
+| **Libre Caslon Text** (Regular, *Italic*) | Titres, nom de marque, citations | Google Fonts, licence OFL |
 | **Montserrat** (Light, Regular, Medium) | Sous-titres en capitales très espacées (≈ 0,3–0,4 em), boutons, mentions | Google Fonts, licence OFL |
 | Open Sans | Texte courant sur le site, non utilisé dans les visuels | Google Fonts |
 
@@ -64,23 +64,14 @@ agrandissent ces proportions à l'identique (fonction `site_logo` dans `sources/
 Dans les SVG, le texte est vectorisé (converti en tracés) : ils s'affichent à l'identique sans qu'aucune
 police soit installée.
 
-## Éléments repris de la banderole Vauvert
+## Éléments graphiques
 
-Aperçu dans `sources/reference/banderole-vauvert-apercu.png`.
-
-- **Structure** : bandeau noir avec le logo, photo réelle pleine largeur, puis bandeau noir avec
-  *L'Art de Vivre à la Française*.
-- **Accroches en capitales blanches sur la photo** : « PARTAGER / PROFITER / S'ÉPANOUIR | CHEZ CELLIER
-  CHAQUE JOUR A PLUS DE SENS ».
-- **Bandeau beige** `#F3DFCC` aux angles arrondis, texte en capitales Caslon (ex. « 10 SUITES PRIVÉES PAR VILLA »).
-- **Pastille ronde or** `#9C7F48`, liseré beige (ex. « RÉSERVEZ UNE VISITE »).
-- **Quatre piliers** en capitales or séparées par des filets : « Un cadre de vie d'exception · Une vie conviviale
-  et sécurisée · Un accompagnement 7j/7 inclus · Des espaces partagés et privatifs ».
-- **Bloc beige** pour les coordonnées : site, téléphone, e-mail.
-- **Photos** (`sources/photos/`) : couple dans un jardin, repas entre amis en extérieur.
-
-La banderole utilise Poppins pour ses capitales. Les visuels gardent Montserrat, la police du site et du
-logo, qui est très proche.
+- **Cadre filet or** : repris du logo. Il est simple ou double et encadre la couverture Facebook et les posts.
+- **Arche** : ornement repris du site, en filet or fin, utilisé en décor (couverture Facebook, story,
+  bannière LinkedIn).
+- **Mots surlignés** : aplat or clair derrière un mot, comme sur « vieillir » et « ensemble » de la page d'accueil.
+- **Sous-titres** : capitales Montserrat espacées, encadrées de deux filets or.
+- **Bouton** : rectangle à filet or et capitales espacées, comme « RÉSERVER UNE VISITE » sur le site.
 
 ## Formats livrés
 
@@ -89,17 +80,17 @@ logo, qui est très proche.
 | `profil-facebook.png` | 320×320 | Logo du site sur fond noir, entier dans le cercle |
 | `profil-instagram.png` | 320×320 | Idem |
 | `profil-linkedin.png` | 400×400 | Idem |
-| `facebook-couverture.png` | 1640×624 | Logo et accroches à gauche, photo du repas à droite, tout dans la zone sûre (≈ 1200×470) |
-| `instagram-post.png` | 1080×1080 | Bandeau logo, photo du couple, *L'Art de Vivre à la Française* |
-| `instagram-portrait.png` | 1080×1350 | Déclinaison de la banderole : photo du repas, accroches, bandeau beige, 4 piliers |
-| `instagram-story.png` | 1080×1920 | Logo, photo du couple, pastille « Réservez une visite », bloc contact ; 250 px libres en haut et en bas |
-| `linkedin-banniere-perso.png` | 1584×396 | Zone bas-gauche laissée libre pour la photo de profil ; photo du repas à droite |
-| `linkedin-banniere-entreprise.png` | 1128×191 | Logo et baseline, photo du repas à droite |
+| `facebook-couverture.png` | 1640×624 | « Bienvenue », logo, baseline et villas, dans la zone sûre centrale (≈ 1200×470) |
+| `instagram-post.png` | 1080×1080 | Logo et citation de la page d'accueil, mots surlignés |
+| `instagram-portrait.png` | 1080×1350 | « Un accompagnement 5 étoiles, 7 jours sur 7 » sur fond crème, logo en version foncée |
+| `instagram-story.png` | 1080×1920 | « Bienvenue » et logo dans une grande arche, bouton « Réserver une visite » ; 250 px libres en haut et en bas |
+| `linkedin-banniere-perso.png` | 1584×396 | Zone bas-gauche laissée libre pour la photo de profil |
+| `linkedin-banniere-entreprise.png` | 1128×191 | Logo et baseline, décalés vers la droite (logo de la page en bas à gauche) |
 
 ## Régénérer
 
 ```bash
-pip install fonttools uharfbuzz pillow
+pip install fonttools uharfbuzz
 python3 brand/sources/generate.py               # SVG
 NODE_PATH=$(npm root -g) node brand/sources/render.js   # PNG via Playwright/Chromium
 ```
