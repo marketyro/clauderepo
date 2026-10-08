@@ -54,34 +54,32 @@ const C = {
 };
 
 // ---------------------------------------------------------------------------
-// Éléments graphiques
+// Éléments graphiques — univers Alliance Française (cf. Instagram AF Montpellier) :
+// photo plein cadre, grand titre serif blanc, étiquettes blanches à texte rouge,
+// annotations manuscrites, carte prix "promotion", filet rouge.
 // ---------------------------------------------------------------------------
 const icon = (name) =>
   readFileSync(join(ROOT, "icons", `${name}.svg`), "utf8")
     .replace(/<!--.*?-->/s, "")
     .replace(/class="[^"]*"/, 'class="ico"');
 
-// Soleil couchant méditerranéen, style rétro (rayures sur la moitié basse)
-const sun = () => `
-<svg class="sun-svg" viewBox="0 0 400 400" aria-hidden="true">
-  <defs><clipPath id="sunclip"><circle cx="200" cy="200" r="196"/></clipPath></defs>
-  <circle cx="200" cy="200" r="196" fill="var(--red)"/>
-  <g clip-path="url(#sunclip)" fill="var(--paper)">
-    <rect x="0" y="262" width="400" height="7"/>
-    <rect x="0" y="288" width="400" height="11"/>
-    <rect x="0" y="316" width="400" height="15"/>
-    <rect x="0" y="347" width="400" height="20"/>
-    <rect x="0" y="380" width="400" height="30"/>
-  </g>
-</svg>`;
+// Photos (dossier photos/, issues du Drive KLF). pos = cadrage CSS (background-position)
+const PHOTOS = {
+  general: { file: "grupo-campus.jpg", pos: "68% 30%" },
+  beca: { file: "clase-sonrisa.jpg", pos: "66% 8%" },
+};
+const GALLERY = [
+  { file: "clase.jpg", pos: "60% 35%", cap: "Clases en grupos reducidos" },
+  { file: "playa.jpg", pos: "62% 70%", cap: "La playa, a un tranvía" },
+  { file: "azotea.jpg", pos: "50% 60%", cap: "Intercambio de idiomas en la azotea" },
+  { file: "gimnasio.jpg", pos: "50% 40%", cap: "Gimnasio del campus" },
+  { file: "estudio.jpg", pos: "50% 60%", cap: "Tu estudio privado" },
+  { file: "campus-jardin.jpg", pos: "50% 60%", cap: "Un campus moderno y verde" },
+];
+const photoUrl = (file) => pathToFileURL(join(ROOT, "photos", file)).href;
+const bg = (ph) => `background-image:url('${photoUrl(ph.file)}');background-position:${ph.pos}`;
 
-const waves = () => `
-<svg class="waves" viewBox="0 0 1080 120" preserveAspectRatio="none" aria-hidden="true">
-  <path d="M0 60 C 90 20, 180 20, 270 60 S 450 100, 540 60 S 720 20, 810 60 S 990 100, 1080 60 V120 H0Z" fill="var(--red)" opacity=".12"/>
-  <path d="M0 80 C 90 45, 180 45, 270 80 S 450 115, 540 80 S 720 45, 810 80 S 990 115, 1080 80 V120 H0Z" fill="var(--sand)"/>
-</svg>`;
-
-const tricolor = `<div class="topline"></div>`;
+const topline = `<div class="topline"></div>`;
 
 const title = () => `
 <h1 class="title">
@@ -90,17 +88,30 @@ const title = () => `
   <span class="t3">2027</span>
 </h1>`;
 
-const sunBlock = (beca) => `
-<div class="sun">
-  ${sun()}
-  <div class="sun-text">
-    ${
-      beca
-        ? `<div class="sun-big">2</div><div class="sun-word">becas</div>`
-        : `<div class="sun-script">Bonjour<br>l'été !</div>`
-    }
-  </div>
+// Carte prix façon "promotion" AF (version beca)
+const promoCard = () => `
+<div class="promo">
+  <span class="promo-old">Precio oficial ${C.price}</span>
+  <span class="promo-new">${C.priceBeca}</span>
+  <span class="promo-save">Beca de ${C.becaValue}</span>
+  <span class="promo-sub">2 semanas todo incluido</span>
 </div>`;
+
+// Grande photo avec titre en surimpression
+const photoHero = (beca, { script = true } = {}) => `
+<section class="ph" style="${bg(beca ? PHOTOS.beca : PHOTOS.general)}">
+  <div class="ph-shade"></div>
+  <div class="tags">
+    ${beca ? `<span class="tag tag-red">2 becas</span>` : ""}
+    <span class="tag">${C.season}</span>
+    <span class="tag">En inmersión en Montpellier</span>
+  </div>
+  ${beca ? promoCard() : ""}
+  <div class="ph-bottom">
+    ${script ? `<div class="script">${beca ? "Tu verano en Francia, ¡casi a mitad de precio!" : "Bonjour ! Tu verano en Francia te espera"}</div>` : ""}
+    ${title()}
+  </div>
+</section>`;
 
 const chips = () => `
 <div class="chips">
@@ -123,20 +134,15 @@ const priceGeneral = () => `
   <div class="price-num">${C.price}</div>
 </div>`;
 
-const priceBeca = () => `
-<div class="price beca">
-  <div class="price-label">2 semanas todo incluido<br><span class="old">Precio oficial ${C.price}</span></div>
-  <div class="price-num"><small>con beca solo</small>${C.priceBeca}</div>
-</div>`;
-
-const becaBox = (compact = false) => `
+const becaBox = (compact = false, rest = true) => `
 <div class="beca-box">
-  <div class="beca-head"><span class="beca-tag">Beca</span><span>con valor de <b>${C.becaValue}</b></span></div>
+  <div class="beca-head">Tu beca de <b>${C.becaValue}</b> incluye</div>
   ${
     compact
       ? `<p class="beca-covers">${C.becaCovers.join(" · ")}</p>`
       : `<ul class="beca-list">${C.becaCovers.map((x) => `<li>${x}</li>`).join("")}</ul>`
   }
+  ${rest ? "" : "<!--"}<p class="beca-rest">Solo pagas <b>${C.priceBeca}</b> por 2 semanas todo incluido, con alojamiento en estudio privado.</p>${rest ? "" : "-->"}
 </div>`;
 
 const footer = (beca) => `
@@ -156,76 +162,64 @@ const topbar = () => `
 // ---------------------------------------------------------------------------
 const layouts = {
   story: (beca) => `
-    ${tricolor}${topbar()}
-    <section class="hero">
-      ${sunBlock(beca)}
-      <div class="script-note">${beca ? "Tu verano en Francia,<br>¡casi a mitad de precio!" : "Tu verano en Francia"}</div>
-      ${title()}
-      <p class="subtitle">${C.subtitle}</p>
+    ${photoHero(beca)}
+    <section class="panel">
       ${chips()}
-    </section>
-    ${waves()}
-    <section class="card">
-      ${beca ? becaBox() + priceBeca() + `<p class="selection">${C.selection}</p>` : `<h2 class="card-h">Todo incluido</h2>` + items(true) + priceGeneral()}
-      ${beca ? "" : `<p class="dates">${C.dates}</p>`}
+      ${beca ? becaBox() + `<p class="selection">${C.selection}</p>` : items(true) + priceGeneral() + `<p class="dates">${C.dates}</p>`}
       ${footer(beca)}
     </section>`,
 
   post: (beca) => `
-    ${tricolor}${topbar()}
-    <section class="hero">
-      ${sunBlock(beca)}
-      ${title()}
-      <p class="subtitle">${C.subtitle}</p>
+    ${photoHero(beca)}
+    <section class="panel">
       ${chips()}
-    </section>
-    ${waves()}
-    <section class="card">
-      ${beca ? becaBox(true) + priceBeca() + `<p class="selection">${C.selection}</p>` : items(true) + priceGeneral()}
+      ${beca ? becaBox(true) + `<p class="selection">${C.selection}</p>` : items(true) + priceGeneral()}
       ${footer(beca)}
     </section>`,
 
   square: (beca) => `
-    ${tricolor}${topbar()}
-    <section class="hero">
-      ${sunBlock(beca)}
-      ${title()}
-      ${chips()}
-    </section>
-    ${waves()}
-    <section class="card">
+    ${photoHero(beca, { script: false })}
+    <section class="panel">
       ${
         beca
-          ? becaBox(true) + priceBeca()
+          ? `<p class="incl">La beca cubre: ${C.becaCovers.join(" · ")}</p><p class="selection">${C.selection}</p>`
           : `<p class="incl">Clases · Estudio privado · Excursiones · Transporte · Gimnasio</p>` + priceGeneral()
       }
       ${footer(beca)}
     </section>`,
 
   a4: (beca) => `
-    ${tricolor}${topbar()}
-    <section class="hero">
-      ${sunBlock(beca)}
-      ${title()}
-      <p class="subtitle">${C.subtitle}</p>
+    ${photoHero(beca)}
+    <section class="panel">
       ${chips()}
-    </section>
-    ${waves()}
-    <section class="card">
       <h2 class="card-h">Todo incluido</h2>
       ${items(true)}
       <div class="cols">
         <div>
-          ${beca ? becaBox() + `<p class="selection">${C.selection}</p>` : `<table class="tbl"><caption>Tarifas 2027 · todo incluido</caption>${C.table.map(([d, p]) => `<tr><td>${d}</td><td>${p}</td></tr>`).join("")}</table>`}
+          ${beca ? becaBox(true, false) : `<table class="tbl"><caption>Tarifas 2027 · todo incluido</caption>${C.table.map(([d, p]) => `<tr><td>${d}</td><td>${p}</td></tr>`).join("")}</table>`}
         </div>
         <div>
-          ${beca ? priceBeca() : priceGeneral()}
+          ${beca ? `<p class="selection">${C.selection}</p>` : priceGeneral()}
           <p class="dates">${C.dates}</p>
         </div>
       </div>
       ${footer(beca)}
     </section>`,
 };
+
+// Page 2 du flyer A4 : galerie photos
+const gallery = (beca) => `
+    ${topline}${topbar()}
+    <section class="gal-head">
+      <h2 class="gal-title">Así se vive el <em>Young Adult Campus</em></h2>
+    </section>
+    <section class="gal-grid">
+      ${GALLERY.map((g) => `<figure style="${bg(g)}"><figcaption>${g.cap}</figcaption></figure>`).join("")}
+    </section>
+    <section class="panel gal-card">
+      <p class="gal-info">${C.age} · ${C.levels} · ${C.datesShort}</p>
+      ${footer(beca)}
+    </section>`;
 
 const SIZES = {
   story: { w: 1080, h: 1920 },
@@ -241,9 +235,10 @@ const page = (format, beca) => `<!doctype html>
 <html lang="es"><head><meta charset="utf-8">
 <base href="${pathToFileURL(join(ROOT, "fonts")).href}/">
 <style>${fonts}</style><style>${css}</style>
-<style>html,body{width:${SIZES[format].w}px;height:${SIZES[format].h}px}</style>
+<style>html,body{width:${SIZES[format].w}px}.page{width:${SIZES[format].w}px;height:${SIZES[format].h}px;break-after:page}</style>
 </head><body>
 <main class="page ${format} ${beca ? "is-beca" : "is-general"}">${layouts[format](beca)}</main>
+${format === "a4" ? `<main class="page a4 gallery ${beca ? "is-beca" : "is-general"}">${gallery(beca)}</main>` : ""}
 </body></html>`;
 
 // ---------------------------------------------------------------------------
@@ -266,10 +261,9 @@ for (const [vName, beca] of versions) {
     await p.goto(pathToFileURL(file).href);
     await p.evaluate(() => document.fonts.ready);
     // Contrôle : aucun débordement du contenu
-    const overflow = await p.evaluate(() => {
-      const m = document.querySelector(".page");
-      return m.scrollHeight - m.clientHeight;
-    });
+    const overflow = await p.evaluate(() =>
+      Math.max(...[...document.querySelectorAll(".page")].map((m) => m.scrollHeight - m.clientHeight))
+    );
     if (overflow > 0) console.warn(`⚠ ${format}-${vName} déborde de ${overflow}px`);
     if (format === "a4") {
       await p.pdf({
@@ -277,9 +271,9 @@ for (const [vName, beca] of versions) {
         width: "210mm",
         height: "297mm",
         printBackground: true,
-        pageRanges: "1",
       });
-      await p.screenshot({ path: join(BUILD, `a4-${vName}.png`) });
+      const pages = await p.$$(".page");
+      for (const [i, el] of pages.entries()) await el.screenshot({ path: join(BUILD, `a4-${vName}-p${i + 1}.png`) });
     } else {
       await p.screenshot({ path: join(OUT, `KLF_Young-Adult-Campus-2027_${vName}_${names[format]}.png`) });
     }

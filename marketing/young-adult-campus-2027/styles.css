@@ -1,92 +1,81 @@
-/* Univers graphique Alliance Française (Fédération Mexique) :
-   blanc, rouge "af", noir et gris, titres serif type Didot/Bodoni.
-   Accent estival : soleil méditerranéen rouge. 1em = 10px au format story. */
+/* Univers graphique Alliance Française (logo Fédération Mexique, Instagram AF Montpellier) :
+   photo plein cadre, titres serif blancs (type Didot/Bodoni), étiquettes blanches à texte rouge,
+   annotations manuscrites, filet rouge, blanc / rouge "af" / noir / gris.
+   1em = 10px au format story (1080px de large). */
 :root {
   --red: #e1001a;
-  --red-dark: #b50015;
   --ink: #141414;
   --grey: #8c8c8c;
   --paper: #ffffff;
-  --sand: #f6efe6;
-  --sun: #e1001a;
-  --navy: #141414;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
 h1, h2 { font-size: inherit; }
 html, body { background: var(--paper); }
 body { font-family: "Montserrat", sans-serif; color: var(--ink); -webkit-font-smoothing: antialiased; }
 
-.page {
-  position: relative; width: 100%; height: 100%; overflow: hidden;
-  display: flex; flex-direction: column; background: var(--paper);
-}
+.page { position: relative; overflow: hidden; display: flex; flex-direction: column; background: var(--paper); }
 .story  { font-size: 10px; }
 .post   { font-size: 9px; }
 .square { font-size: 8.4px; }
 .a4     { font-size: 7.35px; }
 
-.topline { height: 1.4em; background: var(--red); flex: none; }
+/* ---------- Photo plein cadre ---------- */
+.ph {
+  position: relative; flex: none;
+  background-size: cover; background-repeat: no-repeat;
+  color: var(--paper);
+  border-bottom: 1em solid var(--red);           /* filet rouge façon AF */
+}
+.ph-shade {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,0) 22%),
+    linear-gradient(0deg, rgba(0,0,0,.72) 0%, rgba(0,0,0,.35) 32%, rgba(0,0,0,0) 55%);
+}
+.tags { position: absolute; top: 6em; left: 7em; display: flex; flex-direction: column; align-items: flex-start; gap: 1.2em; z-index: 2; }
+.tag { background: var(--paper); color: var(--red); font-weight: 700; font-size: 3em; padding: .3em .7em; line-height: 1.2; }
+.tag-red { background: var(--red); color: var(--paper); font-weight: 800; text-transform: uppercase; letter-spacing: .05em; font-size: 3.4em; }
 
-.top {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 5em 7em 0; flex: none; position: relative; z-index: 2;
+.script-corner {
+  position: absolute; top: 5em; right: 7em; z-index: 2;
+  font-family: "Caveat", cursive; font-size: 8em; line-height: .95; text-align: right;
+  transform: rotate(-6deg); text-shadow: 0 .05em .3em rgba(0,0,0,.35);
 }
-.pill {
-  background: var(--red); color: var(--paper);
-  font-weight: 800; font-size: 3em; letter-spacing: .06em; text-transform: uppercase;
-  padding: .35em .9em; border-radius: 99em;
-}
-.place { font-weight: 700; font-size: 2.6em; letter-spacing: .14em; text-transform: uppercase; color: var(--grey); }
 
-/* ---------- Hero ---------- */
-.hero { position: relative; padding: 0 7em; flex: none; }
-.sun { position: absolute; right: 4em; top: 3em; width: 46em; height: 46em; container-type: size; }
-.sun-svg { width: 100%; height: 100%; display: block; }
-.sun-text {
-  position: absolute; inset: 0 0 34% 0;
-  display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center; line-height: .9;
+.ph-bottom { position: absolute; left: 7em; right: 7em; bottom: 5em; z-index: 2; }
+.script {
+  font-family: "Caveat", cursive; font-size: 5.6em; line-height: 1.05;
+  transform: rotate(-3deg); transform-origin: left; margin-bottom: .25em;
+  text-shadow: 0 .05em .3em rgba(0,0,0,.35);
 }
-.sun-script { font-family: "Caveat", cursive; font-size: 18cqw; color: var(--paper); transform: rotate(-8deg); }
-.sun-big { font-family: "Bodoni Moda", serif; font-style: italic; font-weight: 800; font-size: 42cqw; line-height: .8; color: var(--paper); }
-.sun-word { font-weight: 900; font-size: 11.5cqw; letter-spacing: .12em; text-transform: uppercase; color: var(--paper); }
-
-.script-note {
-  font-family: "Caveat", cursive; color: var(--red);
-  font-size: 6em; line-height: 1; margin-top: 4em; transform: rotate(-4deg); transform-origin: left;
-  position: relative; z-index: 2;
-}
-.title { position: relative; z-index: 2; display: flex; flex-direction: column; align-items: flex-start; line-height: .95; margin-top: 1em; }
+.title { font-family: "Bodoni Moda", serif; display: flex; flex-direction: column; align-items: flex-start; line-height: .95; text-shadow: 0 .02em .12em rgba(0,0,0,.25); }
 .title span { display: block; }
-.title { font-family: "Bodoni Moda", serif; }
-.t1 { font-weight: 700; font-size: 12em; letter-spacing: -.01em; color: var(--ink); }
-.t2 { font-weight: 800; font-style: italic; font-size: 18em; letter-spacing: -.02em; color: var(--red); line-height: .85; margin: .02em 0 .05em -.04em; }
-.t3 { font-weight: 500; font-size: 12em; color: var(--grey); letter-spacing: .02em; }
+.t1 { font-weight: 700; font-size: 12em; letter-spacing: -.01em; }
+.t2 { font-weight: 800; font-style: italic; font-size: 18em; letter-spacing: -.02em; line-height: .85; margin-left: -.03em; }
+.t3 { font-weight: 500; font-size: 9em; letter-spacing: .04em; }
 
-.subtitle { position: relative; z-index: 2; font-weight: 500; font-size: 3.6em; line-height: 1.3; margin-top: .9em; max-width: 21em; }
-.chips { position: relative; z-index: 2; display: flex; flex-wrap: wrap; gap: 1.4em; margin-top: 3.6em; }
-.chips span {
-  font-weight: 700; font-size: 2.9em; padding: .45em 1em; border-radius: 99em;
-  border: .09em solid var(--ink); white-space: nowrap;
+/* Carte prix "promotion" */
+.promo {
+  position: absolute; top: 6em; right: 7em; z-index: 2;
+  background: var(--paper); color: var(--ink); text-align: center;
+  padding: 2.4em 3.4em 2.6em; border-radius: 1.6em; box-shadow: 0 1em 3em rgba(0,0,0,.25);
+  display: flex; flex-direction: column; align-items: center;
 }
+.promo-old { font-weight: 700; font-size: 2.4em; text-transform: uppercase; letter-spacing: .04em; text-decoration: line-through; text-decoration-color: var(--red); text-decoration-thickness: .12em; color: var(--grey); }
+.promo-new { font-family: "Bodoni Moda", serif; font-weight: 800; font-size: 12em; line-height: 1; color: var(--red); letter-spacing: -.02em; margin: .05em 0 .08em; }
+.promo-save { font-weight: 800; font-size: 2.6em; text-transform: uppercase; letter-spacing: .06em; color: var(--red); }
+.promo-sub { font-weight: 600; font-size: 2.3em; margin-top: .3em; }
 
-.waves { display: block; width: 100%; height: 9em; margin-top: auto; flex: none; position: relative; z-index: 1; }
+/* ---------- Panneau d'informations ---------- */
+.panel { flex: 1; display: flex; flex-direction: column; gap: 3em; padding: 4.4em 7em 5em; background: var(--paper); color: var(--ink); }
+.chips { display: flex; flex-wrap: wrap; gap: 1.4em; }
+.chips span { font-weight: 700; font-size: 2.9em; padding: .4em 1em; border-radius: 99em; border: .09em solid var(--ink); white-space: nowrap; }
 
-/* ---------- Carte (partie claire) ---------- */
-.card {
-  background: var(--sand); color: var(--ink);
-  padding: 2em 7em 5em; flex: none;
-  display: flex; flex-direction: column; gap: 3em;
-}
 .card-h { font-family: "Bodoni Moda", serif; font-style: italic; font-weight: 700; font-size: 5.6em; color: var(--red); line-height: 1; }
 
 .items { list-style: none; display: flex; flex-direction: column; gap: 2.4em; }
 .items li { display: flex; align-items: center; gap: 2.4em; }
-.ico-wrap {
-  flex: none; width: 8em; height: 8em; border-radius: 50%;
-  background: var(--red); color: var(--paper);
-  display: flex; align-items: center; justify-content: center;
-}
+.ico-wrap { flex: none; width: 8em; height: 8em; border-radius: 50%; background: var(--red); color: var(--paper); display: flex; align-items: center; justify-content: center; }
 .ico { width: 4.2em; height: 4.2em; }
 .it-txt b { display: block; font-weight: 800; font-size: 3.4em; line-height: 1.15; }
 .it-txt small { display: block; font-weight: 500; font-size: 2.7em; line-height: 1.3; opacity: .8; margin-top: .15em; }
@@ -96,132 +85,114 @@ body { font-family: "Montserrat", sans-serif; color: var(--ink); -webkit-font-sm
 .items.compact .ico { width: 3.4em; height: 3.4em; }
 .items.compact .it-txt b { font-size: 3em; }
 
-/* Prix */
-.price {
-  display: flex; align-items: center; justify-content: space-between; gap: 2em;
-  background: var(--ink); color: var(--paper); border-radius: 3em; padding: 2.6em 4em;
-  position: relative;
-}
+.price { display: flex; align-items: center; justify-content: space-between; gap: 2em; background: var(--ink); color: var(--paper); border-radius: 1.6em; padding: 2.4em 4em; border-left: 1.2em solid var(--red); }
 .price-label { font-weight: 600; font-size: 3.2em; line-height: 1.2; }
-.price-label b { font-weight: 900; color: var(--paper); text-transform: uppercase; letter-spacing: .03em; }
-.price-num { font-family: "Bodoni Moda", serif; font-weight: 800; font-size: 11em; letter-spacing: -.02em; line-height: 1; white-space: nowrap; }
-.price-num small { display: block; font-size: .26em; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--paper); opacity: .85; font-family: "Montserrat", sans-serif; text-align: right; margin-bottom: .2em; }
-.price.beca { background: var(--red); }
-.price .old { display: inline-block; margin-top: .4em; font-weight: 700; text-decoration: line-through; text-decoration-thickness: .12em; opacity: .85; }
+.price-label b { font-weight: 900; text-transform: uppercase; letter-spacing: .03em; }
+.price-num { font-family: "Bodoni Moda", serif; font-weight: 800; font-size: 10.5em; letter-spacing: -.02em; line-height: 1; white-space: nowrap; }
 
-/* Bourse */
-.beca-box { border: .4em dashed var(--red); border-radius: 3em; padding: 3em 4em; background: var(--paper); }
-.beca-head { display: flex; align-items: center; gap: .8em; font-weight: 700; font-size: 4.2em; }
-.beca-head b { color: var(--red); font-family: "Bodoni Moda", serif; font-weight: 800; font-size: 1.25em; }
-.beca-tag { background: var(--red); color: var(--paper); text-transform: uppercase; font-weight: 900; letter-spacing: .06em; padding: .15em .55em; border-radius: .3em; }
-.beca-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em 2em; margin-top: 2.4em; }
+.beca-box { border: .35em solid var(--red); border-radius: 1.6em; padding: 3em 4em; }
+.beca-head { font-weight: 700; font-size: 4em; }
+.beca-head b { color: var(--red); font-family: "Bodoni Moda", serif; font-weight: 800; font-size: 1.3em; }
+.beca-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 1.2em 2em; margin-top: 2.2em; }
 .beca-list li { font-weight: 700; font-size: 3.2em; padding-left: 1.2em; position: relative; }
 .beca-list li::before { content: "✓"; position: absolute; left: 0; color: var(--red); font-weight: 900; }
 .beca-covers { font-weight: 700; font-size: 3em; margin-top: 1em; }
-.selection { font-weight: 800; font-size: 3.1em; text-align: center; color: var(--ink); }
+.beca-rest { font-weight: 500; font-size: 2.8em; line-height: 1.35; margin-top: 1em; padding-top: .9em; border-top: .06em solid rgba(0,0,0,.15); }
+.beca-rest b { color: var(--red); font-weight: 900; }
+.selection { font-weight: 800; font-size: 3.1em; }
 .selection::before { content: "★ "; color: var(--red); }
 
-.dates { font-weight: 700; font-size: 2.9em; text-align: center; }
-.incl { font-weight: 800; font-size: 3.3em; text-align: center; }
+.dates { font-weight: 700; font-size: 2.9em; }
+.incl { font-weight: 800; font-size: 3.3em; text-align: center; line-height: 1.35; }
 
-.foot {
-  display: flex; justify-content: space-between; align-items: center; gap: 2em;
-  border-top: .3em solid var(--red); padding-top: 2.6em; margin-top: auto;
-}
+.foot { display: flex; justify-content: space-between; align-items: center; gap: 2em; border-top: .3em solid var(--red); padding-top: 2.6em; margin-top: auto; }
 .cta { font-weight: 900; font-size: 3.5em; color: var(--red); max-width: 17em; line-height: 1.15; }
-.brand { font-weight: 800; font-size: 2.6em; text-align: right; line-height: 1.3; }
+.brand { font-weight: 800; font-size: 2.6em; text-align: right; line-height: 1.3; white-space: nowrap; }
 .brand span { display: block; font-weight: 500; opacity: .8; }
 
-/* ---------- Ajustements par format ---------- */
-.story .card { flex: 1; gap: 2.6em; }
-.story .hero { padding-top: 37em; }
-.story .sun { top: 1em; width: 37em; height: 37em; right: 6em; }
-.story .script-note { position: absolute; left: 1.17em; top: 2.3em; margin: 0; } /* em = 60px ici */
-.story .title { margin-top: 0; }
-.story .t2 { font-size: 17em; }
-.story .chips { margin-top: 3em; }
-.story .waves { height: 7em; }
+/* ---------- Formats ---------- */
+.story .ph { height: 112em; }
 
-.post .sun { width: 40em; height: 40em; top: 1em; right: 3em; }
-.post .title { margin-top: 3em; }
-.post .t1, .post .t3 { font-size: 11em; }
-.post .t2 { font-size: 14em; }
-.post .subtitle { font-size: 3.4em; max-width: 25em; }
-.post .chips { margin-top: 2.6em; }
-.post .card { flex: 1; gap: 2.6em; }
-.post .waves { height: 7em; }
+.post .ph { height: 84em; }
+.post .tags { top: 5em; left: 6em; }
+.post .ph-bottom { left: 6em; bottom: 4em; }
+.post .t1 { font-size: 10em; } .post .t2 { font-size: 15em; } .post .t3 { font-size: 7.5em; }
+.post .script { font-size: 4.8em; }
+.post .script-corner, .post .promo { top: 5em; right: 6em; }
+.post .promo { font-size: .85em; }
+.post .panel { gap: 2.6em; padding: 3.6em 6em 4em; }
 
-.square .sun { width: 38em; height: 38em; top: 1em; right: 4em; }
-.square .title { margin-top: 3em; }
-.square .t1, .square .t3 { font-size: 11.4em; }
-.square .t2 { font-size: 14.5em; }
-.square .chips { margin-top: 3em; }
-.square .card { flex: 1; gap: 2.4em; padding-bottom: 4.4em; }
-.square .waves { height: 7em; }
-.square .beca-box { padding: 2.2em 3.6em; }
-.square .price { padding: 2em 4em; }
+.square .ph { height: 76em; }
+.square .tags { top: 5em; left: 6em; gap: 1em; }
+.square .ph-bottom { left: 6em; bottom: 4em; }
+.square .t1 { font-size: 10em; } .square .t2 { font-size: 15em; } .square .t3 { font-size: 7.5em; }
+.square .script-corner, .square .promo { top: 5em; right: 6em; }
+.square .promo { font-size: .85em; }
+.square .panel { gap: 2.4em; padding: 3.4em 6em 4em; }
 
-.a4 .sun { width: 32em; height: 32em; top: 2em; right: 6em; }
-.a4 .title { margin-top: 3.5em; }
-.a4 .t1, .a4 .t3 { font-size: 9em; }
-.a4 .t2 { font-size: 13em; }
-.a4 .chips { margin-top: 2.8em; }
-.a4 .waves { height: 6em; }
-.a4 .card { flex: 1; gap: 3em; }
-.a4 .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 4em; align-items: start; }
-.a4 .cols > div { display: flex; flex-direction: column; gap: 3em; }
-.a4 .items { gap: 2.2em; }
-.a4 .ico-wrap { width: 7em; height: 7em; }
-.a4 .ico { width: 3.6em; height: 3.6em; }
-.a4 .it-txt b { font-size: 3.1em; }
-.a4 .it-txt small { font-size: 2.6em; }
-.a4 .price { padding: 2.4em 3.4em; }
-.a4 .price-num { font-size: 8.4em; }
-.a4 .price-label { font-size: 2.9em; }
-.a4 .beca-head { font-size: 3.6em; }
-.a4 .beca-list { grid-template-columns: 1fr; gap: 1em; margin-top: 1.8em; }
-.a4 .beca-list li { font-size: 2.9em; }
-.a4 .beca-box { padding: 2.6em 3.4em; }
-.a4 .selection { font-size: 2.8em; }
-.tbl { width: 100%; border-collapse: collapse; font-size: 3.1em; }
-.tbl caption { font-weight: 800; text-align: left; font-size: .85em; padding-bottom: .6em; color: var(--red); text-transform: uppercase; letter-spacing: .04em; }
-.tbl td { padding: .55em 0; border-bottom: .08em solid rgba(0,0,0,.15); font-weight: 600; }
-.tbl td:last-child { text-align: right; font-weight: 900; }
-.a4 .dates { text-align: left; font-size: 2.7em; }
-
-.a4 .items.compact { gap: 1.8em 3em; }
-.a4 .price { flex-direction: column; align-items: flex-start; gap: .8em; }
-.a4 .price-num small { text-align: left; }
-.a4 .subtitle { max-width: 30em; font-size: 3.2em; }
-.a4 .foot { padding-top: 2em; }
-.a4 .is-beca .card, .a4.is-beca .card { gap: 2.4em; }
-.story .brand, .post .brand { white-space: nowrap; }
-
-/* Ajustements finaux */
-.story .hero { padding-top: 35em; }
-.story .t2 { font-size: 16em; }
-.story .card { gap: 2.4em; }
-.square .card { gap: 2em; padding-bottom: 4em; }
-.a4 .brand { white-space: nowrap; }
-.a4 .title { margin-top: 2.5em; }
-.a4 .t2 { font-size: 12em; }
-.a4 .subtitle { margin-top: .6em; }
-.a4 .chips { margin-top: 2.2em; }
-.a4 .card { gap: 2.4em; padding-bottom: 4em; }
-.a4 .beca-head { font-size: 3em; }
-.a4 .beca-box { padding: 2.2em 3em; }
-.a4 .beca-list { margin-top: 1.4em; gap: .6em; }
-.tbl caption { font-size: .78em; }
-.a4 .tbl td { padding: .45em 0; }
-.a4 .beca-head { flex-wrap: wrap; row-gap: .3em; }
-.a4 .selection { text-align: left; font-size: 2.7em; }
-.a4 .card-h { font-size: 4.8em; }
+.a4 .ph { height: 64em; }
+.a4 .tags { top: 5em; left: 7em; gap: 1em; }
+.a4 .tag { font-size: 2.6em; }
+.a4 .ph-bottom { bottom: 3.6em; }
+.a4 .t1 { font-size: 8.5em; } .a4 .t2 { font-size: 12.5em; } .a4 .t3 { font-size: 6.5em; }
+.a4 .script { font-size: 4.4em; }
+.a4 .script-corner, .a4 .promo { top: 5em; right: 7em; }
+.a4 .promo { font-size: .78em; }
+.a4 .panel { gap: 2.4em; padding: 3.4em 7em 3.6em; }
+.a4 .card-h { font-size: 4.6em; }
 .a4 .items.compact { gap: 1.4em 3em; }
 .a4 .items.compact .ico-wrap { width: 5.8em; height: 5.8em; }
 .a4 .items.compact .ico { width: 3em; height: 3em; }
 .a4 .items.compact .it-txt b { font-size: 2.8em; }
-.a4 .subtitle { max-width: none; font-size: 2.9em; }
 .a4 .chips span { font-size: 2.7em; }
-.a4 .card { padding-top: 1em; gap: 2.2em; }
-.a4 .beca-head { font-size: 2.7em; flex-wrap: nowrap; white-space: nowrap; gap: .5em; }
-.a4 .card { padding-bottom: 3.4em; }
+.a4 .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 4em; align-items: start; }
+.a4 .cols > div { display: flex; flex-direction: column; gap: 2.4em; }
+.a4 .price { flex-direction: column; align-items: flex-start; gap: .6em; padding: 2.2em 3em; }
+.a4 .price-num { font-size: 8.4em; }
+.a4 .price-label { font-size: 2.8em; }
+.a4 .beca-box { padding: 2.2em 3em; }
+.a4 .beca-head { font-size: 3em; }
+.a4 .beca-list { grid-template-columns: 1fr; gap: .6em; margin-top: 1.4em; }
+.a4 .beca-list li { font-size: 2.8em; }
+.a4 .beca-rest { font-size: 2.5em; }
+.a4 .selection, .a4 .dates { font-size: 2.7em; }
+.a4 .foot { padding-top: 2em; }
+.tbl { width: 100%; border-collapse: collapse; font-size: 3em; }
+.tbl caption { font-weight: 800; text-align: left; font-size: .78em; padding-bottom: .6em; color: var(--red); text-transform: uppercase; letter-spacing: .04em; }
+.tbl td { padding: .45em 0; border-bottom: .08em solid rgba(0,0,0,.15); font-weight: 600; }
+.tbl td:last-child { text-align: right; font-weight: 900; }
+
+/* ---------- PDF page 2 : galerie ---------- */
+.topline { height: 1.4em; background: var(--red); flex: none; }
+.top { display: flex; justify-content: space-between; align-items: center; padding: 5em 7em 0; flex: none; }
+.pill { background: var(--red); color: var(--paper); font-weight: 800; font-size: 3em; letter-spacing: .06em; text-transform: uppercase; padding: .35em .9em; }
+.place { font-weight: 700; font-size: 2.6em; letter-spacing: .14em; text-transform: uppercase; color: var(--grey); }
+.gallery .gal-head { padding: 4em 7em 0; flex: none; }
+.gal-title { font-family: "Bodoni Moda", serif; font-weight: 700; font-size: 6em; line-height: 1.05; }
+.gal-title em { display: block; color: var(--red); font-style: italic; font-weight: 800; }
+.gal-grid { flex: 1; display: grid; grid-template-columns: 1fr 1fr; grid-auto-rows: 1fr; gap: 2.2em; padding: 3.5em 7em; }
+.gal-grid figure { position: relative; overflow: hidden; background-size: cover; background-repeat: no-repeat; border-bottom: .6em solid var(--red); }
+.gal-grid figcaption {
+  position: absolute; left: 1.4em; bottom: 1.4em; right: 1.4em; width: fit-content;
+  background: var(--paper); color: var(--red); font-weight: 700; font-size: 2.5em; padding: .35em .7em;
+}
+.gal-card { flex: none; padding-top: 1em; gap: 2.4em; }
+.gal-info { font-weight: 700; font-size: 2.8em; text-align: center; }
+
+/* Carte promo : sous les étiquettes (story), en bas à droite ailleurs — le visage reste dégagé */
+.story .promo { top: 25em; left: 7em; right: auto; align-items: flex-start; text-align: left; }
+.post .promo, .square .promo, .a4 .promo { top: auto; bottom: 4em; }
+.a4 .promo { bottom: 3.6em; }
+.is-beca .script { max-width: 62%; }
+.story.is-beca .script { max-width: none; }
+.story .ph { height: 108em; }
+.post .ph { height: 77em; }
+.square .tags .tag:not(.tag-red):last-of-type { display: none; }
+.a4 .beca-covers { font-size: 2.6em; }
+.a4.is-beca .cols { grid-template-columns: 1.3fr 1fr; }
+.is-general .ph-shade {
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,0) 22%),
+    linear-gradient(0deg, rgba(0,0,0,.85) 0%, rgba(0,0,0,.6) 38%, rgba(0,0,0,0) 68%);
+}
+.post .ph { height: 76.5em; }
