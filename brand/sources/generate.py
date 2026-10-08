@@ -1,7 +1,7 @@
 """Génère les SVG de l'identité Chez Cellier (texte vectorisé, aucune police requise au rendu).
 
-Logo : celui de l'en-tête de chezcellier.fr, reproduit à l'identique (cadre filet or 229×108,
-« Chez Cellier » Libre Caslon Text 26 px, « VILLA SENIOR PARTAGEE » Montserrat 12 px).
+Logo : celui de l'en-tête de chezcellier.fr, texte seul (« Chez Cellier » Libre Caslon Text 26 px,
+« VILLA SENIOR PARTAGEE » Montserrat 12 px, même largeur), sans le cadre.
 
 Usage : python3 brand/sources/generate.py   (puis node brand/sources/render.js)
 Dépendances : fonttools, uharfbuzz
@@ -136,16 +136,18 @@ def button(cx, y, text, size, color, w=None):
 
 # ---------------------------------------------------------------- logo du site
 
-LOGO_W, LOGO_H = 229, 108
+# Bloc texte du logo : les deux lignes font la même largeur (154 px à la taille du site),
+# interligne du site (lignes de base à 30 px d'écart), sans le cadre de l'en-tête.
+_ASC = CASLON.tt["glyf"]["l"].yMax / CASLON.upm * 26   # hauteur des ascendantes de « Chez Cellier »
+LOGO_W = CASLON.width("Chez Cellier", 26)
+LOGO_H = _ASC + 30
 
 
 def site_logo(x, y, scale, name=BLANC, gold=OR):
-    """Logo d'en-tête de chezcellier.fr, coin supérieur gauche en (x, y), taille = 229×108 × scale."""
-    sw = max(1.0, scale)
-    return (f'<rect x="{x + sw / 2:.2f}" y="{y + sw / 2:.2f}" width="{LOGO_W * scale - sw:.2f}" '
-            f'height="{LOGO_H * scale - sw:.2f}" fill="none" stroke="{gold}" stroke-width="{sw:.2f}"/>'
-            + CASLON.path("Chez Cellier", x + 22 * scale, y + 61 * scale, 26 * scale, name, anchor="start")
-            + MONT.path("VILLA SENIOR PARTAGEE", x + 22 * scale, y + 91 * scale, 12 * scale, gold, anchor="start"))
+    """Logo de chezcellier.fr (texte seul), coin supérieur gauche du bloc texte en (x, y)."""
+    base = y + _ASC * scale
+    return (CASLON.path("Chez Cellier", x, base, 26 * scale, name, anchor="start")
+            + MONT.path("VILLA SENIOR PARTAGEE", x, base + 30 * scale, 12 * scale, gold, anchor="start"))
 
 
 def site_logo_centered(cx, y, width, **kw):
@@ -165,7 +167,7 @@ def logo(name_color, bg=None):
 
 
 def profil(size):
-    w = size * 0.80
+    w = size * 0.74
     return svg(size, size, site_logo_centered(size / 2, (size - w * LOGO_H / LOGO_W) / 2, w), NOIR)
 
 
@@ -174,7 +176,7 @@ def facebook_cover():
     body = frame(W, H, 26, OR, 1.5) + frame(W, H, 36, OR, 0.7)
     body += deco_arches(150, H / 2, 260, n=1) + deco_arches(W - 150, H / 2, 260, n=1)
     body += CASLON_I.path("Bienvenue", W / 2, 150, 44, OR_CLAIR)
-    body += site_logo_centered(W / 2, 190, 450)
+    body += site_logo_centered(W / 2, 225, 420)
     body += CASLON_I.path(ART_DE_VIVRE, W / 2, 465, 34, OR_CLAIR)
     body += tagline(W / 2, 515, 16, OR, text=VILLAS, tracking=0.25)
     return svg(W, H, body, NOIR)
@@ -183,7 +185,7 @@ def facebook_cover():
 def instagram_post():
     W = 1080
     body = frame(W, W, 40, OR, 1.2)
-    body += site_logo_centered(W / 2, 140, 380)
+    body += site_logo_centered(W / 2, 172, 340)
     y1, y2, s = 560, 660, 72
     # « Faire du bien vieillir » / « un art de vivre ensemble »
     for (a, b), y in ((("Faire du bien ", "vieillir"), y1), (("un art de vivre ", "ensemble"), y2)):
@@ -198,7 +200,7 @@ def instagram_post():
 def instagram_portrait():
     W, H = 1080, 1350
     body = frame(W, H, 40, OR, 1.2)
-    body += site_logo_centered(W / 2, 130, 400, name=ANTHRACITE)
+    body += site_logo_centered(W / 2, 164, 360, name=ANTHRACITE)
     body += MONT.path("NOTRE ACCOMPAGNEMENT", W / 2, 440, 20, OR, tracking=0.35)
     body += CASLON.path("Un accompagnement", W / 2, 545, 74, ANTHRACITE)
     body += CASLON.path("5 étoiles, 7 jours sur 7", W / 2, 640, 74, ANTHRACITE)
@@ -223,11 +225,11 @@ def instagram_story():
     # Zones sûres : 250 px en haut et en bas
     body = f'<path d="{arch_d(W / 2, 330, 760, 1060)}" fill="none" stroke="{OR}" stroke-width="2"/>'
     body += f'<path d="{arch_d(W / 2, 352, 716, 1016)}" fill="none" stroke="{OR}" stroke-width="1"/>'
-    body += CASLON.path("Bienvenue", W / 2, 680, 100, OR_CLAIR)
-    body += site_logo_centered(W / 2, 750, 520)
-    body += CASLON_I.path("Une expérience de vie où se cultivent", W / 2, 1150, 34, CREME)
-    body += CASLON_I.path("les liens humains, l’intimité", W / 2, 1198, 34, CREME)
-    body += CASLON_I.path("et les plaisirs simples", W / 2, 1246, 34, CREME)
+    body += CASLON.path("Bienvenue", W / 2, 700, 100, OR_CLAIR)
+    body += site_logo_centered(W / 2, 792, 480)
+    body += CASLON_I.path("Une expérience de vie où se cultivent", W / 2, 1100, 34, CREME)
+    body += CASLON_I.path("les liens humains, l’intimité", W / 2, 1148, 34, CREME)
+    body += CASLON_I.path("et les plaisirs simples", W / 2, 1196, 34, CREME)
     body += button(W / 2, 1460, "RÉSERVER UNE VISITE", 24, OR, w=560)
     body += MONT.path("SAINT-LAURENT-D’AIGOUZE  ·  VAUVERT", W / 2, 1600, 19, OR_CLAIR, tracking=0.2)
     body += MONT_L.path("www.chezcellier.fr", W / 2, 1648, 24, CREME, tracking=0.08)
@@ -239,9 +241,10 @@ def linkedin_perso():
     # Zone de la photo de profil (bas-gauche, ~0-460 × 170-396) laissée libre
     body = f'<line x1="0" y1="34" x2="{W}" y2="34" stroke="{OR}" stroke-width="1"/>'
     body += f'<line x1="0" y1="{H - 34}" x2="{W}" y2="{H - 34}" stroke="{OR}" stroke-width="1"/>'
-    body += site_logo(480, (H - LOGO_H * 1.5) / 2, 1.5)
-    body += CASLON_I.path(ART_DE_VIVRE, 890, 192, 32, OR_CLAIR, anchor="start")
-    body += MONT.path(VILLAS, 892, 240, 14, OR, tracking=0.2, anchor="start")
+    body += site_logo(470, (H - LOGO_H * 2.2) / 2, 2.2)
+    body += f'<line x1="868" y1="128" x2="868" y2="268" stroke="{OR}" stroke-width="1.2"/>'
+    body += CASLON_I.path(ART_DE_VIVRE, 915, 192, 30, OR_CLAIR, anchor="start")
+    body += MONT.path(VILLAS, 917, 238, 13, OR, tracking=0.2, anchor="start")
     body += deco_arches(W - 110, H / 2, 230, n=1, opacity=0.3)
     return svg(W, H, body, NOIR)
 
@@ -250,9 +253,10 @@ def linkedin_entreprise():
     W, H = 1128, 191
     body = f'<line x1="0" y1="16" x2="{W}" y2="16" stroke="{OR}" stroke-width="1"/>'
     body += f'<line x1="0" y1="{H - 16}" x2="{W}" y2="{H - 16}" stroke="{OR}" stroke-width="1"/>'
-    body += site_logo(300, (H - LOGO_H * 1.15) / 2, 1.15)
-    body += CASLON_I.path(ART_DE_VIVRE, 600, 95, 24, OR_CLAIR, anchor="start")
-    body += MONT.path(VILLAS, 601, 128, 11, OR, tracking=0.2, anchor="start")
+    body += site_logo(250, (H - LOGO_H * 1.75) / 2, 1.75)
+    body += f'<line x1="562" y1="55" x2="562" y2="136" stroke="{OR}" stroke-width="1"/>'
+    body += CASLON_I.path(ART_DE_VIVRE, 594, 95, 24, OR_CLAIR, anchor="start")
+    body += MONT.path(VILLAS, 595, 126, 11, OR, tracking=0.2, anchor="start")
     return svg(W, H, body, NOIR)
 
 

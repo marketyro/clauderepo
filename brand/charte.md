@@ -47,26 +47,27 @@ Les fichiers de police utilisés sont dans `sources/fonts/`, avec leur licence.
 
 ## Logo
 
-Le logo utilisé est **celui de l'en-tête du site (en haut à gauche)**, reproduit à l'identique :
+Le logo utilisé est **celui du site (en haut à gauche), en texte seul**. Le cadre qui l'entoure dans
+l'en-tête du site ne fait pas partie du logo.
 
-- un cadre à filet or `#C49B56` de 229×108 ;
-- « Chez Cellier » en Libre Caslon Text 26 px, blanc, ligne de base à 61 px ;
-- « VILLA SENIOR PARTAGEE » en Montserrat 12 px, or, ligne de base à 91 px ;
-- un texte aligné à gauche, avec une marge de 22 px.
+- « Chez Cellier » en Libre Caslon Text, blanc sur fond sombre (noir `#161616` sur fond clair) ;
+- « VILLA SENIOR PARTAGEE » en Montserrat, or `#C49B56`, sans accent comme sur le site ;
+- les deux lignes alignées à gauche, de même largeur, avec les proportions du site
+  (26 px et 12 px, lignes de base espacées de 30 px).
 
-Les deux lignes font exactement la même largeur (154 px), comme sur le site. Toutes les déclinaisons
-agrandissent ces proportions à l'identique (fonction `site_logo` dans `sources/generate.py`).
+Toutes les déclinaisons agrandissent ces proportions à l'identique (fonction `site_logo` dans
+`sources/generate.py`).
 
 - `logo.svg` / `logo.png` : texte noir et or, fond transparent, pour fond clair.
 - `logo-negatif.*` : texte blanc et or, fond transparent, pour fond sombre.
-- `logo-fond-noir.*` : le logo tel qu'il apparaît sur le site, sur fond `#161616`.
+- `logo-fond-noir.*` : texte blanc et or sur fond `#161616`, comme sur le site.
 
 Dans les SVG, le texte est vectorisé (converti en tracés) : ils s'affichent à l'identique sans qu'aucune
 police soit installée.
 
 ## Éléments graphiques
 
-- **Cadre filet or** : repris du logo. Il est simple ou double et encadre la couverture Facebook et les posts.
+- **Cadre filet or** : repris de l'en-tête du site. Il est simple ou double et encadre la couverture Facebook et les posts.
 - **Arche** : ornement repris du site, en filet or fin, utilisé en décor (couverture Facebook, story,
   bannière LinkedIn).
 - **Mots surlignés** : aplat or clair derrière un mot, comme sur « vieillir » et « ensemble » de la page d'accueil.
