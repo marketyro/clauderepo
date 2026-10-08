@@ -1,27 +1,37 @@
-"""Génère les SVG de l'identité Chez Cellier (texte vectorisé, aucune police requise au rendu).
+"""Génère les SVG de l'identité Chez Cellier (texte vectorisé, photos intégrées).
+
+Logo : celui de l'en-tête de chezcellier.fr, reproduit à l'identique (cadre filet or 229×108,
+« Chez Cellier » Libre Caslon Text 26 px, « VILLA SENIOR PARTAGEE » Montserrat 12 px).
+Mise en page des visuels inspirée de la banderole Vauvert (bandeau noir, photo, pastille or, bloc beige).
 
 Usage : python3 brand/sources/generate.py   (puis node brand/sources/render.js)
-Dépendances : fonttools, uharfbuzz
+Dépendances : fonttools, uharfbuzz, pillow
 """
+import base64
+import io
 from pathlib import Path
 
 import uharfbuzz as hb
 from fontTools.pens.svgPathPen import SVGPathPen
 from fontTools.pens.transformPen import TransformPen
 from fontTools.ttLib import TTFont
+from PIL import Image
 
 HERE = Path(__file__).resolve().parent
 BRAND = HERE.parent
 FONTS = HERE / "fonts"
+PHOTOS = HERE / "photos"
 OUT = HERE / "svg"
 
-# Palette relevée sur chezcellier.fr
-NOIR = "#161616"       # fond principal (hero, en-tête)
-ANTHRACITE = "#242323"  # sections sombres, texte
-OR = "#C49B56"          # accent principal (filets, boutons, sous-titres)
-OR_CLAIR = "#D3B376"    # accent secondaire (titres « Bienvenue », surlignages)
-CREME = "#FFF6EB"       # titre « Chez Cellier », fonds clairs
-IVOIRE = "#FFFDFC"
+# Palette relevée sur chezcellier.fr et sur la banderole
+NOIR = "#161616"        # fond du site et de la banderole
+ANTHRACITE = "#242323"  # texte sur fond clair
+OR = "#C49B56"          # sous-titre du logo, filets, cadre
+OR_CLAIR = "#D3B376"    # titres en or
+OR_PROFOND = "#9C7F48"  # pastilles de la banderole
+BEIGE = "#F3DFCC"       # blocs et bandeaux clairs de la banderole
+CREME = "#FFF6EB"       # grands titres
+BLANC = "#FFFFFF"       # « Chez Cellier » dans le logo du site
 
 
 class Font:
@@ -46,7 +56,7 @@ class Font:
         adv = sum(p.x_advance for p in pos) / self.upm * size
         return adv + tracking * size * (len(pos) - 1)
 
-    def path(self, text, x, y, size, fill, tracking=0.0, anchor="middle", extra=""):
+    def path(self, text, x, y, size, fill, tracking=0.0, anchor="middle"):
         """Chemin SVG du texte ; y = ligne de base, anchor = start|middle|end."""
         w = self.width(text, size, tracking)
         x0 = {"start": x, "middle": x - w / 2, "end": x - w}[anchor]
@@ -59,245 +69,212 @@ class Font:
             tpen = TransformPen(pen, (s, 0, 0, -s, cx + p.x_offset * s, y - p.y_offset * s))
             self.glyphs[name].draw(tpen)
             cx += p.x_advance * s + tracking * size
-        return f'<path d="{pen.getCommands()}" fill="{fill}"{extra}/>'
+        return f'<path d="{pen.getCommands()}" fill="{fill}"/>'
 
 
 CASLON = Font("LibreCaslonText-Regular.ttf")
 CASLON_I = Font("LibreCaslonText-Italic.ttf")
-CASLON_B = Font("LibreCaslonText-Bold.ttf")
 MONT = Font("Montserrat-Regular.ttf")
 MONT_M = Font("Montserrat-Medium.ttf")
-MONT_L = Font("Montserrat-Light.ttf")
 
 
-def svg(w, h, body, bg=None):
+def svg(w, h, body, bg=None, defs=""):
     rect = f'<rect width="{w}" height="{h}" fill="{bg}"/>' if bg else ""
     return (f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}" '
-            f'viewBox="0 0 {w} {h}">{rect}{body}</svg>\n')
+            f'viewBox="0 0 {w} {h}"><defs>{defs}</defs>{rect}{body}</svg>\n')
 
 
-def arch_d(cx, top, w, h):
-    """Arche (porte de demeure) : demi-cercle en haut, pieds droits, base plate."""
-    r = w / 2
-    l, rr, b = cx - r, cx + r, top + h
-    return (f"M{l:.2f},{b:.2f} L{l:.2f},{top + r:.2f} "
-            f"A{r:.2f},{r:.2f} 0 0 1 {rr:.2f},{top + r:.2f} L{rr:.2f},{b:.2f} Z")
+# ---------------------------------------------------------------- logo du site
+
+LOGO_W, LOGO_H = 229, 108
 
 
-def monogram(cx, cy, height, frame=OR, letters=CREME, stroke=None):
-    """Monogramme « CC » dans une double arche, centré sur (cx, cy)."""
-    w = height * 0.74
-    top = cy - height / 2
-    sw = stroke or max(1.2, height * 0.012)
-    inset = height * 0.045
-    out = [
-        f'<path d="{arch_d(cx, top, w, height)}" fill="none" stroke="{frame}" stroke-width="{sw:.2f}"/>',
-        f'<path d="{arch_d(cx, top + inset, w - 2 * inset, height - 2 * inset)}" fill="none" '
-        f'stroke="{frame}" stroke-width="{sw * 0.5:.2f}"/>',
-    ]
-    size = height * 0.50
-    base = cy + w / 2 * 0.18 + CASLON.cap * size / 2
-    # Deux C entrelacés : le second en or, décalé, chevauchant le premier
-    off = size * 0.20
-    out.append(CASLON.path("C", cx - off, base, size, letters))
-    out.append(CASLON.path("C", cx + off, base, size, frame))
-    # Petit filet sous les lettres
-    ly = base + size * 0.16
-    out.append(f'<line x1="{cx - size * 0.22:.2f}" y1="{ly:.2f}" x2="{cx + size * 0.22:.2f}" y2="{ly:.2f}" '
-               f'stroke="{frame}" stroke-width="{sw * 0.5:.2f}"/>')
-    return "".join(out)
-
-
-def tagline(cx, y, size, color, text="VILLA SENIOR PARTAGÉE", rule=True, tracking=0.38, font=MONT):
-    """Sous-titre Montserrat très espacé, encadré de deux filets or."""
-    out = [font.path(text, cx, y, size, color, tracking=tracking)]
-    if rule:
-        w = font.width(text, size, tracking)
-        gap, ln = size * 1.4, size * 3.2
-        ly = y - font.cap * size / 2
-        for sgn in (-1, 1):
-            x1 = cx + sgn * (w / 2 + gap)
-            out.append(f'<line x1="{x1:.2f}" y1="{ly:.2f}" x2="{x1 + sgn * ln:.2f}" y2="{ly:.2f}" '
-                       f'stroke="{color}" stroke-width="{max(1, size * 0.08):.2f}"/>')
-    return "".join(out)
-
-
-def wordmark(cx, y, size, text_color=CREME, accent=OR, rule=True):
-    """« Chez Cellier » (Libre Caslon) + « VILLA SENIOR PARTAGÉE » (Montserrat). y = ligne de base du nom."""
-    return (CASLON.path("Chez Cellier", cx, y, size, text_color)
-            + tagline(cx, y + size * 0.62, size * 0.165, accent, rule=rule))
-
-
-def frame(w, h, inset, color=OR, sw=1.5):
-    return (f'<rect x="{inset}" y="{inset}" width="{w - 2 * inset}" height="{h - 2 * inset}" '
-            f'fill="none" stroke="{color}" stroke-width="{sw}"/>')
-
-
-def deco_arches(x, cy, height, color=OR, opacity=0.35, n=3, gap=None):
-    """Rangée d'arches fines (décor latéral)."""
-    w = height * 0.74
-    gap = gap or w * 0.35
+def site_logo(x, y, scale, name=BLANC, gold=OR, frame=True):
+    """Logo d'en-tête de chezcellier.fr, coin supérieur gauche en (x, y), taille = 229×108 × scale."""
     out = []
-    for i in range(n):
-        cx = x + i * (w + gap)
-        out.append(f'<path d="{arch_d(cx, cy - height / 2, w, height)}" fill="none" stroke="{color}" '
-                   f'stroke-width="1.5" opacity="{opacity}"/>')
+    if frame:
+        sw = max(1.0, scale)
+        out.append(f'<rect x="{x + sw / 2:.2f}" y="{y + sw / 2:.2f}" width="{LOGO_W * scale - sw:.2f}" '
+                   f'height="{LOGO_H * scale - sw:.2f}" fill="none" stroke="{gold}" stroke-width="{sw:.2f}"/>')
+    out.append(CASLON.path("Chez Cellier", x + 22 * scale, y + 61 * scale, 26 * scale, name, anchor="start"))
+    out.append(MONT.path("VILLA SENIOR PARTAGEE", x + 22 * scale, y + 91 * scale, 12 * scale, gold, anchor="start"))
     return "".join(out)
 
 
-def highlight(font, text, x, y, size, anchor, fg, bg, pad=0.12):
-    """Mot surligné d'un aplat or, comme sur la page d'accueil."""
-    w = font.width(text, size)
-    x0 = {"start": x, "middle": x - w / 2, "end": x - w}[anchor]
-    p = size * pad
-    return (f'<rect x="{x0 - p:.2f}" y="{y - size * 0.86:.2f}" width="{w + 2 * p:.2f}" height="{size * 1.12:.2f}" fill="{bg}"/>'
-            + font.path(text, x0, y, size, fg, anchor="start"))
+def site_logo_centered(cx, y, width, **kw):
+    scale = width / LOGO_W
+    return site_logo(cx - width / 2, y, scale, **kw)
 
 
-def button(cx, y, text, size, color, w=None):
-    tw = MONT.width(text, size, 0.18)
-    w = w or tw + size * 4
-    h = size * 3.1
-    return (f'<rect x="{cx - w / 2:.2f}" y="{y:.2f}" width="{w:.2f}" height="{h:.2f}" fill="none" stroke="{color}" stroke-width="2"/>'
-            + MONT.path(text, cx, y + h / 2 + MONT.cap * size / 2, size, color, tracking=0.18))
+# ---------------------------------------------------------------- photos
+
+def photo(name, x, y, w, h, focus=(0.5, 0.5), zoom=1.0):
+    """Photo recadrée (cover) autour du point focal, intégrée en JPEG base64."""
+    im = Image.open(PHOTOS / name).convert("RGB")
+    W, H = im.size
+    s = max(w / W, h / H) * zoom
+    cw, ch = w / s, h / s
+    left = min(max(focus[0] * W - cw / 2, 0), W - cw)
+    top = min(max(focus[1] * H - ch / 2, 0), H - ch)
+    im = im.crop((round(left), round(top), round(left + cw), round(top + ch)))
+    im = im.resize((round(w), round(h)), Image.LANCZOS)
+    buf = io.BytesIO()
+    im.save(buf, "JPEG", quality=88)
+    data = base64.b64encode(buf.getvalue()).decode()
+    return f'<image x="{x}" y="{y}" width="{w}" height="{h}" href="data:image/jpeg;base64,{data}"/>'
 
 
-# ---------------------------------------------------------------- éléments
-
-def logo(text_color, accent=OR):
-    """Logo empilé 1024×1024, fond transparent."""
-    W = 1024
-    body = monogram(W / 2, 370, 400, frame=accent, letters=text_color)
-    body += wordmark(W / 2, 745, 128, text_color, accent)
-    return svg(W, W, body)
-
-
-def logo_horizontal(text_color, accent=OR, bg=None):
-    """Logo d'en-tête du site : nom + sous-titre dans un cadre filet or."""
-    W, H = 1200, 420
-    body = frame(W, H, 6, accent, 3)
-    body += CASLON.path("Chez Cellier", W / 2, 230, 150, text_color)
-    body += tagline(W / 2, 320, 30, accent, rule=False, tracking=0.32)
-    return svg(W, H, body, bg)
+def fade(gid, x, y, w, h, direction="right", color=NOIR, strength=1.0):
+    """Dégradé du noir vers le transparent, pour fondre la photo dans le fond."""
+    x1, y1, x2, y2 = {"right": (0, 0, 1, 0), "left": (1, 0, 0, 0), "down": (0, 0, 0, 1), "up": (0, 1, 0, 0)}[direction]
+    d = (f'<linearGradient id="{gid}" x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}">'
+         f'<stop offset="0" stop-color="{color}" stop-opacity="{strength}"/>'
+         f'<stop offset="1" stop-color="{color}" stop-opacity="0"/></linearGradient>')
+    return d, f'<rect x="{x}" y="{y}" width="{w}" height="{h}" fill="url(#{gid})"/>'
 
 
-def monogramme(frame_color=OR, letters=CREME):
-    return svg(600, 600, monogram(300, 300, 520, frame=frame_color, letters=letters))
+# ---------------------------------------------------------------- éléments de la banderole
+
+def pill(cx, cy, text, size, font=CASLON, fg=NOIR, bg=BEIGE, tracking=0.02):
+    w = font.width(text, size, tracking) + size * 1.6
+    h = size * 2.0
+    return (f'<rect x="{cx - w / 2:.2f}" y="{cy - h / 2:.2f}" width="{w:.2f}" height="{h:.2f}" rx="{h * 0.3:.2f}" fill="{bg}"/>'
+            + font.path(text, cx, cy + font.cap * size / 2, size, fg, tracking=tracking))
+
+
+def badge(cx, cy, r, top, big, bottom, big_size=0.27):
+    """Pastille or (comme « BIENTÔT ICI » sur la banderole)."""
+    out = [f'<circle cx="{cx}" cy="{cy}" r="{r}" fill="{OR_PROFOND}" stroke="{BEIGE}" stroke-width="{r * 0.015:.2f}"/>']
+    out.append(CASLON.path(top, cx, cy - r * 0.38, r * 0.17, BEIGE, tracking=0.04))
+    out.append(CASLON.path(big, cx, cy + r * 0.02, r * big_size, BLANC, tracking=0.02))
+    out.append(f'<line x1="{cx - r * 0.28:.2f}" y1="{cy + r * 0.18:.2f}" x2="{cx + r * 0.28:.2f}" '
+               f'y2="{cy + r * 0.18:.2f}" stroke="{BEIGE}" stroke-width="{r * 0.012:.2f}"/>')
+    for i, line in enumerate(bottom):
+        out.append(MONT.path(line, cx, cy + r * (0.42 + i * 0.2), r * 0.12, BLANC, tracking=0.04))
+    return "".join(out)
+
+
+def stacked(lines, x, y, size, color, font=MONT, lh=1.3, tracking=0.06, anchor="start"):
+    return "".join(font.path(t, x, y + i * size * lh, size, color, tracking=tracking, anchor=anchor)
+                   for i, t in enumerate(lines))
+
+
+PILIERS = [("UN CADRE", "DE VIE", "D’EXCEPTION"),
+           ("UNE VIE", "CONVIVIALE", "ET SÉCURISÉE"),
+           ("UN", "ACCOMPAGNEMENT", "7J/7 INCLUS"),
+           ("DES ESPACES", "PARTAGÉS", "ET PRIVATIFS")]
+
+
+def piliers(cx, y, width, size, color=OR):
+    out = []
+    col = width / 4
+    for i, lines in enumerate(PILIERS):
+        x = cx - width / 2 + col * (i + 0.5)
+        out.append(stacked(lines, x, y, size, color, anchor="middle", tracking=0.04))
+        if i:
+            sx = x - col / 2
+            out.append(f'<line x1="{sx:.2f}" y1="{y - size * 1.2:.2f}" x2="{sx:.2f}" y2="{y + size * 2.9:.2f}" '
+                       f'stroke="{OR}" stroke-width="1.2" opacity="0.7"/>')
+    return "".join(out)
+
+
+ART_DE_VIVRE = "L’Art de Vivre à la Française"
+COUPLE = "photo-couple-jardin.jpg"
+REPAS = "photo-repas-jardin.jpg"
+
+
+# ---------------------------------------------------------------- formats
+
+def logo(name_color, bg=None):
+    """Logo du site sur 1024×1024 (transparent sauf bg)."""
+    W, w = 1024, 900
+    return svg(W, W, site_logo_centered(W / 2, (W - w * LOGO_H / LOGO_W) / 2, w, name=name_color), bg)
 
 
 def profil(size):
-    body = monogram(size / 2, size / 2 + size * 0.01, size * 0.6, frame=OR, letters=CREME, stroke=size * 0.009)
-    return svg(size, size, body, NOIR)
+    w = size * 0.80
+    return svg(size, size, site_logo_centered(size / 2, (size - w * LOGO_H / LOGO_W) / 2, w), NOIR)
 
 
 def facebook_cover():
     W, H = 1640, 624
-    body = frame(W, H, 26, OR, 1.5) + frame(W, H, 36, OR, 0.7)
-    body += deco_arches(150, H / 2, 260, n=1) + deco_arches(W - 150, H / 2, 260, n=1)
-    body += monogram(W / 2, 150, 110, stroke=1.6)
-    body += CASLON_I.path("Bienvenue", W / 2, 262, 44, OR_CLAIR)
-    body += CASLON.path("Chez Cellier", W / 2, 384, 112, CREME)
-    body += tagline(W / 2, 444, 20, OR)
-    body += CASLON_I.path("L’Art de Vivre à la Française", W / 2, 515, 30, OR_CLAIR)
-    return svg(W, H, body, NOIR)
+    px = 780
+    d, f = fade("fb", px, 0, 300, H)
+    body = photo(REPAS, px, 0, W - px, H, focus=(0.55, 0.55)) + f
+    body += site_logo(250, 110, 1.75)
+    body += CASLON.path(ART_DE_VIVRE, 250, 400, 38, CREME, anchor="start")
+    body += MONT.path("PARTAGER · PROFITER · S’ÉPANOUIR", 252, 452, 17, OR, tracking=0.18, anchor="start")
+    body += pill(1110, 510, "10 SUITES PRIVÉES · SAINT-LAURENT-D’AIGOUZE & VAUVERT", 17)
+    return svg(W, H, body, NOIR, d)
 
 
 def instagram_post():
     W = 1080
-    body = frame(W, W, 40, OR, 1.2)
-    body += monogram(W / 2, 270, 170, stroke=2)
-    y1, y2, s = 560, 660, 72
-    # « Faire du bien vieillir » / « un art de vivre ensemble »
-    a, b = "Faire du bien ", "vieillir"
-    tw = CASLON.width(a + b, s)
-    x0 = W / 2 - tw / 2
-    body += CASLON.path(a, x0, y1, s, CREME, anchor="start")
-    body += highlight(CASLON, b, x0 + CASLON.width(a, s), y1, s, "start", CREME, OR_CLAIR)
-    a, b = "un art de vivre ", "ensemble"
-    tw = CASLON.width(a + b, s)
-    x0 = W / 2 - tw / 2
-    body += CASLON.path(a, x0, y2, s, CREME, anchor="start")
-    body += highlight(CASLON, b, x0 + CASLON.width(a, s), y2, s, "start", CREME, OR_CLAIR)
-    body += tagline(W / 2, 790, 22, CREME, text="CHEZ CELLIER", tracking=0.3, font=CASLON)
-    body += MONT.path("VILLA SENIOR PARTAGÉE · LANGUEDOC", W / 2, 960, 17, OR, tracking=0.32)
-    return svg(W, W, body, ANTHRACITE)
+    band, bottom = 300, 950
+    body = photo(COUPLE, 0, band, W, bottom - band, focus=(0.5, 0.4))
+    body += site_logo_centered(W / 2, 48, 430)
+    body += CASLON.path(ART_DE_VIVRE, W / 2, 1033, 54, CREME)
+    return svg(W, W, body, NOIR)
 
 
 def instagram_portrait():
     W, H = 1080, 1350
-    body = frame(W, H, 40, OR, 1.2)
-    body += monogram(W / 2, 230, 190, frame=OR, letters=ANTHRACITE, stroke=2)
-    body += MONT.path("NOTRE ACCOMPAGNEMENT", W / 2, 440, 20, OR, tracking=0.35)
-    body += CASLON.path("Un accompagnement", W / 2, 545, 74, ANTHRACITE)
-    body += CASLON.path("5 étoiles, 7 jours sur 7", W / 2, 640, 74, ANTHRACITE)
-    body += CASLON_I.path("Pour que chaque jour soit un plaisir", W / 2, 730, 34, OR)
-    body += CASLON_I.path("et non une épreuve !", W / 2, 776, 34, OR)
-    # Trois piliers
-    cols = [("Gastronomie", "française"), ("Service de", "conciergerie"), ("Activités", "sur mesure")]
-    for i, (l1, l2) in enumerate(cols):
-        cx = W / 2 + (i - 1) * 300
-        body += f'<line x1="{cx - 40}" y1="860" x2="{cx + 40}" y2="860" stroke="{OR}" stroke-width="1.5"/>'
-        body += CASLON.path(l1, cx, 915, 30, ANTHRACITE) + CASLON.path(l2, cx, 955, 30, ANTHRACITE)
-        if i:
-            x = cx - 150
-            body += f'<line x1="{x}" y1="880" x2="{x}" y2="960" stroke="{OR}" stroke-width="1" opacity="0.6"/>'
-    body += wordmark(W / 2, 1170, 64, ANTHRACITE, OR)
-    return svg(W, H, body, CREME)
+    top, bottom = 300, 960
+    d, f = fade("pt", 0, top, W, 260, "down", strength=0.75)
+    body = photo(REPAS, 0, top, W, bottom - top, focus=(0.5, 0.56)) + f
+    body += site_logo_centered(W / 2, 48, 430)
+    body += stacked(["PARTAGER", "PROFITER", "S’ÉPANOUIR"], 56, top + 80, 26, BLANC, tracking=0.08)
+    body += f'<line x1="300" y1="{top + 52}" x2="300" y2="{top + 150}" stroke="{BLANC}" stroke-width="1.5"/>'
+    body += stacked(["CHEZ CELLIER", "CHAQUE JOUR", "A PLUS DE SENS"], 330, top + 80, 26, BLANC, tracking=0.08)
+    body += pill(W / 2, bottom - 50, "10 SUITES PRIVÉES PAR VILLA", 24)
+    body += CASLON.path(ART_DE_VIVRE, W / 2, 1065, 60, CREME)
+    body += piliers(W / 2, 1160, 1000, 17)
+    body += MONT_M.path("www.chezcellier.fr", W / 2, 1305, 20, BEIGE, tracking=0.06)
+    return svg(W, H, body, NOIR, d)
 
 
 def instagram_story():
     W, H = 1080, 1920
-    # Zones sûres : 250 px en haut et en bas
-    body = f'<path d="{arch_d(W / 2, 330, 760, 1060)}" fill="none" stroke="{OR}" stroke-width="2"/>'
-    body += f'<path d="{arch_d(W / 2, 352, 716, 1016)}" fill="none" stroke="{OR}" stroke-width="1"/>'
-    body += monogram(W / 2, 560, 170, stroke=2)
-    body += CASLON.path("Bienvenue", W / 2, 850, 92, OR_CLAIR)
-    body += CASLON.path("Chez Cellier", W / 2, 990, 104, CREME)
-    body += tagline(W / 2, 1066, 19, OR)
-    body += CASLON_I.path("Une expérience de vie où se cultivent", W / 2, 1210, 34, CREME)
-    body += CASLON_I.path("les liens humains, l’intimité", W / 2, 1258, 34, CREME)
-    body += CASLON_I.path("et les plaisirs simples", W / 2, 1306, 34, CREME)
-    body += button(W / 2, 1460, "RÉSERVER UNE VISITE", 24, OR, w=560)
-    body += MONT.path("SAINT-LAURENT-D’AIGOUZE  ·  VAUVERT", W / 2, 1600, 19, OR_CLAIR, tracking=0.2)
-    body += MONT_L.path("www.chezcellier.fr", W / 2, 1648, 24, CREME, tracking=0.08)
+    # Zones sûres : 250 px en haut et en bas laissés sans contenu
+    body = site_logo_centered(W / 2, 290, 500)
+    body += photo(COUPLE, 0, 590, W, 760, focus=(0.5, 0.42))
+    body += badge(870, 1280, 140, "RÉSERVEZ", "UNE VISITE", ["CHEZ CELLIER"], big_size=0.2)
+    body += CASLON.path(ART_DE_VIVRE, W / 2, 1480, 52, CREME)
+    body += f'<rect x="0" y="1520" width="{W}" height="150" fill="{BEIGE}"/>'
+    body += MONT_M.path("www.chezcellier.fr", W / 2, 1572, 34, NOIR)
+    body += MONT_M.path("+33 6 98 88 35 35  ·  contact@chezcellier.fr", W / 2, 1632, 28, NOIR)
     return svg(W, H, body, NOIR)
 
 
 def linkedin_perso():
     W, H = 1584, 396
-    # Zone de la photo de profil (bas-gauche, ~0-460 × 170-396) laissée libre
-    body = f'<line x1="0" y1="34" x2="{W}" y2="34" stroke="{OR}" stroke-width="1"/>'
-    body += f'<line x1="0" y1="{H - 34}" x2="{W}" y2="{H - 34}" stroke="{OR}" stroke-width="1"/>'
-    cx = 1000
-    body += monogram(cx - 360, H / 2, 200, stroke=2)
-    body += CASLON.path("Chez Cellier", cx + 110, 205, 96, CREME)
-    body += tagline(cx + 110, 255, 17, OR)
-    body += CASLON_I.path("L’Art de Vivre à la Française", cx + 110, 318, 30, OR_CLAIR)
-    body += deco_arches(W - 130, H / 2, 230, n=1, opacity=0.3)
-    return svg(W, H, body, NOIR)
+    px = 940
+    d, f = fade("li", px, 0, 260, H)
+    body = photo(REPAS, px, 0, W - px, H, focus=(0.6, 0.55)) + f
+    # Bas-gauche (~0-460 × 170-396) laissé libre pour la photo de profil
+    body += site_logo(480, 50, 1.45)
+    body += CASLON.path(ART_DE_VIVRE, 482, 285, 30, CREME, anchor="start")
+    body += MONT.path("PARTAGER · PROFITER · S’ÉPANOUIR", 484, 330, 14, OR, tracking=0.18, anchor="start")
+    return svg(W, H, body, NOIR, d)
 
 
 def linkedin_entreprise():
     W, H = 1128, 191
-    body = f'<line x1="0" y1="16" x2="{W}" y2="16" stroke="{OR}" stroke-width="1"/>'
-    body += f'<line x1="0" y1="{H - 16}" x2="{W}" y2="{H - 16}" stroke="{OR}" stroke-width="1"/>'
-    cx = 640
-    body += monogram(cx - 250, H / 2, 112, stroke=1.4)
-    body += CASLON.path("Chez Cellier", cx + 70, 98, 54, CREME)
-    body += tagline(cx + 70, 128, 10.5, OR)
-    body += CASLON_I.path("L’Art de Vivre à la Française", cx + 70, 160, 17, OR_CLAIR)
-    return svg(W, H, body, NOIR)
+    px = 860
+    d, f = fade("le", px, 0, 140, H)
+    body = photo(REPAS, px, 0, W - px, H, focus=(0.62, 0.55)) + f
+    body += site_logo(200, 28, 1.25)
+    body += CASLON.path(ART_DE_VIVRE, 530, 95, 24, CREME, anchor="start")
+    body += MONT.path("SAINT-LAURENT-D’AIGOUZE · VAUVERT", 531, 128, 11, OR, tracking=0.16, anchor="start")
+    return svg(W, H, body, NOIR, d)
 
 
 def main():
     OUT.mkdir(exist_ok=True)
     files = {
-        BRAND / "logo.svg": logo(ANTHRACITE),
-        BRAND / "logo-negatif.svg": logo(CREME),
-        BRAND / "logo-horizontal.svg": logo_horizontal(ANTHRACITE),
-        BRAND / "logo-horizontal-negatif.svg": logo_horizontal(CREME),
-        BRAND / "monogramme.svg": monogramme(OR, ANTHRACITE),
-        BRAND / "monogramme-negatif.svg": monogramme(OR, CREME),
+        BRAND / "logo.svg": logo(NOIR),
+        BRAND / "logo-negatif.svg": logo(BLANC),
+        BRAND / "logo-fond-noir.svg": logo(BLANC, NOIR),
         OUT / "profil-facebook.svg": profil(320),
         OUT / "profil-instagram.svg": profil(320),
         OUT / "profil-linkedin.svg": profil(400),

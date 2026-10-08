@@ -9,14 +9,14 @@ const SVG_DIR = path.join(__dirname, 'svg');
 
 const jobs = [
   // Logos : fond transparent
-  ...['logo', 'logo-negatif', 'logo-horizontal', 'logo-horizontal-negatif', 'monogramme', 'monogramme-negatif']
-    .map((n) => ({ src: path.join(BRAND, `${n}.svg`), out: path.join(BRAND, `${n}.png`), transparent: true })),
+  ...['logo', 'logo-negatif', 'logo-fond-noir']
+    .map((n) => ({ src: path.join(BRAND, `${n}.svg`), out: path.join(BRAND, `${n}.png`), transparent: n !== 'logo-fond-noir' })),
   ...fs.readdirSync(SVG_DIR).filter((f) => f.endsWith('.svg'))
     .map((f) => ({ src: path.join(SVG_DIR, f), out: path.join(BRAND, f.replace(/\.svg$/, '.png')), transparent: false })),
 ];
 
 (async () => {
-  const browser = await chromium.launch(fs.existsSync('/opt/pw-browsers/chromium') ? {} : {});
+  const browser = await chromium.launch();
   for (const job of jobs) {
     const svg = fs.readFileSync(job.src, 'utf8');
     const [, w, h] = svg.match(/width="(\d+)" height="(\d+)"/);
