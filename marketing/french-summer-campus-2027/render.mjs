@@ -94,7 +94,9 @@ const GALLERY = [
 ];
 const photoUrl = (file) => pathToFileURL(join(ROOT, "photos", file)).href;
 const bg = (ph, format) => {
-  const pick = (v) => (v == null || typeof v === "string" ? v : v[format] ?? v.default);
+  // "postv" (4:5 plein cadre) a un cadre proche de la story : il en reprend les réglages par défaut
+  const pick = (v) =>
+    v == null || typeof v === "string" ? v : v[format] ?? (format === "postv" ? v.story : undefined) ?? v.default;
   const size = pick(ph.size); // zoom optionnel, ex. "150%"
   return `background-image:url('${photoUrl(ph.file)}');background-position:${pick(ph.pos)}${size ? `;background-size:${size}` : ""}`;
 };
@@ -197,6 +199,29 @@ const layouts = {
       ${footer(beca)}
     </section>`,
 
+  // 4:5 alternatif : photo plein cadre, infos en surimpression, bandeau contact en bas
+  postv: (beca, ph) => `
+    <section class="ph full" style="${bg(ph, "postv")}">
+      <div class="ph-shade"></div>
+      <div class="tags">
+        ${beca ? `<span class="tag tag-red">2 becas</span>` : ""}
+        <span class="tag">${C.season}</span>
+        <span class="tag">En inmersión en Montpellier</span>
+      </div>
+      <div class="ph-bottom">
+        <div class="script">${beca ? "Tu verano en Francia, ¡casi a mitad de precio!" : "Bonjour ! Tu verano en Francia te espera"}</div>
+        ${title()}
+        <p class="ov-incl">20 clases/semana · Estudio privado · Excursiones · Transporte · Gimnasio</p>
+        <div class="ov-chips"><span>${C.age}</span><span>${C.levels}</span><span>${C.duration}</span></div>
+      </div>
+      ${
+        beca
+          ? promoCard()
+          : `<div class="promo"><span class="promo-sub">2 semanas</span><span class="promo-new">${C.price}</span><span class="promo-save">Todo incluido</span></div>`
+      }
+    </section>
+    <section class="panel band">${footer(beca)}</section>`,
+
   square: (beca, ph) => `
     ${photoHero(beca, ph, "square", { script: false })}
     <section class="panel">
@@ -240,6 +265,7 @@ const gallery = (beca) => `
 
 const SIZES = {
   story: { w: 1080, h: 1920 },
+  postv: { w: 1080, h: 1350 },
   post: { w: 1080, h: 1350 },
   square: { w: 1080, h: 1080 },
   a4: { w: 794, h: 1123 },
@@ -266,7 +292,7 @@ const versions = [
   ["general", false],
   ["beca", true],
 ];
-const names = { story: "story_1080x1920", post: "post-4x5_1080x1350", square: "carre-1x1_1080x1080" };
+const names = { story: "story_1080x1920", post: "post-4x5_1080x1350", postv: "post-4x5-visual_1080x1350", square: "carre-1x1_1080x1080" };
 const PREFIX = "KLF_French-Summer-Campus-2027";
 
 for (const [vName, beca] of versions) {

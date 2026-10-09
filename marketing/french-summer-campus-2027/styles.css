@@ -229,3 +229,25 @@ body { font-family: "Montserrat", sans-serif; color: var(--ink); -webkit-font-sm
 .cta .email { display: block; color: var(--ink); font-weight: 800; font-size: .92em; margin-top: .15em; white-space: nowrap; }
 .cta { max-width: none; }
 .post.is-beca .ph { height: 75.2em; }
+
+/* ---------- 4:5 alternatif "visuel" : photo plein cadre ---------- */
+.postv { font-size: 9px; }
+.postv .ph.full { flex: 1; height: auto; }
+.postv .ph-shade {
+  background:
+    linear-gradient(180deg, rgba(0,0,0,.35) 0%, rgba(0,0,0,0) 20%),
+    linear-gradient(0deg, rgba(0,0,0,.88) 0%, rgba(0,0,0,.6) 30%, rgba(0,0,0,0) 58%);
+}
+.postv .tags { top: 5em; left: 6em; }
+.postv .ph-bottom { left: 6em; right: 6em; bottom: 4.4em; }
+.postv .script { font-size: 4.8em; max-width: 64%; }
+.postv .t1 { font-size: 10em; } .postv .t2 { font-size: 15em; } .postv .t3 { font-size: 7.5em; }
+.ov-incl { font-weight: 700; font-size: 2.9em; margin-top: 1em; text-shadow: 0 .05em .3em rgba(0,0,0,.4); }
+.ov-chips { display: flex; gap: 1.2em; margin-top: 2em; }
+.ov-chips span { font-weight: 700; font-size: 2.6em; padding: .35em .9em; border-radius: 99em; border: .09em solid rgba(255,255,255,.9); white-space: nowrap; }
+.postv .promo { top: auto; bottom: 16em; right: 6em; font-size: .85em; }
+.postv .panel.band { flex: none; padding: 2.6em 6em 3em; }
+.postv .foot { border-top: none; padding-top: 0; margin-top: 0; }
+.postv .promo { bottom: 26.5em; }
+.postv .promo { bottom: 25.5em; font-size: .78em; } .ov-incl { font-size: 2.6em; white-space: nowrap; }
+.postv .promo { bottom: 23.5em; }
