@@ -115,23 +115,23 @@ Déroulé : accroche (3 s) → 5 mots de 4 s chacun (la rentrée, les vendanges,
 
 Dossier : `04-automne-annecy/`. Publier les slides 1 → 7. Charte KLF Annecy (vert alpin `#86BC25`, ardoise `#1B2A3A`, logo « klf.annecy » IFALPES), relevée sur klf.fr/annecy.
 
-Légendes bilingues : titre en français, phrase en anglais, car le reel s'adresse aux apprenants internationaux.
+Carrousel entièrement en français.
 
 ### Légende
 
-> 🍂 L'automne à Annecy. Autumn in Annecy.
+> 🍂 L'automne à Annecy.
 >
-> Golden trees along the lake, red maples in the parks, the Alps in November light and an apéritif after the hike. This is what October and November look like ten minutes from our classrooms.
+> Les arbres dorés le long du lac, les érables rouges dans les parcs, les Alpes dans la lumière de novembre et un apéro après la rando. Voilà à quoi ressemblent octobre et novembre à dix minutes de nos salles de classe.
 >
 > 📍 Jardins de l'Europe · promenade du lac · Mont Veyrier · Annecy-le-Vieux · Menthon-Saint-Bernard · col de la Forclaz
 >
-> Cours de français toute l'année, départ chaque lundi, 12 étudiants maximum par classe. French courses all year, start any Monday, levels A1 to C2.
+> Cours de français toute l'année, départ chaque lundi, 12 étudiants maximum par classe, niveaux A1 à C2.
 >
 > 👉 Devis et programme : klf.fr/annecy (lien en bio)
 >
 > 📷 Photos : Guilhem Vellut (CC BY 2.0), Florian Pépellin et Gil Devienne (CC BY-SA 4.0), via Wikimedia Commons.
 >
-> #Annecy #AutumnInAnnecy #LearnFrench #FrenchCourses #LacDAnnecy #HauteSavoie #StudyInFrance #IFALPES #KLFAnnecy #KeepLearningFrench #FLE
+> #Annecy #AutomneAAnnecy #ApprendreLeFrançais #CoursDeFrançais #LacDAnnecy #HauteSavoie #IFALPES #KLFAnnecy #KeepLearningFrench #FLE
 
 ### Crédits photo : obligatoire
 
