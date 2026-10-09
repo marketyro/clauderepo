@@ -36,4 +36,5 @@ Textes (dont le titre `titleA` / `titleB`) et choix des photos en haut de `rende
 
 ```bash
 NODE_PATH=$(npm root -g) node render.mjs   # nécessite Playwright + Chromium
+NODE_PATH=$(npm root -g) node apercu.mjs   # planche 1920x1080 General / Beca
 ```
