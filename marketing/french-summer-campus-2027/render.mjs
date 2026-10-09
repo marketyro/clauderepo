@@ -79,7 +79,7 @@ const PHOTOS = {
   ],
   beca: [
     { key: "1-clase-sonrisa", file: "clase-sonrisa.jpg", pos: "66% 8%" },
-    { key: "2-clase", file: "clase-sonrisa-2.jpg", pos: { story: "70% 20%", default: "70% 22%" } },
+    { key: "2-terraza-campus", file: "campus-terraza.jpg", pos: { story: "0% 100%", post: "20% 100%", square: "40% 62%", default: "55% 100%" }, size: { story: "auto 100%", post: "110% auto", square: "105% auto", default: "125% auto" }, promoRight: ["story"] },
     { key: "3-clase", file: "clase.jpg", pos: { story: "55% 30%", default: "55% 22%" } },
     { key: "4-grupo-campus", file: "grupo-campus.jpg", pos: "68% 30%" },
   ],
@@ -121,7 +121,7 @@ const promoCard = () => `
 
 // Grande photo avec titre en surimpression
 const photoHero = (beca, ph, format, { script = true } = {}) => `
-<section class="ph" style="${bg(ph, format)}">
+<section class="ph ${ph.promoRight?.includes(format) ? "promo-right" : ""}" style="${bg(ph, format)}">
   <div class="ph-shade"></div>
   <div class="tags">
     ${beca ? `<span class="tag tag-red">2 becas</span>` : ""}

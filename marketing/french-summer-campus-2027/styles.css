@@ -251,3 +251,4 @@ body { font-family: "Montserrat", sans-serif; color: var(--ink); -webkit-font-sm
 .postv .promo { bottom: 26.5em; }
 .postv .promo { bottom: 25.5em; font-size: .78em; } .ov-incl { font-size: 2.6em; white-space: nowrap; }
 .postv .promo { bottom: 23.5em; }
+.story .promo-right .promo { top: 6em; left: auto; right: 7em; }
