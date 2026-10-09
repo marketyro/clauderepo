@@ -143,6 +143,56 @@ La slide 7 utilise une photo de classe KLF Annecy issue du site.
 
 ---
 
+## 5. Reel – Le vocabulaire du bouchon lyonnais (KLF Lyon, 27 s, 1080 × 1920)
+
+Dossier : `05-reel-bouchon-lyonnais/`. Fichiers : `reel-bouchon-lyonnais.mp4` (sans son) et `cover.png`. Charte KLF Lyon (bleu profond `#001F98`, logo « klf.lyon » Lyon Bleu). Entièrement en français.
+
+Déroulé : accroche → un bouchon, une quenelle, le tablier de sapeur, un pot lyonnais, la cervelle de canut → écran final klf.fr/lyon. Ajoutez une musique au moment de publier.
+
+### Légende
+
+> 🍽️ 5 mots pour commander comme un Lyonnais dans un bouchon.
+>
+> 1️⃣ un bouchon – le bistrot traditionnel de Lyon
+> 2️⃣ une quenelle – la spécialité de brochet, sauce Nantua
+> 3️⃣ le tablier de sapeur – de la panse de bœuf panée, en forme de tablier de pompier
+> 4️⃣ un pot lyonnais – la bouteille de 46 cl au fond épais
+> 5️⃣ la cervelle de canut – du fromage blanc aux herbes, rien à voir avec un cerveau
+>
+> Lequel osez-vous commander en premier ? Enregistrez ce reel avant votre premier dîner à Lyon et taguez la personne qui vous accompagne.
+>
+> 📍 KLF Lyon – Lyon Bleu International. Cours de français toute l'année, niveaux A1 à C2.
+>
+> #Lyon #BouchonLyonnais #Gastronomie #ApprendreLeFrançais #VocabulaireFrançais #CapitaleDeLaGastronomie #KLFLyon #LyonBleu #KeepLearningFrench #FLE
+
+---
+
+## 6. Cours du soir en ligne (KLF Lyon, carrousel 2 slides)
+
+Dossier : `06-cours-du-soir-en-ligne/` (français). Une version anglaise existe dans `06-cours-du-soir-en-ligne-en/` si besoin. Infos reprises de la page « Online Evening French Course » de klf.fr/lyon.
+
+### Légende
+
+> 🌙 Le français, le soir, en ligne.
+>
+> Deux cours en direct par semaine avec un professeur KLF Lyon, depuis chez vous :
+> 📅 mardi et jeudi, 18h à 19h30 (heure de Paris)
+> 👥 classes de 8 à 14 étudiants
+> 📈 niveaux A2 à C1, dates spécifiques pour les débutants
+> ✅ test de placement et suivi pédagogique inclus
+>
+> Packs de 4 semaines (180 €), 8 semaines (320 €) ou 12 semaines (460 €). Dès 16 ans.
+>
+> 👉 Testez votre niveau et réservez : klf.fr/lyon (lien en bio)
+>
+> #CoursDeFrançais #FrançaisEnLigne #CoursDuSoir #FLE #ApprendreLeFrançais #KLFLyon #LyonBleu #KeepLearningFrench
+
+### À vérifier
+
+La page indique « 4 cours de 45 minutes par semaine » dans la liste des inclusions et « deux séances de 1h30 » dans la description : les visuels reprennent la seconde formulation, qui correspond à l'horaire affiché. Le fuseau horaire n'est pas précisé sur la page ; les visuels et légendes indiquent l'heure de Paris.
+
+---
+
 ## Calendrier suggéré pendant les congés
 
 | Jour | Publication | Heure conseillée |
@@ -152,5 +202,7 @@ La slide 7 utilise une photo de classe KLF Annecy issue du site.
 | Vendredi | Summer Campus (carrousel, version anglaise) | 17 h |
 | Lundi suivant | Summer Campus (version française) | 12 h |
 | Mercredi suivant | L'automne à Annecy (carrousel photo, compte Annecy) | 18 h |
+| Vendredi suivant | Reel bouchon lyonnais (compte Lyon) | 18 h |
+| Lundi d'après | Cours du soir en ligne (compte Lyon) | 12 h |
 
 Le reel peut être repartagé en story le jour même. Les carrousels se repartagent en story avec le sticker « lien ».
