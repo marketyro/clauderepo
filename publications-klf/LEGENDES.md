@@ -82,31 +82,32 @@ Le site klf-examen.fr n'était pas accessible depuis cet environnement. Les chif
 
 ---
 
-## 3. Reel – 5 mots pour l'été (vidéo 27 s, 1080 × 1920, 30 i/s)
+## 3. Reel – 5 mots pour l'automne (vidéo 27 s, 1080 × 1920, 30 i/s)
 
-Dossier : `03-reel-vocabulaire-ete/`. Fichiers : `reel-vocabulaire-ete.mp4` (vidéo sans son) et `cover.png` (miniature).
+Dossier : `03-reel-vocabulaire-automne/`. Fichiers : `reel-vocabulaire-automne.mp4` (vidéo sans son) et `cover.png` (miniature).
+Une version été (`03-reel-vocabulaire-ete/`) reste disponible pour juin 2027.
 
 La vidéo est muette : ajoutez une musique tendance depuis la bibliothèque Instagram / TikTok au moment de la publication, cela améliore la portée.
 
-Déroulé : accroche (3 s) → 5 mots de 4 s chacun (la plage, le cagnard, bronzer, une glace, le farniente), chacun avec prononciation, traduction et phrase d'exemple → écran final avec logo et klf.fr/montpellier.
+Déroulé : accroche (3 s) → 5 mots de 4 s chacun (la rentrée, les vendanges, les feuilles mortes, une châtaigne, la tramontane), chacun avec prononciation, traduction et phrase d'exemple → écran final avec logo et klf.fr/montpellier.
 
 ### Légende (bilingue, le reel s'adresse aux apprenants)
 
-> 5 French words you'll actually use this summer in Montpellier ☀️
+> 5 French words you'll actually hear this autumn in Montpellier 🍂
 >
-> 1️⃣ la plage – the beach
-> 2️⃣ le cagnard – the blazing sun (very "South of France")
-> 3️⃣ bronzer – to sunbathe
-> 4️⃣ une glace – an ice cream
-> 5️⃣ le farniente – the art of doing nothing
+> 1️⃣ la rentrée – back to school, back to work
+> 2️⃣ les vendanges – the grape harvest (it's wine country here)
+> 3️⃣ les feuilles mortes – fallen leaves, straight out of Prévert
+> 4️⃣ une châtaigne – a chestnut, roasted on Place de la Comédie
+> 5️⃣ la tramontane – the cold north wind only locals talk about
 >
-> Which one is your favourite? Save this for your next trip and tag a friend who needs to learn French with you.
+> Which one did you already know? Save this for your next French class and tag a friend who's learning with you.
 >
-> 🇫🇷 5 mots indispensables pour un été à Montpellier. Enregistrez pour réviser avant le départ !
+> 🇫🇷 5 mots indispensables pour un automne à Montpellier. Enregistrez pour réviser !
 >
-> 📍 KLF Montpellier – French courses all year, Summer Campus 18–25.
+> 📍 KLF Montpellier – French courses all year, levels A1 to C2.
 >
-> #LearnFrench #FrenchVocabulary #FrenchWords #Montpellier #FrenchLesson #SummerVocabulary #FLE #KLFMontpellier #KeepLearningFrench #StudyInFrance
+> #LearnFrench #FrenchVocabulary #FrenchWords #Montpellier #FrenchLesson #AutumnVocabulary #FLE #KLFMontpellier #KeepLearningFrench #StudyInFrance
 
 ---
 
@@ -114,7 +115,7 @@ Déroulé : accroche (3 s) → 5 mots de 4 s chacun (la plage, le cagnard, bronz
 
 | Jour | Publication | Heure conseillée |
 |---|---|---|
-| Lundi | Reel « 5 mots pour l'été » | 18 h |
+| Lundi | Reel « 5 mots pour l'automne » | 18 h |
 | Mercredi | Examen civique (carrousel) | 12 h |
 | Vendredi | Summer Campus (carrousel, version anglaise) | 17 h |
 | Lundi suivant | Summer Campus (version française) | 12 h |
