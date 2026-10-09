@@ -1,0 +1,12 @@
+/* KLF Annecy (IFALPES) – palette relevée sur klf.fr/annecy : vert alpin + ardoise */
+:root {
+  --navy: #1B2A3A;
+  --deep: #111D28;
+  --yellow: #86BC25;        /* accent principal Annecy : vert */
+  --yellow-hover: #A8D94F;
+  --blue: #A8D94F;          /* secondaire : vert clair */
+  --cream: #F8F9F4;
+  --pale: #F0F5E8;
+  --muted: #4A5C4A;
+}
+.overlay { background: linear-gradient(180deg, rgba(27,42,58,0.10) 0%, rgba(27,42,58,0.20) 45%, rgba(27,42,58,0.88) 74%, var(--navy) 100%); }

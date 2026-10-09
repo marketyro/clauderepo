@@ -111,6 +111,38 @@ Déroulé : accroche (3 s) → 5 mots de 4 s chacun (la rentrée, les vendanges,
 
 ---
 
+## 4. L'automne à Annecy – carrousel photo (7 slides)
+
+Dossier : `04-automne-annecy/`. Publier les slides 1 → 7. Charte KLF Annecy (vert alpin `#86BC25`, ardoise `#1B2A3A`, logo « klf.annecy » IFALPES), relevée sur klf.fr/annecy.
+
+Légendes bilingues : titre en français, phrase en anglais, car le reel s'adresse aux apprenants internationaux.
+
+### Légende
+
+> 🍂 L'automne à Annecy. Autumn in Annecy.
+>
+> Golden trees along the lake, red maples in the parks, the Alps in November light and an apéritif after the hike. This is what October and November look like ten minutes from our classrooms.
+>
+> 📍 Jardins de l'Europe · promenade du lac · Mont Veyrier · Annecy-le-Vieux · Menthon-Saint-Bernard · col de la Forclaz
+>
+> Cours de français toute l'année, départ chaque lundi, 12 étudiants maximum par classe. French courses all year, start any Monday, levels A1 to C2.
+>
+> 👉 Devis et programme : klf.fr/annecy (lien en bio)
+>
+> 📷 Photos : Guilhem Vellut (CC BY 2.0), Florian Pépellin et Gil Devienne (CC BY-SA 4.0), via Wikimedia Commons.
+>
+> #Annecy #AutumnInAnnecy #LearnFrench #FrenchCourses #LacDAnnecy #HauteSavoie #StudyInFrance #IFALPES #KLFAnnecy #KeepLearningFrench #FLE
+
+### Crédits photo : obligatoire
+
+Les 6 photos de paysage viennent de Wikimedia Commons, sous licence Creative Commons. Chaque slide porte déjà le crédit en bas à gauche ; gardez la ligne « 📷 Photos : … » dans la légende, elle est exigée par la licence. Détail dans `04-automne-annecy/credits.json` (fichier, auteur, licence, lien source).
+
+Les photos de Florian Pépellin et Gil Devienne sont en CC BY-SA 4.0 : la licence demande que le visuel dérivé reste partageable aux mêmes conditions. C'est acceptable pour une publication sociale avec crédit, mais si vous préférez éviter cette contrainte, remplacez ces 4 slides par vos propres photos : il suffit de changer le fichier image dans `slide-2.html`, `slide-3.html`, `slide-5.html` et `slide-6.html`, de supprimer la ligne de crédit, puis de lancer `node render.js 04-automne-annecy`.
+
+La slide 7 utilise une photo de classe KLF Annecy issue du site.
+
+---
+
 ## Calendrier suggéré pendant les congés
 
 | Jour | Publication | Heure conseillée |
@@ -119,5 +151,6 @@ Déroulé : accroche (3 s) → 5 mots de 4 s chacun (la rentrée, les vendanges,
 | Mercredi | Examen civique (carrousel) | 12 h |
 | Vendredi | Summer Campus (carrousel, version anglaise) | 17 h |
 | Lundi suivant | Summer Campus (version française) | 12 h |
+| Mercredi suivant | L'automne à Annecy (carrousel photo, compte Annecy) | 18 h |
 
 Le reel peut être repartagé en story le jour même. Les carrousels se repartagent en story avec le sticker « lien ».
