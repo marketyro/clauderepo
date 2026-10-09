@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Examen civique – slide 1</title>
+<link rel="stylesheet" href="../assets/klf.css">
+<style>
+  .photo img { object-position: center 20%; }
+  .hero-text { margin-top: auto; display: flex; flex-direction: column; gap: 30px; }
+  h1 { font-size: 100px; }
+  .days { display: flex; gap: 16px; margin-top: 10px; }
+  .day { width: 150px; height: 150px; border-radius: 30px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(255,255,255,0.08); border: 2px solid rgba(255,255,255,0.18); font-weight: 600; font-size: 26px; color: rgba(255,255,255,0.55); }
+  .day.on { background: var(--yellow); border-color: var(--yellow); color: var(--navy); font-weight: 800; }
+  .day small { font-size: 18px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-top: 6px; opacity: 0.8; }
+  .bottom { display: flex; align-items: center; justify-content: space-between; margin-top: 40px; }
+  .site { font-size: 28px; font-weight: 600; color: var(--blue); }
+</style>
+</head>
+<body>
+<div class="slide">
+  <div class="photo"><img src="../assets/img/student-desk.webp" alt=""></div>
+  <div class="overlay"></div>
+  <div class="pad">
+    <div class="logo-row">
+      <img class="logo" src="../assets/img/logo-montpellier-white.png" alt="KLF Montpellier">
+      <span class="pill ghost">Montpellier</span>
+    </div>
+    <div class="hero-text">
+      <span class="pill" style="align-self:flex-start">Examen civique</span>
+      <h1>Des sessions <span class="y">chaque semaine.</span></h1>
+      <p class="sub">Titre de séjour pluriannuel, carte de résident ou naturalisation : passez votre examen civique à Montpellier, tous les mardis et jeudis.</p>
+      <div class="days">
+        <div class="day">Lun</div>
+        <div class="day on">Mar<small>session</small></div>
+        <div class="day">Mer</div>
+        <div class="day on">Jeu<small>session</small></div>
+        <div class="day">Ven</div>
+      </div>
+      <div class="bottom">
+        <span class="site">Inscription sur klf-examen.fr</span>
+        <span class="pill blue">Swipe →</span>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

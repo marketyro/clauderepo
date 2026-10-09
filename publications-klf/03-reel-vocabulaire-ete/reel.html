@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Reel – 5 mots pour l'été</title>
+<link rel="stylesheet" href="../assets/klf.css">
+<style>
+  html, body { width: 1080px; height: 1920px; }
+  .stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; background: var(--navy); }
+  .scene { position: absolute; inset: 0; display: none; }
+  .scene.live { display: block; }
+  .bg { position: absolute; inset: 0; overflow: hidden; }
+  .bg img { width: 100%; height: 100%; object-fit: cover; display: block; transform-origin: center; }
+  .bg.soft img { filter: blur(3px); }
+  .bg .ov { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(26,42,74,0.55) 0%, rgba(26,42,74,0.35) 35%, rgba(26,42,74,0.75) 70%, rgba(26,42,74,0.97) 100%); }
+  .ui { position: absolute; inset: 0; padding: 110px 72px 380px; display: flex; flex-direction: column; }
+  .topbar { display: flex; align-items: center; justify-content: space-between; }
+  .logo { height: 100px; }
+  .counter { font-size: 30px; font-weight: 700; letter-spacing: 0.1em; color: var(--white); background: rgba(255,255,255,0.14); border: 2px solid rgba(255,255,255,0.3); padding: 14px 26px; border-radius: 999px; }
+  .counter b { color: var(--yellow); }
+
+  /* word card */
+  .card { margin: auto 0; background: rgba(17,29,40,0.72); border: 2px solid rgba(255,255,255,0.12); border-radius: 44px; padding: 64px 60px; backdrop-filter: blur(6px); }
+  .tag { display: inline-flex; background: var(--yellow); color: var(--navy); font-weight: 700; font-size: 24px; letter-spacing: 0.1em; text-transform: uppercase; padding: 12px 24px; border-radius: 999px; }
+  .word { font-size: 128px; font-weight: 800; line-height: 1; letter-spacing: -0.03em; color: var(--yellow); margin-top: 34px; }
+  .word.small { font-size: 110px; }
+  .pron { font-size: 34px; font-weight: 500; color: var(--blue); margin-top: 18px; font-style: italic; }
+  .trans { font-size: 52px; font-weight: 700; color: var(--white); margin-top: 26px; line-height: 1.1; }
+  .ex { margin-top: 44px; padding-top: 36px; border-top: 2px solid rgba(255,255,255,0.14); }
+  .ex .fr { font-size: 40px; font-weight: 600; color: var(--cream); line-height: 1.25; }
+  .ex .fr span { background: rgba(245,188,41,0.22); border-radius: 10px; padding: 0 10px; }
+  .ex .en { font-size: 30px; font-weight: 400; color: var(--blue); margin-top: 14px; line-height: 1.3; }
+
+  /* hook */
+  .hook .ui { padding-bottom: 420px; }
+  .hook h1 { font-size: 132px; line-height: 0.98; margin-top: 40px; }
+  .hook .sub { font-size: 40px; margin-top: 36px; color: var(--white); font-weight: 500; }
+  .hook .sub b { color: var(--yellow); }
+  .hook .center { margin: auto 0; }
+  .sunicon { width: 150px; height: 150px; }
+  .sunicon svg { width: 100%; height: 100%; }
+  .swipe { margin-top: auto; display: flex; align-items: center; gap: 18px; font-size: 30px; font-weight: 600; color: var(--white); }
+  .swipe i { width: 18px; height: 18px; border-radius: 50%; background: var(--yellow); display: block; }
+
+  /* outro */
+  .outro .ui { align-items: center; text-align: center; justify-content: center; padding-bottom: 420px; }
+  .outro .logo-big { height: 190px; }
+  .outro h2 { font-size: 92px; margin-top: 70px; line-height: 1.05; }
+  .outro h2 .y { color: var(--yellow); }
+  .outro .sub { margin-top: 30px; font-size: 36px; color: var(--blue); }
+  .outro .btn { margin-top: 60px; }
+  .sun { width: 900px; height: 900px; left: 90px; top: 520px; }
+
+  [data-in] { opacity: 0; }
+  .progress { position: absolute; left: 72px; right: 72px; top: 62px; height: 8px; display: flex; gap: 8px; }
+  .progress i { flex: 1; height: 100%; border-radius: 4px; background: rgba(255,255,255,0.25); overflow: hidden; position: relative; }
+  .progress i::after { content: ""; position: absolute; inset: 0; background: var(--yellow); transform-origin: left; transform: scaleX(var(--p, 0)); }
+</style>
+</head>
+<body>
+<div class="stage" id="stage">
+
+  <!-- HOOK -->
+  <section class="scene hook" data-start="0" data-end="3.4">
+    <div class="bg"><img src="../assets/img/comedie.jpg" data-kb="1.04,1.14"><div class="ov"></div></div>
+    <div class="ui">
+      <div class="topbar" data-in="0.05"><img class="logo" src="../assets/img/logo-montpellier-white.png" alt=""><span class="counter">Été · Summer</span></div>
+      <div class="center">
+        <div class="sunicon" data-in="0.15"><svg viewBox="0 0 100 100" fill="none" stroke="#F5BC29" stroke-width="6" stroke-linecap="round"><circle cx="50" cy="50" r="18" fill="#F5BC29" stroke="none"/><path d="M50 8v14M50 78v14M8 50h14M78 50h14M20.3 20.3l9.9 9.9M69.8 69.8l9.9 9.9M20.3 79.7l9.9-9.9M69.8 30.2l9.9-9.9"/></svg></div>
+        <h1 data-in="0.3"><span class="y">5 French words</span><br>you'll need<br>this summer.</h1>
+        <p class="sub" data-in="0.7">Straight from <b>Montpellier</b>, 10 minutes from the beach.</p>
+      </div>
+      <div class="swipe" data-in="1.1"><i></i> Save this for your trip</div>
+    </div>
+  </section>
+
+  <!-- WORDS -->
+  <section class="scene word-scene" data-start="3.4" data-end="7.5">
+    <div class="bg soft"><img src="../assets/img/beach-volley.jpg" data-kb="1.08,1.18"><div class="ov"></div></div>
+    <div class="ui">
+      <div class="topbar" data-in="0"><img class="logo" src="../assets/img/logo-montpellier-white.png" alt=""><span class="counter"><b>01</b> / 05</span></div>
+      <div class="card" data-in="0.1">
+        <span class="tag">nom féminin</span>
+        <div class="word">la plage</div>
+        <div class="pron">[la plaʒ]</div>
+        <div class="trans">the beach</div>
+        <div class="ex" data-in="0.9"><div class="fr">« On va à <span>la plage</span> cet aprem ? »</div><div class="en">"Shall we go to the beach this afternoon?"</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="scene word-scene" data-start="7.5" data-end="11.6">
+    <div class="bg"><img src="../assets/img/group-city.jpg" data-kb="1.06,1.16"><div class="ov"></div></div>
+    <div class="ui">
+      <div class="topbar" data-in="0"><img class="logo" src="../assets/img/logo-montpellier-white.png" alt=""><span class="counter"><b>02</b> / 05</span></div>
+      <div class="card" data-in="0.1">
+        <span class="tag">expression du Sud</span>
+        <div class="word">le cagnard</div>
+        <div class="pron">[lə kaɲaʁ]</div>
+        <div class="trans">the blazing sun</div>
+        <div class="ex" data-in="0.9"><div class="fr">« Quel <span>cagnard</span> aujourd'hui ! »</div><div class="en">"It's scorching today!" — what locals say when it's 35°C.</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="scene word-scene" data-start="11.6" data-end="15.7">
+    <div class="bg"><img src="../assets/img/group-trees.jpg" data-kb="1.06,1.16"><div class="ov"></div></div>
+    <div class="ui">
+      <div class="topbar" data-in="0"><img class="logo" src="../assets/img/logo-montpellier-white.png" alt=""><span class="counter"><b>03</b> / 05</span></div>
+      <div class="card" data-in="0.1">
+        <span class="tag">verbe</span>
+        <div class="word">bronzer</div>
+        <div class="pron">[bʁɔ̃ze]</div>
+        <div class="trans">to sunbathe, to get a tan</div>
+        <div class="ex" data-in="0.9"><div class="fr">« Je <span>bronze</span> à Palavas tout le week-end. »</div><div class="en">"I'm sunbathing in Palavas all weekend."</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="scene word-scene" data-start="15.7" data-end="19.8">
+    <div class="bg"><img src="../assets/img/student-smile.webp" data-kb="1.05,1.15"><div class="ov"></div></div>
+    <div class="ui">
+      <div class="topbar" data-in="0"><img class="logo" src="../assets/img/logo-montpellier-white.png" alt=""><span class="counter"><b>04</b> / 05</span></div>
+      <div class="card" data-in="0.1">
+        <span class="tag">nom féminin</span>
+        <div class="word">une glace</div>
+        <div class="pron">[yn glas]</div>
+        <div class="trans">an ice cream</div>
+        <div class="ex" data-in="0.9"><div class="fr">« <span>Une glace</span> à la pistache, s'il vous plaît. »</div><div class="en">"A pistachio ice cream, please."</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="scene word-scene" data-start="19.8" data-end="23.9">
+    <div class="bg"><img src="../assets/img/teacher-class.webp" data-kb="1.06,1.16"><div class="ov"></div></div>
+    <div class="ui">
+      <div class="topbar" data-in="0"><img class="logo" src="../assets/img/logo-montpellier-white.png" alt=""><span class="counter"><b>05</b> / 05</span></div>
+      <div class="card" data-in="0.1">
+        <span class="tag">nom masculin</span>
+        <div class="word">le farniente</div>
+        <div class="pron">[faʁnjɛnte]</div>
+        <div class="trans">the art of doing nothing</div>
+        <div class="ex" data-in="0.9"><div class="fr">« L'été, c'est <span>farniente</span> et apéro. »</div><div class="en">"Summer means lazing around and drinks with friends."</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OUTRO -->
+  <section class="scene outro" data-start="23.9" data-end="27.5">
+    <div class="sun"></div>
+    <div class="ui">
+      <img class="logo-big" src="../assets/img/logo-montpellier-white.png" alt="" data-in="0.1">
+      <h2 data-in="0.4">Learn French<br>where <span class="y">summer lives.</span></h2>
+      <p class="sub" data-in="0.7">Courses all year · Summer Campus 18–25</p>
+      <span class="btn" data-in="1.0">klf.fr/montpellier <span class="arrow">→</span></span>
+    </div>
+  </section>
+
+  <div class="progress" id="progress"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+</div>
+
+<script>
+  const DUR = 27.5;
+  const scenes = [...document.querySelectorAll('.scene')].map(s => ({
+    el: s, start: +s.dataset.start, end: +s.dataset.end,
+    img: s.querySelector('.bg img'),
+    kb: s.querySelector('.bg img') ? s.querySelector('.bg img').dataset.kb.split(',').map(Number) : null,
+    ins: [...s.querySelectorAll('[data-in]')].map(e => ({ el: e, d: +e.dataset.in }))
+  }));
+  const bars = [...document.querySelectorAll('#progress i')];
+  const clamp = (x, a, b) => Math.min(b, Math.max(a, x));
+  const easeOut = x => 1 - Math.pow(1 - x, 3);
+
+  window.render = function (t) {
+    scenes.forEach((s, i) => {
+      const live = t >= s.start && t < s.end;
+      s.el.classList.toggle('live', live);
+      if (!live) return;
+      const lt = t - s.start, len = s.end - s.start;
+      const fadeIn = clamp(lt / 0.35, 0, 1), fadeOut = clamp((s.end - t) / 0.3, 0, 1);
+      s.el.style.opacity = Math.min(fadeIn, fadeOut);
+      if (s.img) { const k = s.kb[0] + (s.kb[1] - s.kb[0]) * (lt / len); s.img.style.transform = `scale(${k})`; }
+      s.ins.forEach(({ el, d }) => {
+        const p = easeOut(clamp((lt - d) / 0.55, 0, 1));
+        el.style.opacity = p;
+        el.style.transform = `translateY(${(1 - p) * 46}px)`;
+      });
+      bars.forEach((b, j) => b.style.setProperty('--p', j < i ? 1 : j === i ? clamp(lt / len, 0, 1) : 0));
+    });
+  };
+  render(0);
+</script>
+</body>
+</html>

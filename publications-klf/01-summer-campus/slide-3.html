@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Summer Campus – slide 3</title>
+<link rel="stylesheet" href="../assets/klf.css">
+<style>
+  .sun { right: -120px; top: 120px; }
+  h2 { margin-top: 70px; font-size: 84px; }
+  .sub { margin-top: 20px; }
+  .prices { display: flex; flex-direction: column; gap: 22px; margin-top: 56px; }
+  .price { display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.07); border: 2px solid rgba(255,255,255,0.14); border-radius: 30px; padding: 36px 44px; }
+  .price .w { font-size: 40px; font-weight: 700; }
+  .price .w small { display: block; font-size: 22px; font-weight: 500; color: var(--blue); margin-top: 6px; }
+  .price .p { font-size: 58px; font-weight: 800; letter-spacing: -0.02em; }
+  .price.hot { background: var(--yellow); border-color: var(--yellow); color: var(--navy); transform: scale(1.03); box-shadow: 0 24px 60px rgba(245,188,41,0.35); }
+  .price.hot .w small { color: var(--navy); opacity: 0.75; }
+  .price.hot .badge { position: absolute; top: -20px; right: 44px; background: var(--navy); color: var(--yellow); font-size: 20px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 10px 20px; border-radius: 999px; }
+  .price { position: relative; }
+  .incl { margin-top: 36px; font-size: 24px; color: rgba(255,255,255,0.75); line-height: 1.5; }
+  .cta { margin-top: auto; display: flex; align-items: center; justify-content: space-between; }
+  .site { font-size: 26px; font-weight: 600; color: var(--blue); }
+</style>
+</head>
+<body>
+<div class="slide navy">
+  <div class="sun"></div>
+  <div class="pad">
+    <div class="logo-row">
+      <img class="logo" src="../assets/img/logo-montpellier-white.png" alt="KLF Montpellier">
+      <div class="dots"><i></i><i></i><i class="on"></i></div>
+    </div>
+    <h2>Pick your <span class="y">summer.</span></h2>
+    <p class="sub">All-inclusive packages, 2027 prices.</p>
+    <div class="prices">
+      <div class="price"><div class="w">2 weeks<small>Minimum stay</small></div><div class="p">€1,530</div></div>
+      <div class="price hot"><span class="badge">Most popular</span><div class="w">3 weeks<small>The sweet spot</small></div><div class="p">€2,165</div></div>
+      <div class="price"><div class="w">4 weeks<small>Full immersion</small></div><div class="p">€2,715</div></div>
+    </div>
+    <p class="incl">Course + studio + excursions + tram pass + gym pass. Start any Monday from 4 July to 14 August 2027. Ages 18–25 (16+ with host family).</p>
+    <div class="cta">
+      <span class="btn">Book your spot <span class="arrow">→</span></span>
+      <span class="site">klf.fr/montpellier</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>
