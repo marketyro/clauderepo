@@ -24,6 +24,7 @@ Flyers PDF A4 (2 pages, page 2 = galerie photos) : `output/…_general_A4.pdf`, 
 - 2 semaines tout compris : **1,530 €** (3 sem. 2,165 € · 4 sem. 2,715 €)
 - Beca : valeur **535 €** (cours, activités culturelles, transport, gym) → **995 €** pour 2 semaines tout compris
 - 2 bourses, sélection avant fin 2026
+- Contact : contacto@alianzafr.edu.mx (pied de page de tous les visuels)
 - Arrivées chaque lundi du 4 juillet au 14 août 2027 · 18–25 ans · niveaux A1–C1
 
 ## Photos (`photos/`)

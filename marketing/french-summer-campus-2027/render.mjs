@@ -45,8 +45,9 @@ const C = {
   becaValue: "535 €",
   becaCovers: ["Curso de francés", "Actividades culturales", "Pase de transporte", "Gimnasio"],
   selection: "Selección de los 2 becarios antes de fin de 2026",
-  ctaGeneral: "Informes e inscripciones con tu asesor",
-  ctaBeca: "¡Postula con tu asesor!",
+  ctaGeneral: "Informes e inscripciones:",
+  ctaBeca: "¡Postula ya! Escríbenos:",
+  email: "contacto@alianzafr.edu.mx",
   brand: "KLF · Keep Learning French",
   school: "Escuela KLF Montpellier",
   table: [
@@ -166,7 +167,7 @@ const becaBox = (compact = false, rest = true) => `
 
 const footer = (beca) => `
 <footer class="foot">
-  <div class="cta">${beca ? C.ctaBeca : C.ctaGeneral}</div>
+  <div class="cta">${beca ? C.ctaBeca : C.ctaGeneral}<span class="email">${C.email}</span></div>
   <div class="brand">${C.brand}<span>${C.school}</span></div>
 </footer>`;
 
