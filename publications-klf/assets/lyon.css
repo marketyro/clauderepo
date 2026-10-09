@@ -1,14 +1,17 @@
-/* KLF Lyon (Lyon Bleu International) – palette relevée sur klf.fr/lyon : bleu profond + bleu moyen */
+/* KLF Lyon (Lyon Bleu International) – palette relevée sur klf.fr/lyon :
+   bleu profond #001F98 (fonds), bleu moyen #576FBE (secondaire), bleu pâle #EDEFFF (accents, boutons), blanc. Pas de jaune. */
 :root {
   --navy: #001F98;
-  --deep: #001232;
-  --yellow: #F5BC29;        /* accent chaud conservé pour la lisibilité des mots */
-  --yellow-hover: #FFD878;
-  --blue: #A9B8F0;          /* bleu clair pour les textes secondaires */
+  --deep: #000F37;
+  --yellow: #EDEFFF;         /* accent principal Lyon : bleu pâle (mots en relief, boutons, pastilles) */
+  --yellow-hover: #FFFFFF;
+  --blue: #B7C2F2;           /* textes secondaires sur fond bleu profond */
   --cream: #F4F6FF;
   --pale: #EDEFFF;
   --muted: #3A4F8A;
   --mid: #576FBE;
 }
-.overlay { background: linear-gradient(180deg, rgba(0,18,50,0.15) 0%, rgba(0,18,50,0.35) 40%, rgba(0,31,152,0.90) 72%, var(--navy) 100%); }
-.slide.navy, .stage, .card { }
+.overlay { background: linear-gradient(180deg, rgba(0,15,55,0.20) 0%, rgba(0,15,55,0.40) 40%, rgba(0,31,152,0.92) 72%, var(--navy) 100%); }
+.pill.blue { background: var(--mid); color: #FFFFFF; }
+.sun { background: radial-gradient(circle, rgba(87,111,190,0.55) 0%, rgba(87,111,190,0) 70%) !important; }
+.dots i.on { background: var(--pale); }

@@ -145,7 +145,7 @@ La slide 7 utilise une photo de classe KLF Annecy issue du site.
 
 ## 5. Reel – Le vocabulaire du bouchon lyonnais (KLF Lyon, 27 s, 1080 × 1920)
 
-Dossier : `05-reel-bouchon-lyonnais/`. Fichiers : `reel-bouchon-lyonnais.mp4` (sans son) et `cover.png`. Charte KLF Lyon (bleu profond `#001F98`, logo « klf.lyon » Lyon Bleu). Entièrement en français.
+Dossier : `05-reel-bouchon-lyonnais/`. Fichiers : `reel-bouchon-lyonnais.mp4` (sans son) et `cover.png`. Charte KLF Lyon relevée sur klf.fr/lyon : bleu profond `#001F98`, bleu moyen `#576FBE`, bleu pâle `#EDEFFF`, sans jaune. Logo « klf.lyon » Lyon Bleu. Entièrement en français.
 
 Déroulé : accroche → un bouchon, une quenelle, le tablier de sapeur, un pot lyonnais, la cervelle de canut → écran final klf.fr/lyon. Ajoutez une musique au moment de publier.
 
