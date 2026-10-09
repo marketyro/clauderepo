@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Cours du soir – slide 2</title>
+<link rel="stylesheet" href="../assets/klf.css"><link rel="stylesheet" href="../assets/lyon.css">
+<style>
+  .sun { right: -120px; top: 120px; background: radial-gradient(circle, rgba(87,111,190,0.6) 0%, rgba(87,111,190,0) 70%); }
+  h2 { margin-top: 44px; font-size: 76px; }
+  .sub { margin-top: 18px; }
+  .prices { display: flex; flex-direction: column; gap: 18px; margin-top: 40px; }
+  .price { position: relative; display: flex; align-items: center; justify-content: space-between; background: rgba(255,255,255,0.08); border: 2px solid rgba(255,255,255,0.16); border-radius: 30px; padding: 26px 44px; }
+  .price .w { font-size: 40px; font-weight: 700; }
+  .price .w small { display: block; font-size: 22px; font-weight: 500; color: var(--blue); margin-top: 6px; }
+  .price .p { font-size: 56px; font-weight: 800; letter-spacing: -0.02em; }
+  .price.hot { background: var(--yellow); border-color: var(--yellow); color: var(--navy); transform: scale(1.03); }
+  .price.hot .w small { color: var(--navy); opacity: 0.75; }
+  .price.hot .badge { position: absolute; top: -20px; right: 44px; background: var(--navy); color: var(--yellow); font-size: 20px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 10px 20px; border-radius: 999px; }
+  .incl { margin-top: 28px; font-size: 25px; color: rgba(255,255,255,0.8); line-height: 1.5; }
+  .cta { margin-top: auto; display: flex; align-items: center; justify-content: space-between; }
+  .site { font-size: 26px; font-weight: 600; color: var(--blue); }
+</style></head>
+<body><div class="slide navy">
+  <div class="sun"></div>
+  <div class="pad">
+    <div class="logo-row"><img class="logo" src="../assets/img/logo-lyon-white.png" alt="KLF Lyon"><div class="dots"><i></i><i class="on"></i></div></div>
+    <h2>Pick <span class="y">your pace.</span></h2>
+    <p class="sub">4, 8 or 12-week packs, classes of 8 to 14 students.</p>
+    <div class="prices">
+      <div class="price"><div class="w">4 weeks<small>To get started</small></div><div class="p">180 €</div></div>
+      <div class="price hot"><span class="badge">Most popular</span><div class="w">8 weeks<small>A real step up</small></div><div class="p">320 €</div></div>
+      <div class="price"><div class="w">12 weeks<small>A full level</small></div><div class="p">460 €</div></div>
+    </div>
+    <p class="incl">Placement test and teacher support included. Ages 16+. Levels A2 to C1, specific dates for beginners.</p>
+    <div class="cta"><span class="btn">Test my level <span class="arrow">→</span></span><span class="site">klf.fr/lyon</span></div>
+  </div>
+</div></body></html>
