@@ -10,13 +10,12 @@ La version beca reprend la carte « promotion » AF (prix barré → 995 €).
 - `output/general/` : version tarif officiel (1 530 €)
 - `output/beca/` : version 2 bourses (995 € au lieu de 1 530 €)
 
-Chaque dossier contient 4 formats × 4 photos au choix (`foto-1` … `foto-4`) :
+Chaque dossier contient 3 formats × 4 photos au choix (`foto-1` … `foto-4`) :
 
 | Format | Usage |
 |---|---|
 | `story_1080x1920` | Story Instagram / Facebook |
-| `post-4x5_1080x1350` | Post Instagram / Facebook (photo + panneau d'infos) |
-| `post-4x5-visual_1080x1350` | Post Instagram / Facebook alternatif : photo plein cadre, infos en surimpression |
+| `post-4x5-visual_1080x1350` | Post Instagram / Facebook : photo plein cadre, infos en surimpression |
 | `carre-1x1_1080x1080` | Post carré, WhatsApp |
 
 Flyers PDF A4 (2 pages, page 2 = galerie photos) : `output/…_general_A4.pdf`, `output/…_beca_A4.pdf`.

@@ -297,7 +297,8 @@ const PREFIX = "KLF_French-Summer-Campus-2027";
 
 for (const [vName, beca] of versions) {
   mkdirSync(join(OUT, vName), { recursive: true });
-  for (const format of Object.keys(SIZES)) {
+  // Le 4:5 « petite photo » (post) n'est plus livré : seul le 4:5 « visual » est généré
+  for (const format of Object.keys(SIZES).filter((f) => f !== "post")) {
     // PDF : photo principale uniquement ; réseaux sociaux : toutes les photos
     const photos = format === "a4" ? [PHOTOS[vName][0]] : PHOTOS[vName];
     for (const ph of photos) {
