@@ -143,11 +143,11 @@ La slide 7 utilise une photo de classe KLF Annecy issue du site.
 
 ---
 
-## 5. Reel – Le vocabulaire du bouchon lyonnais (KLF Lyon, 27 s, 1080 × 1920)
+## 5. Le vocabulaire du bouchon lyonnais (KLF Lyon, carrousel 7 slides)
 
-Dossier : `05-reel-bouchon-lyonnais/`. Fichiers : `reel-bouchon-lyonnais.mp4` (sans son) et `cover.png`. Charte KLF Lyon relevée sur klf.fr/lyon : bleu profond `#001F98`, bleu moyen `#576FBE`, bleu pâle `#EDEFFF`, sans jaune. Logo « klf.lyon » Lyon Bleu. Entièrement en français.
+Dossier : `05-carrousel-bouchon-lyonnais/` : 7 slides 1080 × 1350 (accroche, 5 mots, conclusion). La version reel reste disponible dans `05-reel-bouchon-lyonnais/` (`reel-bouchon-lyonnais.mp4`, sans son). Charte KLF Lyon relevée sur klf.fr/lyon : bleu profond `#001F98`, bleu moyen `#576FBE`, bleu pâle `#EDEFFF`, sans jaune. Logo « klf.lyon » Lyon Bleu. Entièrement en français.
 
-Déroulé : accroche → un bouchon, une quenelle, le tablier de sapeur, un pot lyonnais, la cervelle de canut → écran final klf.fr/lyon. Ajoutez une musique au moment de publier.
+Déroulé : accroche → un bouchon, une quenelle, le tablier de sapeur, un pot lyonnais, la cervelle de canut → slide finale klf.fr/lyon.
 
 ### Légende
 
@@ -202,7 +202,7 @@ La page indique « 4 cours de 45 minutes par semaine » dans la liste des inclus
 | Vendredi | Summer Campus (carrousel, version anglaise) | 17 h |
 | Lundi suivant | Summer Campus (version française) | 12 h |
 | Mercredi suivant | L'automne à Annecy (carrousel photo, compte Annecy) | 18 h |
-| Vendredi suivant | Reel bouchon lyonnais (compte Lyon) | 18 h |
+| Vendredi suivant | Carrousel bouchon lyonnais (compte Lyon) | 18 h |
 | Lundi d'après | Cours du soir en ligne (compte Lyon) | 12 h |
 
 Le reel peut être repartagé en story le jour même. Les carrousels se repartagent en story avec le sticker « lien ».
