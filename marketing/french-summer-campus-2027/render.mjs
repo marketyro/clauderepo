@@ -73,7 +73,7 @@ const icon = (name) =>
 const PHOTOS = {
   general: [
     { key: "1-grupo-campus", file: "grupo-campus.jpg", pos: "68% 30%" },
-    { key: "2-terraza-campus", file: "campus-terraza.jpg", pos: { story: "60% 100%", post: "20% 100%", square: "40% 62%", default: "55% 100%" }, size: { story: "auto 120%", post: "110% auto", square: "105% auto", default: "125% auto" } },
+    { key: "2-terraza-campus", file: "campus-terraza.jpg", pos: { story: "28% 100%", postv: "30% 100%", post: "20% 100%", square: "40% 62%", default: "55% 100%" }, size: { story: "auto 100%", postv: "auto 100%", post: "110% auto", square: "105% auto", default: "125% auto" } },
     { key: "3-azotea-bar", file: "azotea-bar.jpg", pos: { story: "45% 50%", default: "50% 30%" } },
     { key: "4-acueducto", file: "acueducto.jpg", pos: { story: "50% 75%", default: "50% 55%" } },
   ],
