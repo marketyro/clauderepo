@@ -21,21 +21,15 @@ html,body{width:1800px;height:90px;overflow:hidden;background:var(--white)}
 #ball{position:absolute;top:13px;width:64px;height:64px;z-index:20;left:-200px}
 </style></head>
 <body><div id="root">
-  <!-- Flash 4 : chaîne de logos (sous le stage) -->
+  <!-- Flash 1 : chaîne de logos (sous le stage) -->
   <div id="chain"></div>
-  <!-- Flash 1 : signature -->
-  <div id="tag">
-    <span class="t h" data-d="0">1<sup style="font-size:22px">er</sup> réseau de</span>
-    <span class="t pill" data-d=".15" style="background:var(--green)">crèches durables</span>
-    <span class="t h" data-d=".3">du Languedoc</span>
-  </div>
   <div id="stage">
-    <!-- Flash 2 -->
+    <!-- Flash 2 : premier groupe -->
     <div class="scene" style="background:var(--green)">
       <span class="t h" data-d="0" style="font-size:40px">Premier groupe de crèches de</span>
       <span class="t pill" data-d=".25" style="background:var(--blue);font-size:44px">Montpellier</span>
     </div>
-    <!-- Flash 3 -->
+    <!-- Flash 3 : MHSC -->
     <div class="scene" style="background:var(--navy)">
       <span class="t h" data-d="0" style="font-size:40px">Baby Éveil est le partenaire crèche du</span>
       <span class="t pill" data-d=".3" data-pulse="1" style="background:var(--orange);font-size:46px">MHSC</span>
@@ -59,43 +53,39 @@ html,body{width:1800px;height:90px;overflow:hidden;background:var(--white)}
       </g>
     </g>
   </svg>
-  <img id="logo" class="logo" src="logo.png">
 </div>
 <script>
-// ---- Timeline (secondes) ----
-const T={pop:0.6, slide:1.8, slideDur:0.8, tagIn:2.4, open:8.0, openDur:0.8, f2In:8.6, f3:15.0, wipe:0.7, f3In:15.5, close:22.5, closeDur:0.8, chainGo:23.0};
-const W=1800, SIDE_X=24, CHAIN_GAP=150, CHAIN_SPEED=170;
+// ---- Cycle de 15 s joué 2 fois (secondes dans le cycle) ----
+const CYCLE=15;
+const T={scroll:5.0, open:5.3, openDur:0.8, f2In:5.9, f3:10.0, wipe:0.7, f3In:10.5, close:14.2, closeDur:0.8};
+const W=1800, SIDE_X=24, CHAIN_GAP=150, STOP_ITEM=2;
 const DOTS=['#8DC26F','#5FAEC4','#EB6A0A','#FDBF31'];
 
 const clamp=(x,a=0,b=1)=>Math.max(a,Math.min(b,x));
 const lerp=(a,b,p)=>a+(b-a)*p;
 const easeIO=x=>x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;
+const easeSine=x=>-(Math.cos(Math.PI*x)-1)/2;
 const easeBack=x=>{const c1=1.6,c3=c1+1;return 1+c3*Math.pow(x-1,3)+c1*Math.pow(x-1,2)};
 
 const $=s=>document.querySelector(s);
-const logo=$('#logo'), stage=$('#stage'), tag=$('#tag'), chain=$('#chain'), ball=$('#ball'), ballg=$('#ballg');
+const stage=$('#stage'), chain=$('#chain'), ball=$('#ball'), ballg=$('#ballg');
 const [sc1,sc2]=[...document.querySelectorAll('.scene')];
 const groups=[
-  {items:[...tag.querySelectorAll('.t')], base:T.tagIn},
   {items:[...sc1.querySelectorAll('.t')], base:T.f2In},
   {items:[...sc2.querySelectorAll('.t')], base:T.f3In},
 ];
 let L=null, chainEls=[];
 function layout(){
-  const lw=logo.getBoundingClientRect().width;
+  const lw=76*1779/497; // hauteur 76 px, proportions du logo détouré
   const slantTop=SIDE_X+lw+46, slantBot=slantTop-34;
   [sc1,sc2].forEach(s=>s.style.left=slantBot+'px');
-  // signature centrée dans l'espace à droite du logo
-  const tw=tag.getBoundingClientRect().width;
-  tag.style.left=(slantTop+(W-slantTop-tw)/2)+'px';
-  // chaîne : logo, pastille, logo, pastille...
-  const step=lw+CHAIN_GAP, n=Math.ceil((W+CHAIN_SPEED*8)/step)+1;
+  const step=lw+CHAIN_GAP, n=STOP_ITEM+Math.ceil(W/step)+2;
   for(let i=0;i<n;i++){
     const im=document.createElement('img'); im.src='logo.png'; im.className='logo'; chain.appendChild(im);
     const d=document.createElement('span'); d.className='dot'; d.style.background=DOTS[i%DOTS.length]; chain.appendChild(d);
     chainEls.push({im,d});
   }
-  L={lw, step, slantTop, slantBot, centerX:(W-lw)/2};
+  L={lw, step, slantTop, slantBot};
 }
 function animItems(g,t){
   g.items.forEach(it=>{
@@ -110,44 +100,35 @@ function setBall(x){
   if(x===null||x<L.slantTop-20||x>W+40){ball.style.left='-200px';return}
   ball.style.left=(x-32)+'px'; ballg.setAttribute('transform',`rotate(${(x/32)*57.3})`);
 }
-window.setTime=function(t){
+window.setTime=function(time){
   if(!L) layout();
+  const t=time%CYCLE;
   let ballX=null;
 
-  // stage : zone visible entre un bord gauche (diagonale ou balayage de sortie) et un bord droit (balayage d'entrée)
-  const po=easeIO(clamp((t-T.open)/T.openDur)), pc=easeIO(clamp((t-T.close)/T.closeDur));
-  const R=lerp(L.slantTop,W,po), B=lerp(0,W,pc);
-  if(po>0&&po<1) ballX=R;
-  if(pc>0&&pc<1) ballX=B;
-  const top=Math.max(L.slantTop,B), bot=Math.max(L.slantBot,B);
-  const rTop=Math.max(R,top), rBot=Math.max(R+(L.slantBot-L.slantTop)*0,bot);
-  stage.style.visibility=(t<T.open||pc>=1)?'hidden':'visible';
-  stage.style.clipPath=`polygon(${top}px 0,${rTop}px 0,${Math.max(R,bot)}px 90px,${bot}px 90px)`;
-
-  // flash 3 recouvre le flash 2
-  const p3=easeIO(clamp((t-T.f3)/T.wipe));
-  sc2.style.visibility=t>=T.f3?'visible':'hidden';
-  sc2.style.clipPath=`inset(0 ${(1-p3)*100}% 0 0)`;
-  if(p3>0&&p3<1) ballX=L.slantBot+p3*(W-L.slantBot);
-
-  // logo : pop au centre puis glisse à gauche ; à la fin il devient le 1er maillon de la chaîne
-  let lx, sc=1, op=1;
-  if(t<T.slide){ const e=easeBack(clamp(t/T.pop)); lx=L.centerX; sc=lerp(0.7,1,e); op=clamp(t/0.3); }
-  else lx=lerp(L.centerX,SIDE_X,easeIO(clamp((t-T.slide)/T.slideDur)));
-  logo.style.left=lx+'px'; logo.style.opacity=op; logo.style.transform=`scale(${sc})`;
-  logo.style.visibility=t>=T.close?'hidden':'visible';
-
-  // signature du flash 1
-  tag.style.visibility=t<T.open+T.openDur?'visible':'hidden';
-
-  // chaîne de logos
-  chain.style.visibility=t>=T.close?'visible':'hidden';
-  const off=SIDE_X-CHAIN_SPEED*Math.max(0,t-T.chainGo);
+  // Flash 1 : la chaîne défile puis s'arrête pile sur un logo, calé à gauche
+  const D=STOP_ITEM*L.step;
+  let off;
+  if(t>=T.close) off=SIDE_X;                       // remise à zéro (le stage couvre la droite)
+  else off=SIDE_X-D*easeSine(clamp(t/T.scroll));
   chainEls.forEach((c,i)=>{
     const x=off+i*L.step;
     c.im.style.left=x+'px';
     c.d.style.left=(x+L.lw+CHAIN_GAP/2-7)+'px';
   });
+
+  // stage (flashs 2 et 3) : entre par balayage gauche->droite, sort de la même façon
+  const po=easeIO(clamp((t-T.open)/T.openDur)), pc=easeIO(clamp((t-T.close)/T.closeDur));
+  const R=lerp(L.slantTop,W,po), B=lerp(0,W,pc);
+  if(po>0&&po<1) ballX=R;
+  if(pc>0&&pc<1) ballX=B;
+  const top=Math.max(L.slantTop,B), bot=Math.max(L.slantBot,B);
+  stage.style.visibility=(t<T.open||pc>=1)?'hidden':'visible';
+  stage.style.clipPath=`polygon(${top}px 0,${Math.max(R,top)}px 0,${Math.max(R,bot)}px 90px,${bot}px 90px)`;
+
+  const p3=easeIO(clamp((t-T.f3)/T.wipe));
+  sc2.style.visibility=t>=T.f3?'visible':'hidden';
+  sc2.style.clipPath=`inset(0 ${(1-p3)*100}% 0 0)`;
+  if(p3>0&&p3<1) ballX=L.slantBot+p3*(W-L.slantBot);
 
   groups.forEach(g=>animItems(g,t));
   setBall(ballX);
