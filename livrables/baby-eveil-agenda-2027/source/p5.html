@@ -1,0 +1,30 @@
+<!doctype html><html><head><meta charset="utf-8"><link rel="stylesheet" href="base.css"><style>
+body{background:#6DAE52}
+.pitch{position:absolute;inset:0;background:repeating-linear-gradient(90deg,#77B85A 0 60px,#6DAE52 60px 120px)}
+.lines{position:absolute;inset:0}
+.board{position:absolute;left:50%;top:22px;transform:translateX(-50%);background:var(--navy);border-radius:14px;padding:10px 16px;display:flex;align-items:center;gap:14px;box-shadow:0 4px 0 rgba(0,0,0,.18)}
+.board .team{font-family:P;font-weight:800;font-size:17px;color:#fff;text-transform:uppercase;letter-spacing:.5px;width:205px}
+.board .team.r{text-align:right}
+.board .team.l{text-align:left;color:#C9D3E6}
+.board .score{display:flex;gap:6px;align-items:center}
+.board .score b{background:var(--orange);color:#fff;font-family:F;font-size:34px;width:46px;height:52px;border-radius:8px;display:flex;align-items:center;justify-content:center}
+.board .score b.z{background:#2A3A5E}
+.board .score i{color:#fff;font-family:F;font-size:24px;font-style:normal}
+.tag{position:absolute;left:0;right:0;top:112px;text-align:center;color:#fff}
+.tag h1{font-family:P;font-weight:800;font-size:25px;line-height:1.15;text-shadow:0 2px 0 rgba(0,0,0,.12)}
+.tag h1 .pill{background:var(--blue);font-size:25px;text-shadow:none}
+.tag p{font-size:12px;margin-top:8px;font-weight:600}
+.foot{position:absolute;left:24px;right:24px;bottom:18px;height:62px;background:var(--cream);border-radius:14px;display:flex;align-items:center;justify-content:space-between;padding:0 18px}
+.foot .logo{height:44px}
+.foot .m{font-family:F;font-size:14px;color:var(--navy);text-align:center}
+.foot .m span{color:var(--orange)}
+.foot .url{font-size:14px;color:var(--green-d)}
+.ball{position:absolute;width:30px;right:52px;top:160px}
+</style></head><body><div class="ad">
+<div class="pitch"></div>
+<svg class="lines" viewBox="0 0 718 321" preserveAspectRatio="none"><g fill="none" stroke="rgba(255,255,255,.5)" stroke-width="2"><rect x="-2" y="70" width="70" height="180"/><rect x="650" y="70" width="70" height="180"/></g></svg>
+<div class="board"><span class="team r">Baby Éveil</span><span class="score"><b>1</b><i>–</i><b class="z">0</b></span><span class="team l">Galère de garde</span></div>
+<div class="tag"><h1>Le bon équipier <span class="pill">des familles</span></h1><p>Crèches durables à Montpellier et alentours · du lundi au vendredi, 7h30 – 18h30</p></div>
+<img class="ball" src="ball.svg">
+<div class="foot"><img class="logo" src="logo.png"><div class="m">Partenaire crèche du <span>MHSC</span></div><div class="url">crechebabyeveil.fr</div></div>
+</div></body></html>

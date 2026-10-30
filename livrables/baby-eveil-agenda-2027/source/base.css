@@ -1,0 +1,14 @@
+@font-face{font-family:F;src:url(fredoka.ttf);font-weight:700}
+@font-face{font-family:P;src:url(poppins-1.ttf);font-weight:500}
+@font-face{font-family:P;src:url(poppins-2.ttf);font-weight:600}
+@font-face{font-family:P;src:url(poppins-bold.ttf);font-weight:700}
+@font-face{font-family:P;src:url(poppins-3.ttf);font-weight:800}
+@page{size:190mm 85mm;margin:0}
+:root{--green:#8DC26F;--green-d:#5E9A44;--blue:#5FAEC4;--orange:#EB6A0A;--yellow:#FDBF31;--cream:#FFF9F2;--navy:#14213D;--violet:#7B4FA0}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:190mm;height:85mm;overflow:hidden;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{font-family:P;font-weight:500;color:var(--navy);background:var(--cream)}
+.ad{position:relative;width:190mm;height:85mm;overflow:hidden}
+.f{font-family:F;font-weight:700}
+.pill{display:inline-block;font-family:F;font-weight:700;color:#fff;border-radius:9px;padding:1px 10px 3px;line-height:1.15}
+.url{font-family:P;font-weight:700;letter-spacing:.2px}
