@@ -13,7 +13,7 @@ c0 = np.array([0xFB,0x9A,0x45], np.float32); c1 = np.array([0xF2,0x7A,0x12], np.
 bg = c0*(1-t) + c1*t
 # photo : zone 360 x 321 px CSS, object-fit cover, position 50 % 40 %
 pw, ph = round(360*S), H
-photo = Image.open('ph_equipe.jpg').convert('RGB')
+photo = Image.open('ph_equipe_hd.jpg').convert('RGB')
 k = max(pw/photo.width, ph/photo.height)
 rs = photo.resize((round(photo.width*k), round(photo.height*k)), Image.LANCZOS)
 ox, oy = round((rs.width-pw)*0.5), round((rs.height-ph)*0.4)
