@@ -42,3 +42,14 @@ Objet suggéré : « Une place en crèche, grâce à votre employeur »
 Pré-header (déjà dans le HTML) : « Une entreprise réserve un berceau pour
 l'enfant d'un salarié : 152 € de moins chaque mois pour le parent,
 75 % défiscalisé pour l'entreprise. »
+
+## Rendu mobile
+
+La mise en page est « fluide » : les colonnes s'empilent d'elles-mêmes sur
+mobile sans dépendre des media queries, que l'application Gmail (Android et
+iOS) ignore. Les aperçus `apercu-mobile.png` sont rendus sans aucune feuille
+de style, comme dans Gmail.
+
+Gmail applique son propre mode sombre (fond crème inversé en sombre, cartes
+blanches en noir). C'est le comportement de Gmail, pas de l'email ; les
+couleurs orange, vert et jaune restent lisibles dans ce mode.
