@@ -12,9 +12,6 @@ ouvre le PDF de présentation hébergé sur le site
   ouvre le PDF de présentation hébergé sur le site). Toutes ses images
   (logo, bébé, photo d'Astrid) sont hébergées sur crechebabyeveil.fr :
   rien à importer dans Brevo.
-- `images/astrid.jpg` : version JPG de la photo d'Astrid, à importer dans
-  Brevo si l'on veut remplacer le WebP du site (le WebP ne s'affiche pas
-  dans Outlook pour Windows).
 - `apercu-desktop.png` / `apercu-mobile.png` : rendus de contrôle.
 
 ## Intégration dans Brevo
@@ -22,9 +19,6 @@ ouvre le PDF de présentation hébergé sur le site
 1. **Créer le modèle** : Brevo > Campagnes > Modèles > Nouveau modèle >
    « Coder en HTML » > « Coller le code » > coller tout le contenu de
    `email.html` > Enregistrer. Envoyer un test (Outlook, Gmail, iPhone).
-2. **Optionnel, pour Outlook Windows** : importer `images/astrid.jpg` dans la
-   bibliothèque d'images Brevo et remplacer l'URL `unnamed-2.webp` du HTML
-   par l'URL Brevo obtenue.
 
 Les balises Brevo sont déjà en place : `{{ mirror }}` (version en ligne) et
 `{{ unsubscribe }}` (désinscription).
