@@ -7,12 +7,23 @@ renvoie vers crechebabyeveil.fr/qui-sommes-nous. Compatible import HTML Brevo.
 
 ## Fichiers
 
-- `email.html` : l'email complet. Toutes les images (logo, bébé, photo
-  d'Astrid) pointent vers des fichiers hébergés sur crechebabyeveil.fr.
+Deux versions au choix :
+
+- `email.html` : **version courte** (page 1 + bouton « Qui sommes-nous ? »).
+  Toutes ses images (logo, bébé, photo d'Astrid) sont hébergées sur
+  crechebabyeveil.fr : rien à importer dans Brevo.
+- `email-complet.html` : **version longue** avec les 2 pages du PDF
+  (Qui sommes-nous, chiffres clés, 3 photos, pédagogie, carte des crèches).
+  Elle utilise 4 images extraites du PDF qui ne sont pas sur le site :
+  `images/creche-animations-musicales.jpg`, `images/creche-atelier-eveil.jpg`,
+  `images/creche-salle-sensorielle.jpg`, `images/carte-languedoc.png`.
+  Il faut les importer dans la bibliothèque d'images Brevo puis remplacer
+  chaque `src="images/..."` par l'URL Brevo obtenue, sinon le texte
+  alternatif s'affiche à la place de l'image.
 - `images/astrid.jpg` : version JPG de la photo d'Astrid, à importer dans
   Brevo si l'on veut remplacer le WebP du site (le WebP ne s'affiche pas
   dans Outlook pour Windows).
-- `apercu-desktop.png` / `apercu-mobile.png` : rendus de contrôle.
+- `apercu-*.png` : rendus de contrôle desktop et mobile des deux versions.
 
 ## Intégration dans Brevo
 
