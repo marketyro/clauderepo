@@ -1,13 +1,15 @@
 # Email Brevo – « Une place en crèche, grâce à votre employeur » (Baby Éveil)
 
-Reproduction en HTML email (tables, 640 px, responsive) de la lettre PDF
-« Réservation de berceaux entreprise ». Compatible import HTML Brevo.
+Reproduction en HTML email (tables, 640 px, responsive) de la page 1 de la
+lettre PDF « Réservation de berceaux entreprise ». La page 2 (Qui sommes-nous,
+chiffres clés, carte) est remplacée par un bouton « Qui sommes-nous ? » qui
+renvoie vers crechebabyeveil.fr/qui-sommes-nous. Compatible import HTML Brevo.
 
 ## Fichiers
 
-- `email.html` : l'email complet (page 1 + page 2 du PDF).
-- `images/` : les 5 images qui ne sont pas hébergées sur crechebabyeveil.fr
-  (photo d'Astrid, 3 photos de crèches, carte du Languedoc).
+- `email.html` : l'email complet.
+- `images/astrid.jpg` : la seule image qui n'est pas hébergée sur
+  crechebabyeveil.fr (photo d'Astrid).
 - `apercu-desktop.png` / `apercu-mobile.png` : rendus de contrôle.
 
 Le logo et la photo du bébé pointent déjà vers des images hébergées sur
@@ -15,12 +17,11 @@ crechebabyeveil.fr, rien à faire pour elles.
 
 ## Intégration dans Brevo (3 étapes)
 
-1. **Héberger les 5 images** : Brevo > Campagnes > Modèles > « Bibliothèque
-   d'images » (ou n'importe quel onglet « Images » de l'éditeur). Importer les
-   5 fichiers du dossier `images/` et copier l'URL de chacun.
-2. **Remplacer les chemins** dans `email.html` : chaque `src="images/xxx.jpg"`
-   doit devenir l'URL Brevo correspondante (recherche/remplacement de
-   `images/` par le préfixe d'URL fourni par Brevo suffit en général).
+1. **Héberger la photo d'Astrid** : Brevo > Campagnes > Modèles > « Bibliothèque
+   d'images » (ou l'onglet « Images » de l'éditeur). Importer `images/astrid.jpg`
+   et copier l'URL obtenue.
+2. **Remplacer le chemin** dans `email.html` : `src="images/astrid.jpg"` doit
+   devenir cette URL Brevo.
 3. **Créer le modèle** : Brevo > Campagnes > Modèles > Nouveau modèle >
    « Coder en HTML » > « Coller le code » > coller tout le contenu de
    `email.html` > Enregistrer. Envoyer un test (Outlook, Gmail, iPhone).
