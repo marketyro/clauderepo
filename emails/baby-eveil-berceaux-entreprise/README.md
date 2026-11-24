@@ -7,24 +7,21 @@ renvoie vers crechebabyeveil.fr/qui-sommes-nous. Compatible import HTML Brevo.
 
 ## Fichiers
 
-- `email.html` : l'email complet.
-- `images/astrid.jpg` : la seule image qui n'est pas hébergée sur
-  crechebabyeveil.fr (photo d'Astrid).
+- `email.html` : l'email complet. Toutes les images (logo, bébé, photo
+  d'Astrid) pointent vers des fichiers hébergés sur crechebabyeveil.fr.
+- `images/astrid.jpg` : version JPG de la photo d'Astrid, à importer dans
+  Brevo si l'on veut remplacer le WebP du site (le WebP ne s'affiche pas
+  dans Outlook pour Windows).
 - `apercu-desktop.png` / `apercu-mobile.png` : rendus de contrôle.
 
-Le logo et la photo du bébé pointent déjà vers des images hébergées sur
-crechebabyeveil.fr, rien à faire pour elles.
+## Intégration dans Brevo
 
-## Intégration dans Brevo (3 étapes)
-
-1. **Héberger la photo d'Astrid** : Brevo > Campagnes > Modèles > « Bibliothèque
-   d'images » (ou l'onglet « Images » de l'éditeur). Importer `images/astrid.jpg`
-   et copier l'URL obtenue.
-2. **Remplacer le chemin** dans `email.html` : `src="images/astrid.jpg"` doit
-   devenir cette URL Brevo.
-3. **Créer le modèle** : Brevo > Campagnes > Modèles > Nouveau modèle >
+1. **Créer le modèle** : Brevo > Campagnes > Modèles > Nouveau modèle >
    « Coder en HTML » > « Coller le code » > coller tout le contenu de
    `email.html` > Enregistrer. Envoyer un test (Outlook, Gmail, iPhone).
+2. **Optionnel, pour Outlook Windows** : importer `images/astrid.jpg` dans la
+   bibliothèque d'images Brevo et remplacer l'URL `unnamed-2.webp` du HTML
+   par l'URL Brevo obtenue.
 
 Les balises Brevo sont déjà en place : `{{ mirror }}` (version en ligne) et
 `{{ unsubscribe }}` (désinscription).
